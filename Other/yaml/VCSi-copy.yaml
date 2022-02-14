@@ -1,0 +1,347 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: VCSi copy
+  description: ''
+security:
+  - ApiKeyAuth: []
+servers:
+  - description: real url
+    url: https://apigateway.twcc.tw/api/v3/
+tags:
+  - name: 主要
+  - name: 參考API
+  - name: 其他
+paths: 
+  /image_requests/:
+    get:
+      tags:
+        - 主要
+      summary: List Image Requests
+      parameters:
+        - name: status
+          in: query
+          description: 篩選狀態
+          required: false
+          schema:
+            type: string
+            enum: [approved, failed, finished, requested]
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ImageRequests'
+    post:
+      tags: 
+        - 主要
+      summary: Create Image Request
+      parameters: 
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostImageRequests'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PostImageRequests'
+                - type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                  create_time:
+                    type: string
+                    format: date-time
+                  status:
+                    type: string
+                    enum: [approved, failed, finished, requested]
+                  user:
+                    type: string
+                  status_reason:
+                    type: string
+  /image_requsets/{image_requset_id}/:
+    get:
+      tags:
+        - 主要
+      summary: Get Image Request Detail
+      parameters:
+        - $ref: '#/components/parameters/ImageRequsetIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageRequests'
+    delete:
+      tags:
+        - 主要
+      summary: Delete Image Request
+      parameters:
+        - $ref: '#/components/parameters/ImageRequsetIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - 其他
+      summary: Agree Image Request
+      parameters:
+        - $ref: '#/components/parameters/ImageRequsetIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [approved, failed, finished, requested]
+  /images/:
+    get:
+      tags:
+        - 參考API
+      summary: List images
+      description: 此API使用Url如下<br>
+                   https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
+      servers:
+      - url: https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
+        description: 專屬url
+      parameters:
+        - $ref: '#/components/parameters/ProjectInQueryParam'
+        # - $ref: '../../VCS/yaml/VCS.yaml#/components/parameters/ProjectInQueryParam'
+        - name: x-api-host
+          in: header
+          description: 認證必要參數
+          required: true
+          schema:
+            type: string
+            default: openstack-taichung-default
+      responses:
+        200:
+          description: 取得所有
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ImageSerializer'
+  /projects/:
+    get:
+      tags:
+        - 參考API
+      summary: 取得專案列表
+      description: 此API使用Url如下<br>
+                   https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
+      servers:
+      - url: https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
+        description: 專屬url
+      parameters:
+        - in: query
+          name: name
+          description: 利用專案名查詢
+          required: false
+          schema:
+            type: string
+        - name: x-api-host
+          in: header
+          description: 認證必要參數
+          required: true
+          schema:
+            type: string
+            default: openstack-taichung-default
+      responses:
+        200:
+          description: 取得專案詳細資訊
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupSerializer'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+  parameters:
+    ProjectInQueryParam:
+      name: project
+      in: query
+      description: 需要project ID才能查詢
+      required: true
+      schema:
+        type: integer
+    ImageRequsetIDParam:
+      name: image_requset_id
+      in: path
+      description: image requset id
+      required: true
+      schema:
+        type: integer
+    ApiHostParam:
+      name: x-api-host
+      in: header
+      description: 認證必要參數
+      required: true
+      schema:
+        type: string
+        default: goc
+  schemas:
+    ImageSerializer:
+      required:
+      - create_time
+      - id
+      - is_public
+      - name
+      - platform
+      - server
+      - status
+      type: object
+      properties:
+        create_time:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        is_public:
+          type: boolean
+        name:
+          type: string
+        platform:
+          type: string
+        user:
+          $ref: '#/components/schemas/UserSerializer'
+        server:
+          $ref: '#/components/schemas/ServerFieldSerializer'
+        status:
+          type: string
+    ServerFieldSerializer:
+      required:
+      - hostname
+      - id
+      type: object
+      properties:
+        hostname:
+          type: string
+        id:
+          type: integer
+          format: int64
+    UserSerializer:
+      required:
+      - display_name
+      - email
+      - id
+      - username
+      type: object
+      properties:
+        id:
+          type: string
+        display_name:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+    GroupSerializer:
+      type: object
+      properties:
+        matchLabels:
+          type: array
+          items:
+            type: string
+        id:
+          format: int64
+          type: integer
+        name:
+          type: string
+        platform:
+          type: string
+        transparent_mode:
+          type: boolean
+      required:
+        - matchLabels
+        - id
+        - name
+        - platform
+        - transparent_mode
+    ImageRequests:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum: [approved, failed, finished, requested]
+        status_reason:
+          type: string
+        tag_image:
+          type: string
+        create_time:
+          type: string
+          format: date-time
+        src_project:
+          $ref: '#/components/schemas/ProjectInfo'
+        dst_project:
+          $ref: '#/components/schemas/ProjectInfo'
+        image:
+          $ref: '#/components/schemas/ImageInfo'
+    ProjectInfo:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        platform:
+          type: string
+    ImageInfo:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        is_public:
+          type: boolean
+        name:
+          type: string
+        status:
+          type: string
+        create_time:
+          type: string
+          format: date-time
+    PostImageRequests:
+      type: object
+      properties:
+        image:
+          description: 來源 image ID，於參考API中
+          type: integer
+        dst_project:
+          description: 複製端 project ID
+          type: integer
+        tag_image:
+          description: 複製端 image name
+          type: string
