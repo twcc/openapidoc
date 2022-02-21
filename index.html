@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" href="https://www.twcc.ai/assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.11.0/sweetalert2.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.11.0/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-JSONP/2.4.0/jquery.jsonp.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <v-app>
+            <v-main>
+                <v-container>
+                    <v-card-title class="text-center justify-center py-6">
+                        <h1 class="font-weight-bold text-h2 basil--text">
+                            API Gateway
+                        </h1>
+                    </v-card-title>
+                    <v-dialog v-model="dialog" width="70%">
+                        <v-card>
+                            <v-toolbar dark color="primary">
+                                <v-card-title>
+                                    歷史資訊
+                                </v-card-title>
+                                <v-spacer></v-spacer>
+                                <v-btn icon dark @click="dialog = false">
+                                    <v-icon>close</v-icon>
+                                </v-btn>
+                            </v-toolbar>
+                            <v-card-text>
+                                <br>
+                                <v-data-table :headers="record_headers" :items="record" hide-default-footer
+                                    class="elevation-1"><template v-slot:item.explanation="{ item }">
+                                        <v-tooltip bottom>
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <v-badge bordered color="error" overlap>
+                                                    <template v-slot:badge>
+                                                        {{item.explanation.ex_list.length}}
+                                                    </template>
+                                                    <v-btn text v-bind="attrs" v-on="on">
+                                                        {{item.explanation.summary}}
+                                                </v-badge>
+                                            </template>
+                                            <span>
+                                                <li v-for="(item, i) in item.explanation.ex_list" :key="i">
+                                                    {{ item }}
+                                                </li>
+                                            </span>
+                                        </v-tooltip>
+                                    </template><template v-slot:item.commit_code="{ item }">
+                                        <v-btn text @click="openurl(git_url + item.commit_code)"
+                                            :disabled="item.commit_code.length < 7">
+                                            {{item.commit_code.length > 6 ? item.commit_code.substr(0,
+                                            6):item.commit_code}}
+                                        </v-btn>
+                                    </template></v-data-table>
+                            </v-card-text>
+                        </v-card>
+                    </v-dialog>
+                    <v-tabs v-model="tab" background-color="primary" color="basil" center-active dark grow>
+                        <v-tab v-for="item in tabList" :key="item">
+                            {{ item }}
+                        </v-tab>
+                    </v-tabs>
+                    <v-tabs-items v-model="tab">
+                        <v-tab-item v-for="item in tabList" :key="item">
+                            <v-card color="basil" flat>
+                                <v-card-text>
+                                    <v-data-table :headers="headers" :items="data[item]" hide-default-footer
+                                        class="elevation-1"><template v-slot:item.explanation="{ item }">
+                                            <v-tooltip bottom>
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <v-badge color="error" overlap>
+                                                        <template v-slot:badge>
+                                                            {{item.explanation.ex_list.length}}
+                                                        </template>
+                                                        <v-btn text v-bind="attrs" v-on="on">
+                                                            {{item.explanation.summary}}
+                                                    </v-badge>
+                                                </template>
+                                                <span>
+                                                    <li v-for="(item, i) in item.explanation.ex_list" :key="i">
+                                                        {{ item }}
+                                                    </li>
+                                                </span>
+                                            </v-tooltip>
+                                        </template><template v-slot:item.commit_code="{ item }">
+                                            <v-btn text @click="openurl(git_url + item.commit_code)"
+                                                :disabled="item.commit_code.length < 7">
+                                                {{item.commit_code.length > 6 ? item.commit_code.substr(0,
+                                                6):item.commit_code}}
+                                            </v-btn>
+                                        </template><template v-slot:item.actions="{ item }">
+                                            <v-icon class="mr-2" @click="openurl(item.path)">open_in_new</v-icon>
+                                            <v-icon class="mr-2" @click="opendialog(item.record_path)">article</v-icon>
+                                        </template></v-data-table>
+                                </v-card-text>
+                            </v-card>
+                        </v-tab-item>
+                    </v-tabs-items>
+                </v-container>
+            </v-main>
+        </v-app>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: {
+                dialog: false,
+                tab: 0,
+                git_url: '',
+                tabList: [],
+                data: {},
+                headers: [
+                    {
+                        text: '項目',
+                        align: 'center',
+                        value: 'situation',
+                    },
+                    { text: '版本', value: 'version', align: 'center' },
+                    { text: '更新說明', value: 'explanation', align: 'center' },
+                    { text: 'Commits code', value: 'commit_code', align: 'center' },
+                    { text: '更新時間', value: 'update_time', align: 'center' },
+                    { text: 'Actions', value: 'actions', sortable: false, align: 'center' },
+                ],
+                record_headers: [
+                    { text: '版本', value: 'version', align: 'center' },
+                    { text: '更新說明', value: 'explanation', align: 'center' },
+                    { text: 'Commits code', value: 'commit_code', align: 'center' },
+                    { text: '更新時間', value: 'update_time', align: 'center' }
+                ],
+                record: []
+            },
+            methods: {
+                openurl(path) {
+                    window.open(path)
+                },
+                opendialog(path) {
+                    this.record = []
+                    const self = this
+                    if (path == undefined) {
+                        sweetAlert(
+                            '無紀錄!',
+                            '目前沒有歷史紀錄!',
+                            'warning'
+                        )
+                    } else {
+                        $.getJSON(`config/record/${path}`, function (record_res) {
+                            self.record = record_res
+                        }).done(function (d) {
+                            self.dialog = true
+                            self.$forceUpdate()
+                        }).fail(function (d) {
+                            sweetAlert(
+                                '找不到檔案!',
+                                '路徑錯誤請確認config!',
+                                'error'
+                            )
+                        })
+                    }
+                }
+            },
+            created() {
+                const self = this
+                $.getJSON("config/config.json", function (config_res) {
+                    self.tabList = config_res.tabList
+                    self.git_url = config_res.git_url
+                    for (let key in config_res.file_to_tab) {
+                        $.getJSON(`config/${config_res.file_to_tab[key]}`, function (data_res) {
+                            self.data[key] = data_res
+                            self.$forceUpdate()
+                        }).fail(function (d) {
+                            sweetAlert(
+                                `${key} json 找不到!`,
+                                '路徑錯誤請確認config!',
+                                'error'
+                            )
+                        })
+                    }
+                    self.$forceUpdate()
+                })
+                for (let key in this.data) {
+                    for (let i = 0; i < this.data[key].length; i++) {
+                        if (this.data[key][i].commit_code == undefined) {
+                            this.data[key][i].commit_code = ''
+                        }
+                        const d = this.data[key][i].record
+                        for (let j = 0; j < d.length; j++) {
+                            if (d[j].commit_code == undefined) {
+                                this.data[key][i].commit_code.record[j].commit_code = ''
+                            }
+                        }
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+<style>
+    .v-btn {
+        text-transform: none;
+    }
+</style>
+
+</html>
