@@ -19,39 +19,39 @@ paths:
       tags:
       - 參考API
       summary:
-        $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/summary'
+        $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/summary'
       parameters:
-        - $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/parameters/0'
-        - $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/parameters/1'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/parameters/1'
       responses:
         200:
-          $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/responses/200'
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/responses/200'
     post:
       tags:
       - 參考API
       summary:
-        $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/post/summary'
+        $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/post/summary'
       parameters:
-        - $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/post/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/post/parameters/0'
       requestBody:
-        $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/post/requestBody'
+        $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/post/requestBody'
       responses:
         200:
-          $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/post/responses/200'
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/post/responses/200'
   /loadbalancers/{loadbalancer_id}/:
     get:
       tags:
       - 參考API
       summary:
-        $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/summary'
+        $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/summary'
       description:
-        $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/description'
+        $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/description'
       parameters:
-        - $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/parameters/0'
-        - $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/parameters/1'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/parameters/1'
       responses:
         200:
-          $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/responses/200'
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/responses/200'
   /loadbalancers/{loadbalancer_id}/action/:
     put:
       tags:
