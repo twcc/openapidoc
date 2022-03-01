@@ -1,0 +1,133 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: LB update Listener
+  description: ''
+security:
+  - ApiKeyAuth: []
+servers:
+  - description: production url
+    url: https://apigateway.twcc.ai/api/v3/openstack-taichung-default-2/
+  - description: staging url
+    url: https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
+tags:
+  - name: 主要
+  - name: 參考API
+paths: 
+  /loadbalancers/:
+    get:
+      tags:
+      - 參考API
+      summary:
+        $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/summary'
+      parameters:
+        - $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/parameters/0'
+        - $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/parameters/1'
+      responses:
+        200:
+          $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/responses/200'
+    post:
+      tags:
+      - 參考API
+      summary:
+        $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/post/summary'
+      parameters:
+        - $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/post/parameters/0'
+      requestBody:
+        $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/post/requestBody'
+      responses:
+        200:
+          $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/post/responses/200'
+  /loadbalancers/{loadbalancer_id}/:
+    get:
+      tags:
+      - 參考API
+      summary:
+        $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/summary'
+      description:
+        $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/description'
+      parameters:
+        - $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/parameters/0'
+        - $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/parameters/1'
+      responses:
+        200:
+          $ref: '/Main/yaml/VCS.yaml#/paths/~1loadbalancers~1{loadbalancer_id}~1/get/responses/200'
+  /loadbalancers/{loadbalancer_id}/action/:
+    put:
+      tags:
+      - 主要
+      summary: update Listener
+      parameters:
+        - $ref: '#/components/parameters/LoadBalancerIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - action
+              properties:
+                action:
+                  type: string
+                  description: Action for a server
+                  default: updateListenerParams
+                  enum:
+                  - associateIP
+                  - disassociateIP
+                  - updateListenerParams
+                ip:
+                  type: integer
+                  description: STATIC type IP ID for associateIP
+                  format: int32
+                listener_name:
+                  type: string
+                  description: Listener name for updateListenerParams
+                timeout_client_data:
+                  type: integer
+                  description: 'Listener frontend client inactivity timeout in milliseconds.
+                    Default: 50000.'
+                  format: int32
+                timeout_member_connect:
+                  type: integer
+                  description: 'Listener backend member connection timeout in milliseconds.
+                    Default: 5000.'
+                  format: int32
+                timeout_member_data:
+                  type: integer
+                  description: 'Listener backend member inactivity timeout in milliseconds.
+                    Default: 50000.'
+                  format: int32
+                timeout_tcp_inspect:
+                  type: integer
+                  description: 'Listener time, in milliseconds, to wait for additional
+                    TCP packets for content inspection. Default: 0.'
+                  format: int32
+      responses:
+        202:
+          description: Accepted
+          content: {}
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+  parameters:
+    LoadBalancerIDParam:
+      name: loadbalancer_id
+      in: path
+      description: load balancer ID
+      required: true
+      schema:
+        type: integer
+    ApiHostParam:
+      name: x-api-host
+      in: header
+      description: 認證必要參數
+      required: true
+      schema:
+        type: string
+        default: openstack-taichung-default-2
+        enum: [openstack-taichung-default-2, openstack-taichung-default]
+  schemas:
