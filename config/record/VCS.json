@@ -1,0 +1,26 @@
+[
+    {
+        "situation": "VCS API",
+        "version": "1.0.0",
+        "explanation": {
+            "summary": "提供VCS API",
+            "ex_list": [
+                "提供 project API",
+                "提供 solution API",
+                "提供 flavor API",
+                "提供 image API",
+                "提供 keypair API",
+                "提供 load balancer API",
+                "提供 security group API",
+                "提供 network API",
+                "提供 ip API",
+                "提供 volume API",
+                "提供 snapshot API",
+                "提供 server API",
+                "提供 site API"
+            ]
+        },
+        "update_time": "2022/02/14",
+        "commit_code": "26c8974b2e6c0a02393f34e39a1b89ef16e5784a"
+    }
+]
