@@ -6,7 +6,9 @@ info:
 security:
   - ApiKeyAuth: []
 servers:
-  - description: real url
+  - description: production url
+    url: https://apigateway.twcc.ai/api/v3/
+  - description: staging url
     url: https://apigateway.twcc.tw/api/v3/
 tags:
   - name: 主要
