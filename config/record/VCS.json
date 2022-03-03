@@ -1,6 +1,29 @@
 [
     {
         "situation": "VCS API",
+        "version": "1.0.1",
+        "explanation": {
+            "summary": "發布1.0.1",
+            "ex_list": [
+                "API分類成使用者與管理員",
+                "收錄 projects 4個API",
+                "收錄 loadbalancers 3個API",
+                "收錄 network 4個API",
+                "收錄 ip 2個API",
+                "收錄 volume 1個API",
+                "收錄 snapshot 1個API",
+                "修正 sites get 需要參數",
+                "提供 ip API",
+                "收錄 site 1個API",
+                "收錄 firewall 4個API",
+                "收錄 secret 4個API"
+            ]
+        },
+        "update_time": "2022/03/01",
+        "commit_code": "ce24934bfdac693b06a74e251e879d0f449af4b6"
+    },
+    {
+        "situation": "VCS API",
         "version": "1.0.0",
         "explanation": {
             "summary": "提供VCS API",

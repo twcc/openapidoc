@@ -3,25 +3,34 @@
         "situation": "VCS API",
         "version": "1.0.1",
         "explanation": {
-            "summary": "發布1.0.1",
+            "summary": "發布 1.0.2",
             "ex_list": [
-                "API分類成使用者與管理員",
-                "收錄 projects 4個API",
-                "收錄 loadbalancers 3個API",
-                "收錄 network 4個API",
-                "收錄 ip 2個API",
-                "收錄 volume 1個API",
-                "收錄 snapshot 1個API",
-                "修正 sites get 需要參數",
-                "提供 ip API",
-                "收錄 site 1個API",
-                "收錄 firewall 4個API",
-                "收錄 secret 4個API"
+                "移除solution 2個API",
+                "新增load balancer 1個API",
+                "修正server url",
+                "新增ApiHostParam的example"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2022/03/01",
-        "commit_code": "ce24934bfdac693b06a74e251e879d0f449af4b6"
+        "update_time": "2022/03/03",
+        "commit_code": "7edb54360a2eedc16f6a2f230b44c16e5339c340"
+    },
+    {
+        "situation": "Common API",
+        "version": "1.0.0",
+        "explanation": {
+            "summary": "發布common API 1.0.0",
+            "ex_list": [
+                "收錄solution 2個API",
+                "收錄image requests 4個API",
+                "收錄version 1個API",
+                "收錄token request 2個API"
+            ]
+        },
+        "path": "./Main/Common.html",
+        "record_path": null,
+        "update_time": "2022/03/02",
+        "commit_code": "d9e8f8d5d74ee32c93e3c3fd5ba26e73104a158b"
     }
 ]

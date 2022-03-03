@@ -19,87 +19,49 @@ paths:
     get:
       tags:
         - 主要
-      summary: List Image Requests
+      summary:
+        $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1/get/summary'
       parameters:
-        - name: status
-          in: query
-          description: 篩選狀態
-          required: false
-          schema:
-            type: string
-            enum: [approved, failed, finished, requested]
-        - $ref: '#/components/parameters/ApiHostParam'
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1/get/parameters/0'
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1/get/parameters/1'
       responses:
         200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ImageRequests'
+          $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1/get/responses/200'
     post:
       tags: 
         - 主要
-      summary: Create Image Request
+      summary: 
+        $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1/post/summary'
       parameters: 
-        - $ref: '#/components/parameters/ApiHostParam'
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1/post/parameters/0'
       requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PostImageRequests'
+        $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1/post/requestBody'
       responses:
         200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                allOf:
-                - $ref: '#/components/schemas/PostImageRequests'
-                - type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                  create_time:
-                    type: string
-                    format: date-time
-                  status:
-                    type: string
-                    enum: [approved, failed, finished, requested]
-                  user:
-                    type: string
-                  status_reason:
-                    type: string
-  /image_requsets/{image_requset_id}/:
+          $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1/post/responses/200'
+  /image_requests/{image_request_id}/:
     get:
       tags:
         - 主要
-      summary: Get Image Request Detail
+      summary:
+        $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1{image_request_id}~1/get/summary'
       parameters:
-        - $ref: '#/components/parameters/ImageRequsetIDParam'
-        - $ref: '#/components/parameters/ApiHostParam'
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1{image_request_id}~1/get/parameters/0'
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1{image_request_id}~1/get/parameters/1'
       responses:
         200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImageRequests'
+          $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1{image_request_id}~1/get/responses/200'
     delete:
       tags:
         - 主要
-      summary: Delete Image Request
+      summary:
+        $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1{image_request_id}~1/delete/summary'
       parameters:
-        - $ref: '#/components/parameters/ImageRequsetIDParam'
-        - $ref: '#/components/parameters/ApiHostParam'
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1{image_request_id}~1/delete/parameters/0'
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1{image_request_id}~1/delete/parameters/1'
       responses:
         200:
-          description: OK
-          content:
-            application/json: {}
+          $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1{image_request_id}~1/delete/responses/204'
     patch:
       tags:
         - 其他
@@ -122,64 +84,32 @@ paths:
     get:
       tags:
         - 參考API
-      summary: List images
-      description: 此API使用Url如下<br>
-                   https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
+      summary: 
+        $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/summary'
       servers:
-      - url: https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
-        description: 專屬url
+      - $ref: '../../Main/yaml/VCS.yaml#/servers/0'
+      - $ref: '../../Main/yaml/VCS.yaml#/servers/1'
       parameters:
-        - $ref: '#/components/parameters/ProjectInQueryParam'
-        # - $ref: '../../VCS/yaml/VCS.yaml#/components/parameters/ProjectInQueryParam'
-        - name: x-api-host
-          in: header
-          description: 認證必要參數
-          required: true
-          schema:
-            type: string
-            default: openstack-taichung-default
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/parameters/1'
       responses:
         200:
-          description: 取得所有
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ImageSerializer'
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/responses/200'
   /projects/:
     get:
       tags:
         - 參考API
-      summary: 取得專案列表
-      description: 此API使用Url如下<br>
-                   https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
+      summary:
+        $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/summary'
       servers:
-      - url: https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
-        description: 專屬url
+      - $ref: '../../Main/yaml/VCS.yaml#/servers/0'
+      - $ref: '../../Main/yaml/VCS.yaml#/servers/1'
       parameters:
-        - in: query
-          name: name
-          description: 利用專案名查詢
-          required: false
-          schema:
-            type: string
-        - name: x-api-host
-          in: header
-          description: 認證必要參數
-          required: true
-          schema:
-            type: string
-            default: openstack-taichung-default
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/parameters/1'
       responses:
         200:
-          description: 取得專案詳細資訊
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GroupSerializer'
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/responses/200'
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -187,13 +117,6 @@ components:
       in: header
       name: x-api-key
   parameters:
-    ProjectInQueryParam:
-      name: project
-      in: query
-      description: 需要project ID才能查詢
-      required: true
-      schema:
-        type: integer
     ImageRequsetIDParam:
       name: image_requset_id
       in: path
@@ -266,28 +189,6 @@ components:
           type: string
         email:
           type: string
-    GroupSerializer:
-      type: object
-      properties:
-        matchLabels:
-          type: array
-          items:
-            type: string
-        id:
-          format: int64
-          type: integer
-        name:
-          type: string
-        platform:
-          type: string
-        transparent_mode:
-          type: boolean
-      required:
-        - matchLabels
-        - id
-        - name
-        - platform
-        - transparent_mode
     ImageRequests:
       type: object
       properties:
