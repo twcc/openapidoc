@@ -1,11 +1,14 @@
 {
+    "key": "11067b16987ca8d4100210fce41bd765",
     "git_url": "https://github.com/twcc/openapidoc/commit/",
     "tabList": [
         "主要",
-        "新增功能"
+        "新增功能",
+        "參考文件"
     ],
     "file_to_tab": {
         "主要": "Main.json",
-        "新增功能": "Other.json"
+        "新增功能": "Other.json",
+        "參考文件": "Reference.json"
     }
 }

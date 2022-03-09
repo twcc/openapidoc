@@ -12,6 +12,7 @@
         "path": "./Other/VCSi-copy.html",
         "commit_code": "50f77ed9ab4904cd94865574e7cd35b9808fc187",
         "record": null,
+        "git": "https://git.twcc.ai/twcc/UIUX/-/issues/815",
         "update_time": "2022/02/16"
     },
     {
@@ -26,6 +27,7 @@
         },
         "path": "./Other/LB-update-Listener.html",
         "commit_code": "77ec8cef3c7ac3ec4cd38e3727a902ba0cac5eff",
+        "git": "https://git.twcc.ai/twcc/ma-team/-/issues/5406",
         "record": null,
         "update_time": "2022/03/01"
     }

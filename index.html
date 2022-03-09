@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.11.0/sweetalert2.all.min.js"></script>
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-JSONP/2.4.0/jquery.jsonp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
 </head>
 
 <body>
@@ -73,10 +74,24 @@
                         </v-tab>
                     </v-tabs>
                     <v-tabs-items v-model="tab">
-                        <v-tab-item v-for="item in tabList" :key="item">
-                            <v-card color="basil" flat>
+                        <v-tab-item v-for="key in tabList" :key="key">
+                            <v-card v-if="key == '參考文件'">
+                                <v-data-table hide-default-footer :headers="reference_headers" :items="data[key]"
+                                    :single-expand="true" :expanded.sync="expanded" item-key="name" show-expand>
+                                    <template v-slot:expanded-item="{ headers, item }">
+                                        <td :colspan="headers.length">
+                                            <iframe onload="this.height=screen.height;" scrolling="yes" :src="item.url"
+                                                width="100%"></iframe>
+                                        </td>
+                                    </template>
+                                    <template v-slot:item.actions="{ item }">
+                                        <v-icon class="mr-2" @click="openurl(item.url)">open_in_new</v-icon>
+                                    </template>
+                                </v-data-table>
+                            </v-card>
+                            <v-card v-else color="basil" flat>
                                 <v-card-text>
-                                    <v-data-table :headers="headers" :items="data[item]" hide-default-footer
+                                    <v-data-table :headers="headers" :items="data[key]" hide-default-footer
                                         class="elevation-1"><template v-slot:item.explanation="{ item }">
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{ on, attrs }">
@@ -102,6 +117,9 @@
                                             </v-btn>
                                         </template><template v-slot:item.actions="{ item }">
                                             <v-icon class="mr-2" @click="openurl(item.path)">open_in_new</v-icon>
+                                            <v-icon v-if="key == '新增功能' && client_key == server_key" class="mr-2"
+                                                @click="openurl(item.git)">link
+                                            </v-icon>
                                             <v-icon class="mr-2" @click="opendialog(item.record_path)">article</v-icon>
                                         </template></v-data-table>
                                 </v-card-text>
@@ -122,6 +140,9 @@
                 git_url: '',
                 tabList: [],
                 data: {},
+                expanded: [],
+                client_key: '',
+                server_key: '',
                 headers: [
                     {
                         text: '項目',
@@ -139,6 +160,12 @@
                     { text: '更新說明', value: 'explanation', align: 'center' },
                     { text: 'Commits code', value: 'commit_code', align: 'center' },
                     { text: '更新時間', value: 'update_time', align: 'center' }
+                ],
+                reference_headers: [
+                    { text: '名稱', value: 'name', align: 'center' },
+                    { text: '說明', value: 'explanation', align: 'center' },
+                    { text: '更新時間', value: 'update_time', align: 'center' },
+                    { text: 'Actions', value: 'actions', sortable: false, align: 'center' },
                 ],
                 record: []
             },
@@ -169,13 +196,29 @@
                             )
                         })
                     }
-                }
+                },
+                async GetLocalIPAddress() {
+                    const self = this
+                    $.ajax({
+                        type: "GET",
+                        url: 'https://api.myip.com/',
+                        dataType: "json",
+                        success: function (response) {
+                            self.client_key = md5(response.ip)
+                        },
+                        error: function (thrownError) {
+                            self.client_key = 'error'
+                        }
+                    })
+                },
             },
             created() {
+                this.GetLocalIPAddress()
                 const self = this
                 $.getJSON("config/config.json", function (config_res) {
                     self.tabList = config_res.tabList
                     self.git_url = config_res.git_url
+                    self.server_key = config_res.key
                     for (let key in config_res.file_to_tab) {
                         $.getJSON(`config/${config_res.file_to_tab[key]}`, function (data_res) {
                             self.data[key] = data_res
