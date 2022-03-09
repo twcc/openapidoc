@@ -24,14 +24,14 @@
                 <v-container>
                     <v-card-title class="text-center justify-center py-6">
                         <h1 class="font-weight-bold text-h2 basil--text">
-                            API Gateway
+                            TWCC API 工程文件
                         </h1>
                     </v-card-title>
                     <v-dialog v-model="dialog" width="70%">
                         <v-card>
                             <v-toolbar dark color="primary">
                                 <v-card-title>
-                                    歷史資訊
+                                    {{record_title}} 歷史資訊
                                 </v-card-title>
                                 <v-spacer></v-spacer>
                                 <v-btn icon dark @click="dialog = false">
@@ -68,8 +68,8 @@
                             </v-card-text>
                         </v-card>
                     </v-dialog>
-                    <v-tabs v-model="tab" background-color="primary" color="basil" center-active dark grow>
-                        <v-tab v-for="item in tabList" :key="item">
+                    <v-tabs v-model="tab" slider-size="4" slider-color="error" background-color="primary" light dark center-active grow>
+                        <v-tab class="font-weight-black" v-for="item in tabList" :key="item">
                             {{ item }}
                         </v-tab>
                     </v-tabs>
@@ -95,7 +95,7 @@
                                         class="elevation-1"><template v-slot:item.explanation="{ item }">
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{ on, attrs }">
-                                                    <v-badge color="error" overlap>
+                                                    <v-badge color="grey" overlap>
                                                         <template v-slot:badge>
                                                             {{item.explanation.ex_list.length}}
                                                         </template>
@@ -120,7 +120,7 @@
                                             <v-icon v-if="key == '新增功能' && client_key == server_key" class="mr-2"
                                                 @click="openurl(item.git)">link
                                             </v-icon>
-                                            <v-icon class="mr-2" @click="opendialog(item.record_path)">article</v-icon>
+                                            <v-icon class="mr-2" @click="opendialog(item.record_path, item.situation)">article</v-icon>
                                         </template></v-data-table>
                                 </v-card-text>
                             </v-card>
@@ -143,6 +143,7 @@
                 expanded: [],
                 client_key: '',
                 server_key: '',
+                record_title: '',
                 headers: [
                     {
                         text: '項目',
@@ -173,8 +174,9 @@
                 openurl(path) {
                     window.open(path)
                 },
-                opendialog(path) {
+                opendialog(path, title) {
                     this.record = []
+                    this.record_title = title
                     const self = this
                     if (path == undefined) {
                         sweetAlert(
