@@ -22,6 +22,9 @@
         <v-app>
             <v-main>
                 <v-container>
+                    <v-overlay :value="overlay">
+                        <v-progress-circular indeterminate size="100"></v-progress-circular>
+                    </v-overlay>
                     <v-card-title class="text-center justify-center py-6">
                         <h1 class="font-weight-bold text-h2 basil--text">
                             TWCC API 工程文件
@@ -68,7 +71,8 @@
                             </v-card-text>
                         </v-card>
                     </v-dialog>
-                    <v-tabs v-model="tab" slider-size="4" slider-color="error" background-color="primary" light dark center-active grow>
+                    <v-tabs v-model="tab" slider-size="4" slider-color="error" background-color="primary" light dark
+                        center-active grow>
                         <v-tab class="font-weight-black" v-for="item in tabList" :key="item">
                             {{ item }}
                         </v-tab>
@@ -117,10 +121,11 @@
                                             </v-btn>
                                         </template><template v-slot:item.actions="{ item }">
                                             <v-icon class="mr-2" @click="openurl(item.path)">open_in_new</v-icon>
-                                            <v-icon v-if="key == '新增功能' && client_key == server_key" class="mr-2"
+                                            <v-icon v-if="key == '新增功能' && intranet == true" class="mr-2"
                                                 @click="openurl(item.git)">link
                                             </v-icon>
-                                            <v-icon class="mr-2" @click="opendialog(item.record_path, item.situation)">article</v-icon>
+                                            <v-icon class="mr-2" @click="opendialog(item.record_path, item.situation)">
+                                                article</v-icon>
                                         </template></v-data-table>
                                 </v-card-text>
                             </v-card>
@@ -135,14 +140,14 @@
             el: '#app',
             vuetify: new Vuetify(),
             data: {
+                overlay: false,
                 dialog: false,
+                intranet: false,
                 tab: 0,
                 git_url: '',
                 tabList: [],
                 data: {},
                 expanded: [],
-                client_key: '',
-                server_key: '',
                 record_title: '',
                 headers: [
                     {
@@ -199,28 +204,32 @@
                         })
                     }
                 },
-                async GetLocalIPAddress() {
+                UrlExists() {
+                    this.overlay = true
                     const self = this
                     $.ajax({
                         type: "GET",
-                        url: 'https://api.myip.com/',
-                        dataType: "json",
+                        url: 'https://git.twcc.ai/',
+                        dataType: 'text',
+                        timeout: 1500,
                         success: function (response) {
-                            self.client_key = md5(response.ip)
+                            self.intranet = true
                         },
                         error: function (thrownError) {
-                            self.client_key = 'error'
+                            self.intranet = false
+                        },
+                        complete: function (data) {
+                            self.overlay = false 
                         }
                     })
                 },
             },
             created() {
-                this.GetLocalIPAddress()
+                this.UrlExists()
                 const self = this
                 $.getJSON("config/config.json", function (config_res) {
                     self.tabList = config_res.tabList
                     self.git_url = config_res.git_url
-                    self.server_key = config_res.key
                     for (let key in config_res.file_to_tab) {
                         $.getJSON(`config/${config_res.file_to_tab[key]}`, function (data_res) {
                             self.data[key] = data_res
