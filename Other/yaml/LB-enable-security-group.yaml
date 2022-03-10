@@ -1,0 +1,80 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: LB enable security group
+  description: ''
+security:
+  - ApiKeyAuth: []
+servers:
+  - description: production url
+    url: https://apigateway.twcc.ai/api/v3/openstack-taichung-default-2/
+  - description: staging url
+    url: https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
+tags:
+  - name: 主要
+  - name: 參考API
+paths: 
+  /projects/:
+    get:
+      tags:
+        - 參考API
+      summary:
+        $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/summary'
+      servers:
+      - $ref: '../../Main/yaml/VCS.yaml#/servers/0'
+      - $ref: '../../Main/yaml/VCS.yaml#/servers/1'
+      parameters:
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/parameters/1'
+      responses:
+        200:
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/responses/200'
+  /security_groups/:
+    get:
+      tags:
+      - 主要
+      summary:
+        $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_groups~1/get/summary'
+      parameters:
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_groups~1/get/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_groups~1/get/parameters/1'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_groups~1/get/parameters/2'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_groups~1/get/parameters/3'
+      responses:
+        200:
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_groups~1/get/responses/200'
+  /security_groups/{security_group_id}/:
+    patch:
+      tags: 
+      - 主要
+      summary:
+        $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_groups~1{security_group_id}~1/patch/summary'
+      parameters: 
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_groups~1{security_group_id}~1/patch/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_groups~1{security_group_id}~1/patch/parameters/1'
+      requestBody:
+        $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_groups~1{security_group_id}~1/patch/requestBody'
+      responses:
+        201:
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_groups~1{security_group_id}~1/patch/responses/201'
+  /security_group_rules/{rule_id}/:
+    delete:
+      tags: 
+      - 主要
+      summary:
+        $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_group_rules~1{rule_id}~1/delete/summary'
+      parameters: 
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_group_rules~1{rule_id}~1/delete/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_group_rules~1{rule_id}~1/delete/parameters/1'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_group_rules~1{rule_id}~1/delete/parameters/2'
+      responses:
+        202:
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1security_group_rules~1{rule_id}~1/delete/responses/202'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+  parameters:
+  schemas:
