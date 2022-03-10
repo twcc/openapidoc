@@ -65,21 +65,14 @@ paths:
     patch:
       tags:
         - 其他
-      summary: Agree Image Request
+      summary:
+        $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1{image_request_id}~1/patch/summary'
       parameters:
-        - $ref: '#/components/parameters/ImageRequsetIDParam'
-        - $ref: '#/components/parameters/ApiHostParam'
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1{image_request_id}~1/patch/parameters/0'
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1{image_request_id}~1/patch/parameters/1'
       responses:
         200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    enum: [approved, failed, finished, requested]
+          $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1{image_request_id}~1/patch/responses/200'
   /images/:
     get:
       tags:
@@ -117,134 +110,4 @@ components:
       in: header
       name: x-api-key
   parameters:
-    ImageRequsetIDParam:
-      name: image_requset_id
-      in: path
-      description: image requset id
-      required: true
-      schema:
-        type: integer
-    ApiHostParam:
-      name: x-api-host
-      in: header
-      description: 認證必要參數
-      required: true
-      schema:
-        type: string
-        default: goc
   schemas:
-    ImageSerializer:
-      required:
-      - create_time
-      - id
-      - is_public
-      - name
-      - platform
-      - server
-      - status
-      type: object
-      properties:
-        create_time:
-          type: string
-          format: date-time
-        id:
-          type: integer
-          format: int64
-        is_public:
-          type: boolean
-        name:
-          type: string
-        platform:
-          type: string
-        user:
-          $ref: '#/components/schemas/UserSerializer'
-        server:
-          $ref: '#/components/schemas/ServerFieldSerializer'
-        status:
-          type: string
-    ServerFieldSerializer:
-      required:
-      - hostname
-      - id
-      type: object
-      properties:
-        hostname:
-          type: string
-        id:
-          type: integer
-          format: int64
-    UserSerializer:
-      required:
-      - display_name
-      - email
-      - id
-      - username
-      type: object
-      properties:
-        id:
-          type: string
-        display_name:
-          type: string
-        username:
-          type: string
-        email:
-          type: string
-    ImageRequests:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        status:
-          type: string
-          enum: [approved, failed, finished, requested]
-        status_reason:
-          type: string
-        tag_image:
-          type: string
-        create_time:
-          type: string
-          format: date-time
-        src_project:
-          $ref: '#/components/schemas/ProjectInfo'
-        dst_project:
-          $ref: '#/components/schemas/ProjectInfo'
-        image:
-          $ref: '#/components/schemas/ImageInfo'
-    ProjectInfo:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        platform:
-          type: string
-    ImageInfo:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        is_public:
-          type: boolean
-        name:
-          type: string
-        status:
-          type: string
-        create_time:
-          type: string
-          format: date-time
-    PostImageRequests:
-      type: object
-      properties:
-        image:
-          description: 來源 image ID，於參考API中
-          type: integer
-        dst_project:
-          description: 複製端 project ID
-          type: integer
-        tag_image:
-          description: 複製端 image name
-          type: string

@@ -191,6 +191,32 @@ paths:
         204:
           description: No Content
           content: {}
+    patch:
+      tags:
+        - image requests(管理員)
+      summary: PATCH the image copy request status to approved.
+      parameters:
+        - $ref: '#/components/parameters/ImageRequestIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                status :
+                  type: string
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [approved, failed, finished, requested]
 components:
   securitySchemes:
     ApiKeyAuth:
