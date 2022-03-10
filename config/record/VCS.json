@@ -1,6 +1,21 @@
 [
     {
         "situation": "VCS API",
+        "version": "1.0.2",
+        "explanation": {
+            "summary": "發布 1.0.2",
+            "ex_list": [
+                "移除solution 2個API",
+                "新增load balancer 1個API",
+                "修正server url",
+                "新增ApiHostParam的example"
+            ]
+        },
+        "update_time": "2022/03/03",
+        "commit_code": "7edb54360a2eedc16f6a2f230b44c16e5339c340"
+    },
+    {
+        "situation": "VCS API",
         "version": "1.0.1",
         "explanation": {
             "summary": "發布1.0.1",

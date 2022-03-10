@@ -1,0 +1,17 @@
+[
+    {
+        "situation": "Common API",
+        "version": "1.0.0",
+        "explanation": {
+            "summary": "發布common API 1.0.0",
+            "ex_list": [
+                "收錄solution 2個API",
+                "收錄image requests 4個API",
+                "收錄version 1個API",
+                "收錄token request 2個API"
+            ]
+        },
+        "update_time": "2022/03/02",
+        "commit_code": "d9e8f8d5d74ee32c93e3c3fd5ba26e73104a158b"
+    }
+]

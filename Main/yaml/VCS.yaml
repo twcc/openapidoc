@@ -2995,7 +2995,7 @@ components:
     ProjectInQueryParam:
       name: project
       in: query
-      description: 需要project ID才能查詢
+      description: 需要project ID才能請求
       required: true
       schema:
         type: integer
