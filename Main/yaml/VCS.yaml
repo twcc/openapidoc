@@ -6,30 +6,31 @@ servers:
     url: https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
 info:
   # description: This is a simple API
-  version: 1.0.2
+  version: 1.0.4
   title: VCS API
 security:
   - ApiKeyAuth: []
 tags:
   - name: project(使用者)
-  - name: project(管理員)
+  - name: project(租戶管理員)
   - name: flavor
-  - name: image
-  - name: keypair(使用者/管理員)
-  - name: load balancer(使用者/管理員)
-  - name: security group(使用者/管理員)
+  - name: image(使用者/租戶管理員)
+  - name: keypair(使用者/租戶管理員)
+  - name: load balancer(使用者/租戶管理員)
+  - name: security group(使用者/租戶管理員)
   - name: network(使用者)
-  - name: network(管理員)
+  - name: network(租戶管理員)
   - name: ip(使用者)
-  - name: ip(管理員)
+  - name: ip(租戶管理員)
   - name: volume(使用者)
-  - name: volume(管理員)
+  - name: volume(租戶管理員)
   - name: snapshot(使用者)
-  - name: snapshot(管理員)
+  - name: snapshot(租戶管理員)
   - name: server
-  - name: site
-  - name: firewall(管理員)
-  - name: secret(使用者/管理員)
+  - name: site(使用者/租戶管理員)
+  - name: firewall(租戶管理員)
+  - name: secret(使用者/租戶管理員)
+  - name: availability zone(使用者/租戶管理員)
 paths:
   /projects/:
     get:
@@ -186,7 +187,7 @@ paths:
   /projects/{project_id}/user_quotas/:
     get:
       tags:
-        - project(管理員)
+        - project(租戶管理員)
       summary: get user quotas
       description: get user quotas
       parameters:
@@ -204,7 +205,7 @@ paths:
   /projects/{project_id}/business_network/:
     get:
       tags:
-        - project(管理員)
+        - project(租戶管理員)
       summary: get a business network info
       description: get a business network info in a openstack project
       parameters:
@@ -259,7 +260,7 @@ paths:
   /images/:
     get:
       tags:
-        - image
+        - image(使用者/租戶管理員)
       summary: List images
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -276,7 +277,7 @@ paths:
   /images/{image_id}/:
     get:
       tags:
-        - image
+        - image(使用者/租戶管理員)
       summary: Get details of a image
       parameters:
         - $ref: '#/components/parameters/ImageIDParam'
@@ -288,10 +289,89 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImageSerializer'
+    patch:
+      tags:
+        - image(使用者/租戶管理員)
+      summary: Patch details of a image
+      description: Patch details of a image
+      parameters:
+        - $ref: '#/components/parameters/ImageIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                desc:
+                  type: string
+                  description: Image description
+                is_public:
+                  type: boolean
+                  description: Image visibility. Only the system admin can update
+                    this field
+            examples:
+                example:
+                  summary: with Patch details of a image example
+                  value:
+                    desc: images test
+      responses:
+        200:
+          description: 取得詳細flavor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageSerializer'
+    delete:
+      tags:
+        - image(使用者/租戶管理員)
+      summary: Delete an image
+      parameters:
+        - $ref: '#/components/parameters/ImageIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        204:
+          description: No Content
+          content: {}
+  /images/{server_id}/save/:
+    put:
+      tags:
+        - image(使用者/租戶管理員)
+      summary: Save an instance as an image
+      description: |-
+        Save an image for server <server_id>.
+        os can be "Linux" or "Windows" depends on image of the server
+        Image is not public if it saved from an server.
+      parameters:
+        - $ref: '#/components/parameters/ServerIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        description: Post
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Image name
+                os_version:
+                  type: string
+                os:
+                  type: string
+                desc:
+                  type: string
+        required: true
+      responses:
+        201:
+          description: 取得詳細flavor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagePostSerializer'
   /keypairs/:
     get:
       tags:
-      - keypair(使用者/管理員)
+      - keypair(使用者/租戶管理員)
       summary: List Keypairs
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
@@ -306,7 +386,7 @@ paths:
                   $ref: '#/components/schemas/KeypairSerializer'
     post:
       tags:
-      - keypair(使用者/管理員)
+      - keypair(使用者/租戶管理員)
       summary: Create a Keypair
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
@@ -334,7 +414,7 @@ paths:
   /keypairs/{key_name}/:
     get:
       tags:
-      - keypair(使用者/管理員)
+      - keypair(使用者/租戶管理員)
       summary: Get Keypair Detail
       parameters:
       - name: key_name
@@ -361,7 +441,7 @@ paths:
                     format: date-time
     delete:
       tags:
-      - keypair(使用者/管理員)
+      - keypair(使用者/租戶管理員)
       summary: Delete a Keypair
       parameters:
       - name: key_name
@@ -378,7 +458,7 @@ paths:
   /loadbalancers/:
     get:
       tags:
-      - load balancer(使用者/管理員)
+      - load balancer(使用者/租戶管理員)
       summary: Lists load balancers
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -394,7 +474,7 @@ paths:
                   $ref: '#/components/schemas/LBSerializer'
     post:
       tags:
-      - load balancer(使用者/管理員)
+      - load balancer(使用者/租戶管理員)
       summary: Creates a load balancer
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
@@ -437,7 +517,7 @@ paths:
   /loadbalancers/{loadbalancer_id}/:
     get:
       tags:
-      - load balancer(使用者/管理員)
+      - load balancer(使用者/租戶管理員)
       summary: Shows details for a load balancer
       description: Shows details for a load balancer.
       parameters:
@@ -452,7 +532,7 @@ paths:
                 $ref: '#/components/schemas/LBDetailSerializer'
     delete:
       tags:
-      - load balancer(使用者/管理員)
+      - load balancer(使用者/租戶管理員)
       summary: Delete a load balancer
       description: Delete a load balancer.
       parameters:
@@ -465,7 +545,7 @@ paths:
   /loadbalancers/{loadbalancer_id}/action/:
     put:
       tags:
-      - load balancer(使用者/管理員)
+      - load balancer(使用者/租戶管理員)
       summary: Shows details for a load balancer
       description: Shows details for a load balancer.
       parameters:
@@ -541,7 +621,7 @@ paths:
   /security_groups/:
     get:
       tags:
-      - security group(使用者/管理員)
+      - security group(使用者/租戶管理員)
       summary: List security rules of a server
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -560,7 +640,7 @@ paths:
   /security_groups/{security_group_id}/:
     patch:
       tags: 
-      - security group(使用者/管理員)
+      - security group(使用者/租戶管理員)
       summary: Add a security rule to a security group.
       parameters: 
         - $ref: '#/components/parameters/SecurityGroupIDParam'
@@ -596,7 +676,7 @@ paths:
   /security_group_rules/{rule_id}/:
     delete:
       tags: 
-      - security group(使用者/管理員)
+      - security group(使用者/租戶管理員)
       summary: Delete a rule in a security group.
       parameters: 
         - $ref: '#/components/parameters/RuleIDParam'
@@ -625,7 +705,7 @@ paths:
                   $ref: '#/components/schemas/NetworkSerializer'
     post:
       tags: 
-      - network(管理員)
+      - network(租戶管理員)
       summary: Creates a network
       parameters: 
         - $ref: '#/components/parameters/ApiHostParam'
@@ -645,7 +725,7 @@ paths:
   /networks/{network_id}/:
     get:
       tags: 
-      - network(管理員)
+      - network(租戶管理員)
       summary: Shows details for a network
       parameters:
         - $ref: '#/components/parameters/NetworkIDParam'
@@ -659,7 +739,7 @@ paths:
                 $ref: '#/components/schemas/NetworkDetailSerializer'
     delete:
       tags: 
-      - network(管理員)
+      - network(租戶管理員)
       summary: Deletes a network
       parameters: 
         - $ref: '#/components/parameters/NetworkIDParam'
@@ -671,7 +751,7 @@ paths:
   /networks/{network_id}/security_group_rules/:
     get:
       tags: 
-      - network(管理員)
+      - network(租戶管理員)
       summary: Get security group rules by a network
       parameters:
         - $ref: '#/components/parameters/NetworkIDParam'
@@ -729,7 +809,7 @@ paths:
                   $ref: '#/components/schemas/IPSerializer'
     post:
       tags: 
-      - ip(管理員)
+      - ip(租戶管理員)
       summary: Create a STATIC Elastic IP
       description: Create a STATIC Elastic IP
       parameters: 
@@ -768,9 +848,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IPSerializer'
+    patch:
+      tags: 
+      - ip(使用者)
+      summary: Update a Elastic IP's Description
+      description: Update a Elastic IP's description
+      parameters: 
+        - $ref: '#/components/parameters/IPIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        description: PATCH
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                desc:
+                  type: string
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPSerializer'
     delete:
       tags: 
-      - ip(管理員)
+      - ip(租戶管理員)
       summary: Unsubscribe a STATIC Elastic IP
       description: Unsubscribe a STATIC Elastic IP
       parameters: 
@@ -894,7 +999,7 @@ paths:
   /volumes/reports/:
     get:
       tags:
-      - volume(管理員)
+      - volume(租戶管理員)
       summary: Get volume report of all groups.
       description: Get volume report of all groups
       parameters:
@@ -1006,7 +1111,7 @@ paths:
   /snapshots/reports/:
     get:
       tags:
-      - snapshot(管理員)
+      - snapshot(租戶管理員)
       summary: Get snapshots report
       description: Get snapshots report
       parameters:
@@ -1191,13 +1296,14 @@ paths:
   /sites/:
     get:
       tags:
-      - site
-      summary: List sites
+      - site(使用者/租戶管理員)
+      summary: Create a site
+      description: Create a site
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - name: all_users
           in: query
-          description: List resources of all users. 管理員使用
+          description: List resources of all users. 租戶管理員使用
           schema:
             type: integer
             format: int32
@@ -1212,10 +1318,63 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SiteSerializer'
+    post:
+      tags:
+      - site(使用者/租戶管理員)
+      summary: List sites
+      parameters:
+        - name: x-extra-property-image
+          in: header
+          description: The extra property of image (Just for example)
+          schema:
+            type: string
+        - name: x-extra-property-flavor
+          in: header
+          description: The extra property of flavor (Just for example)
+          schema:
+            type: string
+        - name: x-extra-property-keypair
+          in: header
+          description: The extra property of keypair (Just for example)
+          schema:
+            type: string
+        - name: x-extra-property-private-network
+          in: header
+          description: The extra property of private-network (Just for example)
+          schema:
+            type: string
+        - name: x-extra-property-floating-ip
+          in: header
+          description: The extra property of floating-ip (Just for example)
+          schema:
+            type: string
+        - name: x-extra-property-volume-size
+          in: header
+          description: Volume Size
+          schema:
+            type: string
+        - name: x-extra-property-volume-type
+          in: header
+          description: Volume Type
+          schema:
+            type: string
+        - name: x-extra-property-availability-zone
+          in: header
+          description: The extra property of availability-zone (Just for example)
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        201:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteSerializer'                  
   /sites/{site_id}/:
     get:
       tags:
-      - site
+      - site(使用者/租戶管理員)
       summary: Get details of a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -1230,7 +1389,7 @@ paths:
   /sites/{site_id}/parameters/:
     get:
       tags:
-      - site
+      - site(使用者/租戶管理員)
       summary: Get parameters of a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -1266,7 +1425,7 @@ paths:
   /sites/{site_id}/event_logs/:
     get:
       tags:
-      - site
+      - site(使用者/租戶管理員)
       summary: Get event logs of a site
       description: Get event logs of a site
       parameters:
@@ -1284,7 +1443,7 @@ paths:
   /firewalls/:
     get:
       tags:
-      - firewall(管理員)
+      - firewall(租戶管理員)
       summary: get firewalls list
       description: get firewalls list
       parameters:
@@ -1302,7 +1461,7 @@ paths:
   /firewalls/{firewall_id}/:
     get:
       tags:
-      - firewall(管理員)
+      - firewall(租戶管理員)
       summary: get a firewall detail
       description: get a firewall detail
       parameters:
@@ -1318,7 +1477,7 @@ paths:
   /firewall_rules/:
     get:
       tags:
-      - firewall(管理員)
+      - firewall(租戶管理員)
       summary: get firewall rules list
       description: get firewall rules list
       parameters:
@@ -1336,7 +1495,7 @@ paths:
   /firewall_rules/{firewall_rule_id}/:
     get:
       tags:
-      - firewall(管理員)
+      - firewall(租戶管理員)
       summary: get firewall rules list
       description: get firewall rules list
       parameters:
@@ -1354,7 +1513,7 @@ paths:
   /secret/:
     get:
       tags:
-        - secret(使用者/管理員)
+        - secret(使用者/租戶管理員)
       summary: List Barbican Secrets
       description: List Secrets
       parameters:
@@ -1371,7 +1530,7 @@ paths:
                   $ref: '#/components/schemas/SecretSerializer'
     post:
       tags:
-        - secret(使用者/管理員)
+        - secret(使用者/租戶管理員)
       summary: List Barbican Secrets
       description: List Secrets
       parameters:
@@ -1409,7 +1568,7 @@ paths:
   /secrets/{secret_id}/:
     get:
       tags:
-        - secret(使用者/管理員)
+        - secret(使用者/租戶管理員)
       summary: Get a Secret Detail
       description: Get a secret detail
       parameters:
@@ -1424,7 +1583,7 @@ paths:
                 $ref: '#/components/schemas/SecretSerializer'
     delete:
       tags:
-        - secret(使用者/管理員)
+        - secret(使用者/租戶管理員)
       summary: Get a Secret Detail
       description: Get a secret detail
       parameters:
@@ -1434,6 +1593,40 @@ paths:
         204:
           description: No Content
           content: {}
+  /availability_zones/:
+    get:
+      tags:
+        - availability zone(使用者/租戶管理員)
+      summary: List availability zones
+      description: List availability zones
+      parameters:
+        - $ref: '#/components/parameters/ProjectInQueryParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AZSerializer'
+  /availability_zones/{az_id}/:
+    get:
+      tags:
+        - availability zone(使用者/租戶管理員)
+      summary: Get availability zone details
+      description: Get availability zone details
+      parameters:
+        - $ref: '#/components/parameters/AZIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AZDetailSerializer'
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -1530,6 +1723,32 @@ components:
             shm:
               type: integer
               format: int64
+    ImagePostSerializer:
+      required:
+      - create_time
+      - id
+      - is_public
+      - name
+      - platform
+      type: object
+      properties:
+        create_time:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        is_public:
+          type: boolean
+        name:
+          type: string
+        platform:
+          type: string
+        disk_format:
+          type: string
+        project:
+          type: integer
+          format: int64
     ImageSerializer:
       required:
       - create_time
@@ -2984,6 +3203,92 @@ components:
         floatingip:
           type: integer
           format: int32
+    AZSerializer:
+      required:
+      - create_time
+      - host_num
+      - id
+      - is_default
+      - is_preemptive
+      - is_public
+      - name
+      - owner
+      - platform
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        is_public:
+          type: boolean
+        is_default:
+          type: boolean
+        platform:
+          type: string
+        create_time:
+          type: string
+          format: date-time
+        host_num:
+          type: integer
+          format: int64
+        owner:
+          type: integer
+          format: int64
+        is_preemptive:
+          type: boolean
+    AZDetailSerializer:
+      required:
+      - create_time
+      - desc
+      - hosts
+      - id
+      - is_default
+      - is_preemptive
+      - is_public
+      - name
+      - owner
+      - platform
+      - projects
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        desc:
+          type: string
+        is_public:
+          type: boolean
+        is_default:
+          type: boolean
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectFieldSerializer'
+        hosts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AZHostSerializer'
+        create_time:
+          type: string
+          format: date-time
+        platform:
+          type: string
+        owner:
+          type: integer
+          format: int64
+        is_preemptive:
+          type: boolean
+    AZHostSerializer:
+      type: object
+      properties:
+        hostname:
+          type: string
+        host_ip:
+          type: string
   parameters:
     ProjectInPathParam:
       name: project_id
@@ -3115,6 +3420,13 @@ components:
       name: firewall_rule_id
       in: path
       description: firewall rule ID
+      required: true
+      schema:
+        type: integer
+    AZIDParam:
+      name: az_id
+      in: path
+      description: availability zones ID
       required: true
       schema:
         type: integer
