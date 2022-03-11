@@ -1,6 +1,19 @@
 [
     {
         "situation": "VCS API",
+        "version": "1.0.3",
+        "explanation": {
+            "summary": "發布 1.0.3",
+            "ex_list": [
+                "更新security group",
+                "修正security group錯誤資訊"
+            ]
+        },
+        "update_time": "2022/03/10",
+        "commit_code": "b798f4fb23c27726cdc3715681f216657f1d47b7"
+    },
+    {
+        "situation": "VCS API",
         "version": "1.0.2",
         "explanation": {
             "summary": "發布 1.0.2",
@@ -28,7 +41,6 @@
                 "收錄 volume 1個API",
                 "收錄 snapshot 1個API",
                 "修正 sites get 需要參數",
-                "提供 ip API",
                 "收錄 site 1個API",
                 "收錄 firewall 4個API",
                 "收錄 secret 4個API"
