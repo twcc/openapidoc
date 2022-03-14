@@ -280,12 +280,15 @@ paths:
       tags:
         - image(使用者/租戶管理員)
       summary: Get details of a image
+      description: |-
+        Image is not public if it was saved from an server or
+        was uploaded by a tenant admin.
       parameters:
         - $ref: '#/components/parameters/ImageIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
-          description: 取得詳細flavor
+          description: OK
           content:
             application/json:
               schema:
@@ -317,7 +320,7 @@ paths:
                     desc: images test
       responses:
         200:
-          description: 取得詳細flavor
+          description: OK
           content:
             application/json:
               schema:
@@ -364,7 +367,7 @@ paths:
         required: true
       responses:
         201:
-          description: 取得詳細flavor
+          description: Created
           content:
             application/json:
               schema:
