@@ -6,7 +6,7 @@ servers:
     url: https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
 info:
   # description: This is a simple API
-  version: 1.0.4
+  version: 1.0.5
   title: VCS API
 security:
   - ApiKeyAuth: []
@@ -26,11 +26,12 @@ tags:
   - name: volume(租戶管理員)
   - name: snapshot(使用者)
   - name: snapshot(租戶管理員)
-  - name: server
+  - name: server(使用者/租戶管理員)
   - name: site(使用者/租戶管理員)
   - name: firewall(租戶管理員)
   - name: secret(使用者/租戶管理員)
   - name: availability zone(使用者/租戶管理員)
+  - name: auto scaling policy(使用者/租戶管理員)
 paths:
   /projects/:
     get:
@@ -288,7 +289,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ImageSerializer'
+                $ref: '#/components/schemas/ImageDetailSerializer'
     patch:
       tags:
         - image(使用者/租戶管理員)
@@ -1142,7 +1143,7 @@ paths:
   /servers/:
     get:
       tags: 
-      - server
+      - server(使用者/租戶管理員)
       summary: List servers
       parameters: 
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -1159,7 +1160,7 @@ paths:
   /servers/{server_id}/:
     get:
       tags: 
-      - server
+      - server(使用者/租戶管理員)
       summary: Get details of a server
       parameters: 
         - $ref: '#/components/parameters/ServerIDParam'
@@ -1171,10 +1172,78 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ServerSerializer'
+  /servers/{server_id}/auto_scaling_policy/:
+    post:
+      tags: 
+      - server(使用者/租戶管理員)
+      summary: Set Auto Scaling Policy On a Server
+      description: Set Auto Scaling Policy On a Server
+      parameters: 
+        - $ref: '#/components/parameters/ServerIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - auto_scaling_policy
+              properties:
+                auto_scaling_policy:
+                  type: integer
+                  description: Auto Scaling Policy ID
+                  format: int32
+                loadbalancer:
+                  type: integer
+                  description: |-
+                    Load Balancer ID. The servers will be automatically added to the
+                    load balancer except for the original server
+                  format: int32
+                protocol_port:
+                  type: integer
+                  description: |-
+                    Port number where server listens.
+                    The default is the same as the load balancer
+                  format: int32
+                scaleup_action:
+                  type: string
+                  description: |-
+                    User define alarm high notification url.
+                    Only support http POST request, not support trust+
+                scaledown_action:
+                  type: string
+                  description: |-
+                    User define alarm low notification url.
+                    Only support http POST request, not support trust+
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  auto_scaling_policy:
+                    type: integer
+                    format: int32
+                  loadbalancer:
+                    type: integer
+                    format: int32
+    delete:
+      tags:
+      - server(使用者/租戶管理員)
+      summary: Remove Auto Scaling Policy From a Server
+      description: Remove Auto Scaling Policy From a Server
+      parameters: 
+        - $ref: '#/components/parameters/ServerIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        204:
+          description: No Content
+          content: {}
   /servers/{server_id}/cpu/:
     get:
       tags: 
-      - server
+      - server(使用者/租戶管理員)
       summary: Get a Server CPU Utilization
       parameters: 
         - name: begin_time
@@ -1201,7 +1270,7 @@ paths:
   /servers/{server_id}/disk/:
     get:
       tags: 
-      - server
+      - server(使用者/租戶管理員)
       summary: Get a Server Disk Utilization
       parameters: 
         - name: meter_name
@@ -1235,7 +1304,7 @@ paths:
   /servers/{server_id}/memory/:
     get:
       tags: 
-      - server
+      - server(使用者/租戶管理員)
       summary: Get a Server Memory Utilization
       parameters: 
         - name: begin_time
@@ -1262,7 +1331,7 @@ paths:
   /servers/{server_id}/net/:
     get:
       tags: 
-      - server
+      - server(使用者/租戶管理員)
       summary: Get a Server Network Utilization
       parameters: 
         - name: begin_time
@@ -1297,8 +1366,8 @@ paths:
     get:
       tags:
       - site(使用者/租戶管理員)
-      summary: Create a site
-      description: Create a site
+      summary: List sites
+      description: List sites
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - name: all_users
@@ -1321,7 +1390,8 @@ paths:
     post:
       tags:
       - site(使用者/租戶管理員)
-      summary: List sites
+      summary: Create a site
+      description: Create a site
       parameters:
         - name: x-extra-property-image
           in: header
@@ -1386,6 +1456,64 @@ paths:
             application/json:
               schema:
                  $ref: '#/components/schemas/SiteSerializer'
+    delete:
+      tags:
+      - site(使用者/租戶管理員)
+      summary: Delete a site
+      description: Delete a site
+      parameters:
+        - $ref: '#/components/parameters/SiteIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        204:
+          description: No Content
+          content: {}
+    put:
+      tags:
+      - site(使用者/租戶管理員)
+      summary: Update site extra-property
+      description: Update site extra-property
+      parameters:
+        - $ref: '#/components/parameters/SiteIDParam'
+        - name: x-extra-property-flavor
+          in: header
+          description: The extra property of flavor (Just for example)
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/SiteDetailSerializer'
+    patch:
+      tags:
+      - site(使用者/租戶管理員)
+      summary: Patch details of a site
+      description: Patch details of a site
+      parameters:
+        - $ref: '#/components/parameters/SiteIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                desc:
+                  type: string
+                  description: Site description
+                termination_protection:
+                  type: boolean
+                  description: Site termination protection
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/SiteDetailSerializer'
   /sites/{site_id}/parameters/:
     get:
       tags:
@@ -1440,6 +1568,56 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SiteEventLogSerializer'
+  /sites/{site_id}/action/:
+    put:
+      tags:
+      - site(使用者/租戶管理員)
+      summary: Action status of a site
+      description: Action status of a site
+      parameters:
+        - $ref: '#/components/parameters/SiteIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        description: |-
+          Action for site status
+          Available values : start, stop, reboot, suspend, resume, shelve, unshelve
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteActionSerializer'
+            examples:
+              start example:
+                summary: Example with start
+                value:
+                  status: start
+              stop example:
+                summary: Example with stop
+                value:
+                  status: stop
+              reboot example:
+                summary: Example with reboot
+                value:
+                  status: reboot
+              suspend example:
+                summary: Example with suspend
+                value:
+                  status: suspend
+              resume example:
+                summary: Example with resume
+                value:
+                  status: resume
+              shelve example:
+                summary: Example with shelve
+                value:
+                  status: shelve
+              unshelve example:
+                summary: Example with unshelve
+                value:
+                  status: unshelve
+      responses:
+        202:
+          description: Accepted
+          content: {}
   /firewalls/:
     get:
       tags:
@@ -1627,6 +1805,100 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AZDetailSerializer'
+  /auto_scaling_policies/:
+    get:
+      tags:
+        - auto scaling policy(使用者/租戶管理員)
+      summary: get auto scaling policies list
+      description: get auto scaling policies list
+      parameters:
+        - $ref: '#/components/parameters/ProjectInQueryParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AutoScalingPolicySerializer'
+    post:
+      tags:
+        - auto scaling policy(使用者/租戶管理員)
+      summary: create an auto scaling policy
+      description: create an auto scaling policy
+      parameters:
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        description: |-
+          create an auto scaling policy  
+          meter_name values : cpu_util,memory.usage, disk.read.bytes.rate,
+                    disk.write.bytes.rate, network.incoming.bytes.rate, network.outgoing.bytes.rate
+        content:
+          application/json:
+            schema:
+              required:
+              - meter_name
+              - name
+              - project
+              - scale_max_size
+              - scaleup_threshold
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: TestASP (required)
+                meter_name:
+                  type: string
+                  enum: [cpu_util,memory.usage, disk.read.bytes.rate,
+                    disk.write.bytes.rate, network.incoming.bytes.rate, network.outgoing.bytes.rate]
+                scaleup_threshold:
+                  type: integer
+                scaledown_threshold:
+                  type: integer
+                scale_max_size:
+                  type: integer
+                project:
+                  type: integer
+                desc:
+                  type: string
+                  example: This ASP is for... (optional)
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutoScalingPolicySerializer'
+  /auto_scaling_policies/{auto_scaling_policy_id}:
+    get:
+      tags:
+        - auto scaling policy(使用者/租戶管理員)
+      summary: get an auto scaling policy detail
+      description: get an auto scaling policy detail
+      parameters:
+        - $ref: '#/components/parameters/AutoScalingPolicyID'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutoScalingPolicySerializer'
+    delete:
+      tags:
+        - auto scaling policy(使用者/租戶管理員)
+      summary: delete an auto scaling policy
+      description: delete an auto scaling policy
+      parameters:
+        - $ref: '#/components/parameters/AutoScalingPolicyID'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        204:
+          description: No Content
+          content: {}
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -1723,6 +1995,65 @@ components:
             shm:
               type: integer
               format: int64
+    ImageDetailSerializer:
+      type: object
+      properties:
+        base_image:
+          format: int64
+          type: integer
+        create_time:
+          format: date-time
+          type: string
+        delete_time:
+          format: date-time
+          type: string
+        desc:
+          type: string
+        id:
+          format: int64
+          type: integer
+        is_deleted:
+          type: boolean
+        is_enabled:
+          type: boolean
+        is_public:
+          type: boolean
+        license_type:
+          type: string
+        name:
+          type: string
+        os:
+          type: string
+        os_version:
+          type: string
+        platform:
+          type: string
+        ref_img_id:
+          type: string
+        server:
+          $ref: '#/components/schemas/ServerFieldSerializer'
+        user:
+          $ref: '#/components/schemas/UserSerializer'
+        status:
+          type: string
+        status_reason:
+          type: string
+      required:
+        - id
+        - name
+        - platform
+        - ref_img_id
+        - is_enabled
+        - is_deleted
+        - status
+        - status_reason
+        - is_public
+        - create_time
+        - delete_time
+        - desc
+        - os
+        - os_version
+        - server
     ImagePostSerializer:
       required:
       - create_time
@@ -2281,6 +2612,84 @@ components:
                 type: string
         termination_protection:
           type: boolean
+    SiteDetailSerializer:
+      required:
+      - callback
+      - create_time
+      - desc
+      - id
+      - is_preemptive
+      - name
+      - platform
+      - progress
+      - project
+      - public_ip
+      - servers
+      - solution
+      - status
+      - status_reason
+      - termination_protection
+      - user
+      type: object
+      properties:
+        callback:
+          type: string
+        create_time:
+          type: string
+          format: date-time
+        desc:
+          type: string
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        platform:
+          type: string
+        progress:
+          type: integer
+          format: int64
+        project:
+          type: integer
+          format: int64
+        public_ip:
+          type: string
+        servers:
+          type: array
+          items:
+            type: object
+            properties:
+              flavor_id:
+                type: integer
+                format: int64
+              id:
+                type: integer
+                format: int64
+              hostname:
+                type: string
+              status:
+                type: string
+        solution:
+          type: integer
+          format: int64
+        status:
+          type: string
+        status_reason:
+          type: string
+        is_preemptive:
+          type: boolean
+        user:
+          $ref: '#/components/schemas/UserSerializer'
+        termination_protection:
+          type: boolean
+    SiteActionSerializer:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [start, stop, reboot, suspend, resume, shelve, unshelve]
     GroupDetailSerializer:
       type: object
       properties:
@@ -3289,6 +3698,51 @@ components:
           type: string
         host_ip:
           type: string
+    AutoScalingPolicySerializer:
+      required:
+      - id
+      - meter_name
+      - name
+      - platform
+      - project
+      - scale_max_size
+      - scaledown_threshold
+      - scaleup_threshold
+      - user
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        project:
+          type: integer
+          format: int64
+        description:
+          type: string
+        meter_name:
+          type: string
+          enum:
+          - cpu_util
+          - memory.usage
+          - disk.read.bytes.rate
+          - disk.write.bytes.rate
+          - network.incoming.bytes.rate
+          - network.outgoing.bytes.rate
+        scaleup_threshold:
+          type: integer
+          format: int64
+        scaledown_threshold:
+          type: integer
+          format: int64
+        scale_max_size:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/UserSerializer'
+        platform:
+          type: string
   parameters:
     ProjectInPathParam:
       name: project_id
@@ -3430,6 +3884,14 @@ components:
       required: true
       schema:
         type: integer
+    AutoScalingPolicyID:
+      name: auto_scaling_policy_id
+      in: path
+      description: Auto scaling policy ID
+      required: true
+      schema:
+        type: integer
+        format: int32
     ApiHostParam:
       name: x-api-host
       in: header
