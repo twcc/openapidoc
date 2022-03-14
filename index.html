@@ -104,7 +104,7 @@
                                                             {{item.explanation.ex_list.length}}
                                                         </template>
                                                         <v-btn text v-bind="attrs" v-on="on">
-                                                            {{item.explanation.summary}}
+                                                            {{item.explanation.summary}}</v-btn>
                                                     </v-badge>
                                                 </template>
                                                 <span>
@@ -113,6 +113,14 @@
                                                     </li>
                                                 </span>
                                             </v-tooltip>
+                                        </template><template v-slot:item.situation="{ item }">
+                                            <v-btn text @click="openurl(item.path)">
+                                                {{item.situation}}
+                                            </v-btn>
+                                        </template><template v-slot:item.version="{ item }">
+                                            <v-btn text @click="opendialog(item.record_path, item.situation)">
+                                                {{item.version}}
+                                            </v-btn>
                                         </template><template v-slot:item.commit_code="{ item }">
                                             <v-btn text @click="openurl(git_url + item.commit_code)"
                                                 :disabled="item.commit_code.length < 7">
@@ -177,7 +185,7 @@
             },
             methods: {
                 openurl(path) {
-                    window.open(path)
+                    window.open(path, "_self")
                 },
                 opendialog(path, title) {
                     this.record = []
@@ -219,7 +227,7 @@
                             self.intranet = false
                         },
                         complete: function (data) {
-                            self.overlay = false 
+                            self.overlay = false
                         }
                     })
                 },

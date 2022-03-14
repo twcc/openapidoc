@@ -1,21 +1,20 @@
 [
     {
         "situation": "VCS API",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "explanation": {
-            "summary": "發布 1.0.4",
+            "summary": "發布 1.0.5",
             "ex_list": [
-                "收錄 image 3個API",
-                "收錄 ip 1個API",
-                "收錄site 1個API",
-                "收錄availability zone 2個API",
-                "管理者改成租戶管理員"
+                "修正Image API",
+                "收錄 server 2個 API",
+                "收錄 site 4個 API",
+                "收錄 auto scaling policy 4個API"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2022/03/11",
-        "commit_code": "2d3e4d8c8e16708e83436a6e3cfc4ccb366d9dd5"
+        "update_time": "2022/03/14",
+        "commit_code": "1319fba45163a5262399327e3c702cc8d3e17875"
     },
     {
         "situation": "Common API",
@@ -27,7 +26,7 @@
             ]
         },
         "path": "./Main/Common.html",
-        "record_path": "Main.json",
+        "record_path": "Common.json",
         "update_time": "2022/03/10",
         "commit_code": "4e4dea5fb5b563f5e9af6631d11f3349ba02b2bd"
     }

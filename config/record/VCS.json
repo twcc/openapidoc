@@ -1,6 +1,20 @@
 [
     {
-        "situation": "VCS API",
+        "version": "1.0.4",
+        "explanation": {
+            "summary": "發布 1.0.4",
+            "ex_list": [
+                "收錄 image 3個API",
+                "收錄 ip 1個API",
+                "收錄site 1個API",
+                "收錄availability zone 2個API",
+                "管理者改成租戶管理員"
+            ]
+        },
+        "update_time": "2022/03/11",
+        "commit_code": "2d3e4d8c8e16708e83436a6e3cfc4ccb366d9dd5"
+    },
+    {
         "version": "1.0.3",
         "explanation": {
             "summary": "發布 1.0.3",
@@ -13,7 +27,6 @@
         "commit_code": "b798f4fb23c27726cdc3715681f216657f1d47b7"
     },
     {
-        "situation": "VCS API",
         "version": "1.0.2",
         "explanation": {
             "summary": "發布 1.0.2",
@@ -28,7 +41,6 @@
         "commit_code": "7edb54360a2eedc16f6a2f230b44c16e5339c340"
     },
     {
-        "situation": "VCS API",
         "version": "1.0.1",
         "explanation": {
             "summary": "發布1.0.1",
@@ -50,7 +62,6 @@
         "commit_code": "ce24934bfdac693b06a74e251e879d0f449af4b6"
     },
     {
-        "situation": "VCS API",
         "version": "1.0.0",
         "explanation": {
             "summary": "提供VCS API",
