@@ -1,19 +1,18 @@
 [
     {
         "situation": "VCSi Copy",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "explanation": {
-            "summary": "用於VCS的images複製分享案例",
+            "summary": "VCS的images複製分享案例發布1.0.1",
             "ex_list": [
-                "建立 VCSi copy 需要API",
-                "引用 VCS 租戶使用者 API"
+                "image requests補充filter"
             ]
         },
         "path": "./Other/VCSi-copy.html",
-        "commit_code": "50f77ed9ab4904cd94865574e7cd35b9808fc187",
-        "record": null,
+        "commit_code": "1319fba45163a5262399327e3c702cc8d3e17875",
+        "record_path": "VCSi-copy.json",
         "git": "https://git.twcc.ai/twcc/UIUX/-/issues/815",
-        "update_time": "2022/02/16"
+        "update_time": "2022/03/15"
     },
     {
         "situation": "Load Balancer update Listener",
@@ -28,7 +27,7 @@
         "path": "./Other/LB-update-Listener.html",
         "commit_code": "77ec8cef3c7ac3ec4cd38e3727a902ba0cac5eff",
         "git": "https://git.twcc.ai/twcc/ma-team/-/issues/5406",
-        "record": null,
+        "record_path": null,
         "update_time": "2022/03/01"
     },
     {
@@ -44,7 +43,7 @@
         "path": "./Other/LB-enable-security-group.html",
         "commit_code": "b798f4fb23c27726cdc3715681f216657f1d47b7",
         "git": "https://git.twcc.ai/twcc/ma-team/-/issues/5063",
-        "record": null,
+        "record_path": null,
         "update_time": "2022/03/10"
     }
 ]

@@ -62,7 +62,7 @@
                                             </span>
                                         </v-tooltip>
                                     </template><template v-slot:item.commit_code="{ item }">
-                                        <v-btn text @click="openurl(git_url + item.commit_code)"
+                                        <v-btn text @click="openurl(git_url + item.commit_code, '_blank')"
                                             :disabled="item.commit_code.length < 7">
                                             {{item.commit_code.length > 6 ? item.commit_code.substr(0,
                                             6):item.commit_code}}
@@ -89,7 +89,7 @@
                                         </td>
                                     </template>
                                     <template v-slot:item.actions="{ item }">
-                                        <v-icon class="mr-2" @click="openurl(item.url)">open_in_new</v-icon>
+                                        <v-icon class="mr-2" @click="openurl(item.url, '_self')">open_in_new</v-icon>
                                     </template>
                                 </v-data-table>
                             </v-card>
@@ -114,7 +114,7 @@
                                                 </span>
                                             </v-tooltip>
                                         </template><template v-slot:item.situation="{ item }">
-                                            <v-btn text @click="openurl(item.path)">
+                                            <v-btn text @click="openurl(item.path, '_self')">
                                                 {{item.situation}}
                                             </v-btn>
                                         </template><template v-slot:item.version="{ item }">
@@ -122,15 +122,15 @@
                                                 {{item.version}}
                                             </v-btn>
                                         </template><template v-slot:item.commit_code="{ item }">
-                                            <v-btn text @click="openurl(git_url + item.commit_code)"
+                                            <v-btn text @click="openurl(git_url + item.commit_code, '_blank')"
                                                 :disabled="item.commit_code.length < 7">
                                                 {{item.commit_code.length > 6 ? item.commit_code.substr(0,
                                                 6):item.commit_code}}
                                             </v-btn>
                                         </template><template v-slot:item.actions="{ item }">
-                                            <v-icon class="mr-2" @click="openurl(item.path)">open_in_new</v-icon>
+                                            <v-icon class="mr-2" @click="openurl(item.path, '_self')">open_in_new</v-icon>
                                             <v-icon v-if="key == '新增功能' && intranet == true" class="mr-2"
-                                                @click="openurl(item.git)">link
+                                                @click="openurl(item.git, '_blank')">link
                                             </v-icon>
                                             <v-icon class="mr-2" @click="opendialog(item.record_path, item.situation)">
                                                 article</v-icon>
@@ -184,8 +184,8 @@
                 record: []
             },
             methods: {
-                openurl(path) {
-                    window.open(path, "_self")
+                openurl(path,target) {
+                    window.open(path, target)
                 },
                 opendialog(path, title) {
                     this.record = []
@@ -217,7 +217,7 @@
                     const self = this
                     $.ajax({
                         type: "GET",
-                        url: 'https://git.twcc.ai/',
+                        url: 'https://git.twcc.ai/users/sign_in',
                         dataType: 'text',
                         timeout: 1500,
                         success: function (response) {

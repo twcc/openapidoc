@@ -1,0 +1,15 @@
+[
+    {
+        "situation": "VCSi Copy",
+        "version": "1.0.0",
+        "explanation": {
+            "summary": "用於VCS的images複製分享案例",
+            "ex_list": [
+                "建立 VCSi copy 需要API",
+                "引用 VCS 租戶使用者 API"
+            ]
+        },
+        "commit_code": "50f77ed9ab4904cd94865574e7cd35b9808fc187",
+        "update_time": "2022/02/16"
+    }
+]

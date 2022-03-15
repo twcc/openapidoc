@@ -1,5 +1,16 @@
 [
     {
+        "version": "1.0.1",
+        "explanation": {
+            "summary": "發布common API 1.0.1",
+            "ex_list": [
+                "image requests收錄一個API"
+            ]
+        },
+        "update_time": "2022/03/10",
+        "commit_code": "4e4dea5fb5b563f5e9af6631d11f3349ba02b2bd"
+    },
+    {
         "version": "1.0.0",
         "explanation": {
             "summary": "發布common API 1.0.0",
