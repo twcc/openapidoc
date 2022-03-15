@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 1.0.0
+  version: 1.0.1
   title: VCSi copy
   description: ''
 security:
@@ -24,6 +24,8 @@ paths:
       parameters:
         - $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1/get/parameters/0'
         - $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1/get/parameters/1'
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1/get/parameters/2'
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1/get/parameters/3'
       responses:
         200:
           $ref: '../../Main/yaml/Common.yaml#/paths/~1image_requests~1/get/responses/200'

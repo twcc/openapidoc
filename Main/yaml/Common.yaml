@@ -6,13 +6,13 @@ servers:
     url: https://apigateway.twcc.tw/api/v3/
 info:
   # description: This is a simple API
-  version: 1.0.0
+  version: 1.0.2
   title: Common API
 security:
   - ApiKeyAuth: []
 tags:
   - name: solution(使用者)
-  - name: image requests(管理員)
+  - name: image requests(租戶管理員)
   - name: version(使用者)
   - name: token request(使用者)
 paths:
@@ -120,16 +120,26 @@ paths:
   /image_requests/:
     get:
       tags: 
-        - image requests(管理員)
+        - image requests(租戶管理員)
       summary: List image copy request
       description: List image copy requests.
       parameters: 
         - name: status
           in: query
-          description: Image commit status
+          description: filter commit status
           schema:
             type: string
             enum: [approved, failed, finished, requested]
+        - name: src_project
+          in: query
+          description: filter src project
+          schema:
+            type: string
+        - name: dst_project
+          in: query
+          description: filter dst project
+          schema:
+            type: string
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
@@ -142,7 +152,7 @@ paths:
                   $ref: '#/components/schemas/ImageRequestSerializer'
     post:
       tags: 
-        - image requests(管理員)
+        - image requests(租戶管理員)
       summary: Create image copy request
       description: Create image copy request
       parameters:
@@ -166,7 +176,7 @@ paths:
   /image_requests/{image_request_id}/:
     get:
       tags: 
-        - image requests(管理員)
+        - image requests(租戶管理員)
       summary: Get a image copy request
       description: Get a image copy request
       parameters:
@@ -181,7 +191,7 @@ paths:
                 $ref: '#/components/schemas/ImageRequestSerializer'
     delete:
       tags:
-        - image requests(管理員)
+        - image requests(租戶管理員)
       summary: Delete a image copy request
       description: Delete a image copy request
       parameters:
@@ -193,7 +203,7 @@ paths:
           content: {}
     patch:
       tags:
-        - image requests(管理員)
+        - image requests(租戶管理員)
       summary: PATCH the image copy request status to approved.
       parameters:
         - $ref: '#/components/parameters/ImageRequestIDParam'
