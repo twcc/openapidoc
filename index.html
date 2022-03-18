@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.11.0/sweetalert2.all.min.js"></script>
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-JSONP/2.4.0/jquery.jsonp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-markdown/2.2.4/vue-markdown.min.js"></script>
     <title>TWCC API 工程文件</title>
 </head>
 
@@ -43,8 +44,12 @@
                             </v-toolbar>
                             <v-card-text>
                                 <br>
-                                <v-data-table :headers="record_headers" :items="record" hide-default-footer
-                                    class="elevation-1"><template v-slot:item.explanation="{ item }">
+                                <v-data-table :search="record_search" :headers="record_headers" :items="record"
+                                    multi-sort :sort-by="['version']" :sort-desc="[true]" class="elevation-1"><template
+                                        v-slot:top>
+                                        <v-text-field v-model="record_search" label="Search" class="mx-10">
+                                        </v-text-field>
+                                    </template><template v-slot:item.explanation="{ item }">
                                         <v-tooltip bottom>
                                             <template v-slot:activator="{ on, attrs }">
                                                 <v-badge bordered color="grey" overlap>
@@ -80,8 +85,9 @@
                     <v-tabs-items v-model="tab">
                         <v-tab-item v-for="key in tabList" :key="key">
                             <v-card v-if="key == '參考文件'">
-                                <v-data-table hide-default-footer :headers="reference_headers" :items="data[key]"
-                                    :single-expand="true" :expanded.sync="expanded" item-key="name" show-expand>
+                                <v-data-table :sort-by="['name']" :sort-desc="[true]" hide-default-footer multi-sort
+                                    :headers="reference_headers" :items="data[key]" :single-expand="true"
+                                    :expanded.sync="expanded" item-key="name" show-expand>
                                     <template v-slot:expanded-item="{ headers, item }">
                                         <td :colspan="headers.length">
                                             <iframe onload="this.height=screen.height;" scrolling="yes" :src="item.url"
@@ -95,8 +101,9 @@
                             </v-card>
                             <v-card v-else color="basil" flat>
                                 <v-card-text>
-                                    <v-data-table :headers="headers" :items="data[key]" hide-default-footer
-                                        class="elevation-1"><template v-slot:item.explanation="{ item }">
+                                    <v-data-table :sort-by="['situation']" :sort-desc="[true]" :headers="headers"
+                                        multi-sort :items="data[key]" hide-default-footer class="elevation-1"><template
+                                            v-slot:item.explanation="{ item }">
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <v-badge color="grey" overlap>
@@ -118,9 +125,29 @@
                                                 {{item.situation}}
                                             </v-btn>
                                         </template><template v-slot:item.version="{ item }">
-                                            <v-btn text @click="opendialog(item.record_path, item.situation)">
-                                                {{item.version}}
-                                            </v-btn>
+                                            <v-tooltip bottom>
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <v-btn v-bind="attrs" v-on="on" text
+                                                        @click="opendialog(item.record_path, item.situation)">
+                                                        {{item.version}}
+                                                    </v-btn>
+                                                </template>
+                                                <span>
+                                                    <vue-markdown>## 版號說明</vue-markdown>
+                                                    <vue-markdown>### 主版號：</vue-markdown>
+                                                    <vue-markdown>1. 新增全新API(新開發功能)</vue-markdown>
+                                                    <vue-markdown>2. 原有API棄用的時候</vue-markdown>
+                                                    <vue-markdown>### 次版號：</vue-markdown>
+                                                    <vue-markdown>1. 收錄已驗證原有API</vue-markdown>
+                                                    <vue-markdown>2. 因需求移動API分類</vue-markdown>
+                                                    <vue-markdown>3. 調整原API response或requestbody 格式</vue-markdown>
+                                                    <vue-markdown>### 修訂號：</vue-markdown>
+                                                    <vue-markdown>1. 在只做了向下相容的修正時</vue-markdown>
+                                                    <vue-markdown>2. 針對不正確結果而進行的內部修改</vue-markdown>
+                                                    <vue-markdown>3. 針對已有API擴充功能(query filter)</vue-markdown>
+                                                </span>
+                                            </v-tooltip>
+
                                         </template><template v-slot:item.commit_code="{ item }">
                                             <v-btn text @click="openurl(git_url + item.commit_code, '_blank')"
                                                 :disabled="item.commit_code.length < 7">
@@ -128,7 +155,8 @@
                                                 6):item.commit_code}}
                                             </v-btn>
                                         </template><template v-slot:item.actions="{ item }">
-                                            <v-icon class="mr-2" @click="openurl(item.path, '_self')">open_in_new</v-icon>
+                                            <v-icon class="mr-2" @click="openurl(item.path, '_self')">open_in_new
+                                            </v-icon>
                                             <v-icon v-if="key == '新增功能' && intranet == true" class="mr-2"
                                                 @click="openurl(item.git, '_blank')">link
                                             </v-icon>
@@ -144,6 +172,7 @@
         </v-app>
     </div>
     <script>
+        Vue.use(VueMarkdown)
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
@@ -157,6 +186,7 @@
                 data: {},
                 expanded: [],
                 record_title: '',
+                record_search: '',
                 headers: [
                     {
                         text: '項目',
@@ -184,12 +214,13 @@
                 record: []
             },
             methods: {
-                openurl(path,target) {
+                openurl(path, target) {
                     window.open(path, target)
                 },
                 opendialog(path, title) {
                     this.record = []
                     this.record_title = title
+                    this.record_search = ''
                     const self = this
                     if (path == undefined) {
                         sweetAlert(
@@ -228,6 +259,7 @@
                         },
                         complete: function (data) {
                             self.overlay = false
+                            self.$forceUpdate()
                         }
                     })
                 },

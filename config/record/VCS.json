@@ -1,5 +1,20 @@
 [
     {
+        "situation": "VCS API",
+        "version": "1.0.5",
+        "explanation": {
+            "summary": "發布 1.0.5",
+            "ex_list": [
+                "修正Image API",
+                "收錄 server 2個 API",
+                "收錄 site 4個 API",
+                "收錄 auto scaling policy 4個API"
+            ]
+        },
+        "update_time": "2022/03/14",
+        "commit_code": "1319fba45163a5262399327e3c702cc8d3e17875"
+    },
+    {
         "version": "1.0.4",
         "explanation": {
             "summary": "發布 1.0.4",
