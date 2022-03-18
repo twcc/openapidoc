@@ -6,7 +6,7 @@ servers:
     url: https://apigateway.twcc.tw/api/v3/
 info:
   # description: This is a simple API
-  version: 1.0.2
+  version: 1.1.0
   title: Common API
 security:
   - ApiKeyAuth: []
@@ -15,6 +15,7 @@ tags:
   - name: image requests(租戶管理員)
   - name: version(使用者)
   - name: token request(使用者)
+  - name: project(使用者/租戶管理員)
 paths:
   /version/:
     get:
@@ -117,6 +118,47 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SolutionSerializer'
+  /projects/{project_name}/favorites/:
+    get:
+      tags:
+        - project(使用者/租戶管理員)
+      summary: Get Favorite context of a specific project name
+      description: Get Favorite context of a specific project name
+      parameters:
+        - $ref: '#/components/parameters/ProjectNameParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description:  OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FavoriteSerializer'
+    patch:
+      tags:
+        - project(使用者/租戶管理員)
+      summary: Update Favorite context of a specific project name
+      description: Update Favorite context of a specific project name
+      parameters:
+        - $ref: '#/components/parameters/ProjectNameParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        description: body
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                favorite:
+                  type: string
+        required: true
+      responses:
+        200:
+          description:  OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FavoriteSerializer'
   /image_requests/:
     get:
       tags: 
@@ -264,6 +306,13 @@ components:
       schema:
         type: integer
         format: int32
+    ProjectNameParam:
+      name: project_name
+      in: path
+      description: The name of the project
+      required: true
+      schema:
+        type: string
     ApiHostParam:
       name: x-api-host
       in: header
@@ -421,6 +470,13 @@ components:
           type: integer
           format: int64
         tag_image:
+          type: string
+    FavoriteSerializer:
+      required:
+      - favorite
+      type: object
+      properties:
+        favorite:
           type: string
   responses:
     40000BadRequest:
