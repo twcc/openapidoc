@@ -6,7 +6,7 @@ servers:
     url: https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
 info:
   # description: This is a simple API
-  version: 1.0.5
+  version: 1.1.0
   title: VCS API
 security:
   - ApiKeyAuth: []
@@ -608,7 +608,6 @@ paths:
                 summary: Example with disassociateIP
                 value:
                   action: disassociateIP
-                  ip: 0.0.0.0
               updateListenerParams example:
                 summary: Example with updateListenerParams
                 value:
@@ -752,6 +751,34 @@ paths:
         202:
           description: No Content
           content: {}
+    patch:
+      tags: 
+      - network(租戶管理員)
+      summary: Update a network
+      operationId: Network_Detail_PATCH
+      parameters: 
+        - $ref: '#/components/parameters/NetworkIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                name:
+                  type: string
+                  description: The new network name
+                nameservers:
+                  type: array
+                  description: The new network nameservers list
+                  items:
+                    type: string
+      responses:
+        202:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkDetailSerializer'
   /networks/{network_id}/security_group_rules/:
     get:
       tags: 
@@ -1242,6 +1269,38 @@ paths:
       responses:
         204:
           description: No Content
+          content: {}
+  /servers/{server_id}/action/:
+    put:
+      tags: 
+      - server(使用者/租戶管理員)
+      summary: Execute an action to a server
+      description: Execute an action to a server
+      parameters: 
+        - $ref: '#/components/parameters/ServerIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - action
+              properties:
+                action:
+                  type: string
+                  description: Action for a server, such as start/stop/reboot/associateIP/disassociateIP/shelve/unshelve
+                reboot_type:
+                  type: string
+                  description: SOFT for a software-level reboot, or HARD for a virtual
+                    power cycle hard reboot. Default is SOFT. This parameter only
+                    available for reboot action.
+                ip:
+                  type: string
+                  description: STATIC type IP ID for associateIP
+        required: true
+      responses:
+        202:
+          description: Accepted
           content: {}
   /servers/{server_id}/cpu/:
     get:
