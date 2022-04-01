@@ -6,7 +6,7 @@ servers:
     url: https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
 info:
   # description: This is a simple API
-  version: 1.1.0
+  version: 1.1.1
   title: VCS API
 security:
   - ApiKeyAuth: []
@@ -1432,6 +1432,12 @@ paths:
       description: List sites
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
+        - name: sol_categ
+          in: query
+          description: Solution Categories
+          schema:
+            type: string
+            default: os
         - name: all_users
           in: query
           description: List resources of all users. 租戶管理員使用
@@ -1496,6 +1502,27 @@ paths:
           schema:
             type: string
         - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        description: body
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+              - name
+              - project
+              - solution
+              type: object
+              properties:
+                project:
+                  type: integer
+                desc:
+                  type: string
+                  example: Description (optional)
+                solution:
+                  type: integer
+                name:
+                  type: string
+                  example: TestSite (required)
       responses:
         201:
           description: OK

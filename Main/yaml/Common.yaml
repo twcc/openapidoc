@@ -6,7 +6,7 @@ servers:
     url: https://apigateway.twcc.tw/api/v3/
 info:
   # description: This is a simple API
-  version: 1.1.0
+  version: 1.1.1
   title: Common API
 security:
   - ApiKeyAuth: []
@@ -174,14 +174,14 @@ paths:
             enum: [approved, failed, finished, requested]
         - name: src_project
           in: query
-          description: filter src project
+          description: filter src project ID
           schema:
-            type: string
+            type: integer
         - name: dst_project
           in: query
-          description: filter dst project
+          description: filter dst project ID
           schema:
-            type: string
+            type: integer
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
