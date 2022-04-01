@@ -3,29 +3,45 @@
         "situation": "VCS API",
         "version": "1.1.0",
         "explanation": {
-            "summary": "發布 1.1.0",
+            "summary": "補充 sites API",
             "ex_list": [
-                "收錄network 1個API",
-                "收錄server 1個APII"
+                "補VCS sites POST缺失 requestBody",
+                "補VCS sites GET 缺少 sol_categ 參數"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2022/03/18",
-        "commit_code": "94646cc03857ba1e95b36fa93f686f39384ee99a"
+        "update_time": "2022/04/01",
+        "commit_code": "c3b8f3cba1ea046f6e5d13944975202806385305"
     },
     {
         "situation": "Common API",
-        "version": "1.1.0",
+        "version": "1.1.1",
         "explanation": {
-            "summary": "發布common API 1.1.0",
+            "summary": "更新 image_requests API 文字",
             "ex_list": [
-                "收錄 project 2個API"
+                "更新common image_requests get 訊息"
             ]
         },
         "path": "./Main/Common.html",
         "record_path": "Common.json",
-        "update_time": "2022/03/18",
-        "commit_code": "0d48a126f2869a182d244e6cfa6613086c09d8ac"
+        "update_time": "2022/04/01",
+        "commit_code": "c3b8f3cba1ea046f6e5d13944975202806385305"
+    },
+    {
+        "situation": "CCS API",
+        "version": "1.0.0",
+        "explanation": {
+            "summary": "上架 CCS API",
+            "ex_list": [
+                "收錄 project 3個 API",
+                "收錄 flavor 2個 API",
+                "收錄 site 14個 API"
+            ]
+        },
+        "path": "./Main/CCS.html",
+        "record_path": null,
+        "update_time": "2022/04/01",
+        "commit_code": "ce19b345f450e34615028139cc7d15a73211301a"
     }
 ]

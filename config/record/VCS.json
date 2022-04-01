@@ -1,6 +1,17 @@
 [
     {
-        "situation": "VCS API",
+        "version": "1.1.0",
+        "explanation": {
+            "summary": "發布 1.1.0",
+            "ex_list": [
+                "收錄network 1個API",
+                "收錄server 1個APII"
+            ]
+        },
+        "update_time": "2022/03/18",
+        "commit_code": "94646cc03857ba1e95b36fa93f686f39384ee99a"
+    },
+    {
         "version": "1.0.5",
         "explanation": {
             "summary": "發布 1.0.5",

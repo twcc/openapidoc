@@ -1,6 +1,16 @@
 [
     {
-        "situation": "Common API",
+        "version": "1.1.0",
+        "explanation": {
+            "summary": "發布common API 1.1.0",
+            "ex_list": [
+                "收錄 project 2個API"
+            ]
+        },
+        "update_time": "2022/03/18",
+        "commit_code": "0d48a126f2869a182d244e6cfa6613086c09d8ac"
+    },
+    {
         "version": "1.0.2",
         "explanation": {
             "summary": "發布common API 1.0.2",
