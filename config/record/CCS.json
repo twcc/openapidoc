@@ -1,0 +1,15 @@
+[
+    {
+        "version": "1.0.0",
+        "explanation": {
+            "summary": "上架 CCS API",
+            "ex_list": [
+                "收錄 project 3個 API",
+                "收錄 flavor 2個 API",
+                "收錄 site 14個 API"
+            ]
+        },
+        "update_time": "2022/04/01",
+        "commit_code": "ce19b345f450e34615028139cc7d15a73211301a"
+    }
+]

@@ -1,18 +1,20 @@
 [
     {
         "situation": "VCS API",
-        "version": "1.1.0",
+        "version": "1.2.0",
         "explanation": {
-            "summary": "補充 sites API",
+            "summary": "更新flavor+收錄3個API",
             "ex_list": [
-                "補VCS sites POST缺失 requestBody",
-                "補VCS sites GET 缺少 sol_categ 參數"
+                "擴充flavors get可以進行project filter matchLabels",
+                "更新FlavorSerializer的資料格式",
+                "修正/flavors/{flavor_id}/的responses錯誤",
+                "收錄 load balancer 3個 API"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2022/04/01",
-        "commit_code": "c3b8f3cba1ea046f6e5d13944975202806385305"
+        "update_time": "2022/04/08",
+        "commit_code": "05905dda30d9f16790cc7d2a401c62d0cd33b57e"
     },
     {
         "situation": "Common API",
@@ -30,18 +32,19 @@
     },
     {
         "situation": "CCS API",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "explanation": {
-            "summary": "上架 CCS API",
+            "summary": "更新flavor+收錄12個API",
             "ex_list": [
-                "收錄 project 3個 API",
-                "收錄 flavor 2個 API",
-                "收錄 site 14個 API"
+                "擴充flavors get可以進行project filter matchLabels",
+                "更新FlavorSerializer的資料格式",
+                "修正/flavors/{flavor_id}/的responses錯誤",
+                "收錄 job 12個 API"
             ]
         },
         "path": "./Main/CCS.html",
-        "record_path": null,
-        "update_time": "2022/04/01",
-        "commit_code": "ce19b345f450e34615028139cc7d15a73211301a"
+        "record_path": "CCS.json",
+        "update_time": "2022/04/08",
+        "commit_code": "56ebc9ce68af275d15269d86620f133ae917a509"
     }
 ]
