@@ -6,14 +6,14 @@ servers:
     url: https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
 info:
   # description: This is a simple API
-  version: 1.1.1
+  version: 1.2.1
   title: VCS API
 security:
   - ApiKeyAuth: []
 tags:
   - name: project(使用者)
   - name: project(租戶管理員)
-  - name: flavor
+  - name: flavor(使用者/租戶管理員)
   - name: image(使用者/租戶管理員)
   - name: keypair(使用者/租戶管理員)
   - name: load balancer(使用者/租戶管理員)
@@ -224,15 +224,22 @@ paths:
   /flavors/:
     get:
       tags:
-        - flavor
+        - flavor(使用者/租戶管理員)
       summary: List flavors
       parameters:
         - in: query
           name: is_public
-          description: 是否公開
+          description: Flavor is_public
           required: false
           schema:
             type: boolean
+        - in: query
+          name: project
+          description: Project ID to filter matchLabels
+          required: false
+          schema:
+            type: integer
+            format: int32
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
@@ -246,7 +253,7 @@ paths:
   /flavors/{flavor_id}/:
     get:
       tags:
-        - flavor
+        - flavor(使用者/租戶管理員)
       summary: Get details of a flavor
       parameters:
         - $ref: '#/components/parameters/FlavorIDParam'
@@ -257,7 +264,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FlavorSerializer'
+                $ref: '#/components/schemas/FlavorDetailSerializer'
   /images/:
     get:
       tags:
@@ -546,6 +553,63 @@ paths:
         204:
           description: No Content
           content: {}
+    patch:
+      tags:
+      - load balancer(使用者/租戶管理員)
+      summary: Updates a load balancer
+      description: Updates a load balancer
+      parameters:
+        - $ref: '#/components/parameters/LoadBalancerIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        description: PATCH
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pools:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/PoolData'
+                listeners:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ListenerData'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LBDetailSerializer'
+  /loadbalancers/reports/:
+    get:
+      tags:
+      - load balancer(使用者/租戶管理員)
+      summary: Shows report for a load balancer member
+      description: Shows report for a load balancer member.
+      parameters:
+        - $ref: '#/components/parameters/ProjectInQueryParam'
+        - name: begin_time
+          in: query
+          description: Default is one month before end time.
+          schema:
+            type: string
+        - name: end_time
+          in: query
+          description: Get the report before the end time. Default is now.
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LBReportSerializer'
   /loadbalancers/{loadbalancer_id}/action/:
     put:
       tags:
@@ -621,6 +685,77 @@ paths:
         202:
           description: Accepted
           content: {}
+  /loadbalancers/{loadbalancer_id}/reports/:
+    get:
+      tags:
+      - load balancer(使用者/租戶管理員)
+      summary: Shows report for a load balancer member
+      description: Shows report for a load balancer member.
+      parameters:
+        - $ref: '#/components/parameters/LoadBalancerIDParam'
+        - name: member
+          in: query
+          description: Member ip
+          required: true
+          schema:
+            type: string
+        - name: begin_time
+          in: query
+          description: Default is one month before end time.
+          schema:
+            type: string
+        - name: end_time
+          in: query
+          description: Get the report before the end time. Default is now.
+          schema:
+            type: string
+        - name: method
+          in: query
+          description: Calculate method
+          schema:
+            type: string
+            default: sum
+            enum:
+            - sum
+            - avg
+        - name: interval
+          in: query
+          description: Calculate time interval
+          schema:
+            type: integer
+            format: int32
+            default: 5
+        - name: unit
+          in: query
+          description: Unit of calculated time interval
+          schema:
+            type: string
+            default: m
+            enum:
+            - s
+            - m
+            - h
+            - d
+            - w
+            - M
+            - y
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LBDetailSerializer'
+              examples:
+                loadbalancer_member_bytes_read:
+                  summary: loadbalancer member bytes_read
+                  value: [
+                            {
+                              "bytes_read": 37,
+                              "time": "2018-09-25T09:55:00.771000",
+                            }
+                          ]
   /security_groups/:
     get:
       tags:
@@ -2040,6 +2175,59 @@ components:
           type: string
         volume-size:
           type: string
+    FlavorDetailSerializer:
+      required:
+      - desc
+      - id
+      - metadata
+      - name
+      - platform
+      - resource
+      type: object
+      properties:
+        desc:
+          type: string
+        id:
+          type: integer
+          format: int64
+        metadata:
+          type: object
+          properties: {}
+        name:
+          type: string
+        platform:
+          type: string
+        is_enabled:
+          type: boolean
+        is_public:
+          type: boolean
+        reason:
+          type: string
+        labels:
+          type: array
+          items:
+            type: string
+        resource:
+          type: object
+          properties:
+            cpu:
+              type: integer
+              format: int64
+            memory:
+              type: integer
+              format: int64
+            disk:
+              type: integer
+              format: int64
+            gpu:
+              type: number
+              format: float
+            shm:
+              type: integer
+              format: int64
+            nic:
+              type: integer
+              format: int64
     FlavorSerializer:
       required:
       - id
@@ -2063,6 +2251,14 @@ components:
           type: string
         is_public:
           type: boolean
+        labels:
+          type: array
+          items:
+            type: string
+        is_enabled:
+          type: boolean
+        reason:
+          type: string
         resource:
           type: object
           properties:
@@ -3282,6 +3478,56 @@ components:
           active_connections:
             type: integer
             format: int64
+    LBDetailReportSerializer:
+      required:
+      - bytes_read
+      - time
+      type: object
+      properties:
+        bytes_read:
+          type: integer
+        time:
+          type: string
+          format: date-time
+    LBReportSerializer:
+      required:
+      - begin_time
+      - end_time
+      - projects
+      type: object
+      properties:
+        begin_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/LBReportProjectObject'
+    LBReportProjectObject:
+      required:
+      - detail
+      - name
+      - summery
+      type: object
+      properties:
+        name:
+          type: string
+        summery:
+          type: object
+          properties:
+            total_lb_num:
+              type: integer
+              format: int64
+        detail:
+          type: object
+          properties:
+            LB:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReportDetailObject'
     PoolDetailSerializer:
       allOf:
       - $ref: '#/components/schemas/PoolSerializer'
