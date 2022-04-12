@@ -74,6 +74,50 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ProjectQuotaSerializer'
+  /projects/{project_id}/solutions/:
+    get:
+      tags:
+        - project(使用者)
+      summary: 取得專案的解決方案list
+      description: |
+        查詢該專案的解決放案(Res: 解決方案ID)
+      parameters:
+        - $ref: '#/components/parameters/ProjectInPathParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description:  解決方案
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  solutions:
+                    type: array
+                    items:
+                      type: integer
+  /projects/{project_id}/solutions/{solutions_id}/:
+    get:
+      tags:
+        - project(使用者)
+      summary: Get extra properties of a solution for a project
+      parameters:
+        - $ref: '#/components/parameters/ProjectInPathParam'
+        - $ref: '#/components/parameters/SolutionsIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description:  解決方案
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                  site_extra_prop:
+                    $ref: '#/components/schemas/site_extra_prop'
   /flavors/:
     get:
       tags:
@@ -618,6 +662,27 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/JobAbstrationSerializer'
+    post:
+      tags:
+      - job(使用者/租戶管理員)
+      summary: Create job
+      description: List jobs
+      parameters:
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WriteJobData'
+        required: true
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAbstrationSerializer'
   /jobs/{job_id}/:
     get:
       tags:
@@ -1533,6 +1598,93 @@ components:
           - KUBERNETES:DOCKER
         user:
           $ref: '#/components/schemas/UserSerializer'
+    WriteJobData:
+      required:
+      - name
+      - project
+      - steps
+      - type
+      type: object
+      properties:
+        callback:
+          type: string
+          description: 自動停止任務的迴叫網址，預設為空
+        first_submit:
+          type: boolean
+          description: 自動運行任務旗標，預設為否
+        name:
+          type: string
+          description: Job name
+        project:
+          type: integer
+          format: int64
+          description: Project ID
+        schedule:
+          type: string
+          description: Run the job periodically with Cron format
+        tag:
+          type: string
+          description: 過濾用任務標籤，預設為空
+        type:
+          type: string
+          description: Job type
+          enum:
+          - DOCKER
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/WriteJobStepSerializer'
+    WriteJobStepSerializer:
+      required:
+      - flavor
+      - image
+      - stepname
+      type: object
+      properties:
+        stepname:
+          type: string
+          description: Step name
+        availability_zone:
+          type: string
+          description: Job
+        depends_on:
+          type: array
+          description: Specify the name of the steps on which this step depends. Only suppored by Slurm platform.
+          items:
+            type: string
+        dependency_policy:
+          type: string
+          description: The policy of the dependency
+          enum:
+          - AFTEROK
+          - AFTERNOTOK
+          - AFTERANY
+        command:
+          type: string
+          description: The command need to be executed in the image
+        env:
+          type: object
+          description: 任務容器環境變數，預設為{}
+          properties: {}
+        image:
+          type: string
+          description: The image used for this step
+        flavor:
+          type: integer
+          format: int32
+          description: Flavor ID
+        runs:
+          type: integer
+          format: int32
+          description: How many concurrent runs should be lauched at once
+        slots:
+          type: integer
+          format: int32
+          description: How many slotPerWorker should be lauched in single mpi worker
+        volumes:
+          type: array
+          items:
+            $ref: '#/components/schemas/WriteJobVolumeSerializer'
     WriteJobDetailData:
       type: object
       properties:
@@ -1703,6 +1855,51 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ContainerIOUtilSerializer'
+    site_extra_prop:
+      type: object
+      properties:
+        static-ip:
+          type: array
+          items:
+            type: string
+        locale:
+          type: array
+          items:
+            type: string
+        image:
+          type: array
+          items:
+            type: string
+        private-network:
+          type: array
+          items:
+            type: string
+        timezone:
+          type: array
+          items:
+            type: string
+        system-volume-type:
+          type: array
+          items:
+            type: string
+        floating-ip:
+          type: array
+          items:
+            type: string
+        flavor:
+          type: array
+          items:
+            type: string
+        volume-type:
+          type: array
+          items:
+            type: string
+        password:
+          type: string
+        ports:
+          type: string
+        volume-size:
+          type: string
   parameters:
     ProjectInQueryParam:
       name: project
@@ -1748,6 +1945,13 @@ components:
       schema:
         type: integer
         format: int32
+    SolutionsIDParam:
+      name: solutions_id
+      in: path
+      description: 方案ID
+      required: true
+      schema:
+        type: integer
     ApiHostParam:
       name: x-api-host
       in: header
