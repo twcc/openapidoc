@@ -32,19 +32,17 @@
     },
     {
         "situation": "CCS API",
-        "version": "1.1.0",
+        "version": "1.2.0",
         "explanation": {
-            "summary": "更新flavor+收錄12個API",
+            "summary": "收錄job與project API",
             "ex_list": [
-                "擴充flavors get可以進行project filter matchLabels",
-                "更新FlavorSerializer的資料格式",
-                "修正/flavors/{flavor_id}/的responses錯誤",
-                "收錄 job 12個 API"
+                "收錄 project 2個API",
+                "收錄 job 1個API"
             ]
         },
         "path": "./Main/CCS.html",
         "record_path": "CCS.json",
-        "update_time": "2022/04/08",
-        "commit_code": "56ebc9ce68af275d15269d86620f133ae917a509"
+        "update_time": "2022/04/12",
+        "commit_code": "4d50d15e75eed07be4c7f3985cc3e8f7995bf2b0"
     }
 ]

@@ -1,5 +1,19 @@
 [
     {
+        "version": "1.1.0",
+        "explanation": {
+            "summary": "更新flavor+收錄12個API",
+            "ex_list": [
+                "擴充flavors get可以進行project filter matchLabels",
+                "更新FlavorSerializer的資料格式",
+                "修正/flavors/{flavor_id}/的responses錯誤",
+                "收錄 job 12個 API"
+            ]
+        },
+        "update_time": "2022/04/08",
+        "commit_code": "56ebc9ce68af275d15269d86620f133ae917a509"
+    },
+    {
         "version": "1.0.0",
         "explanation": {
             "summary": "上架 CCS API",
