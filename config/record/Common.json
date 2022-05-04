@@ -1,5 +1,16 @@
 [
     {
+        "version": "1.1.1",
+        "explanation": {
+            "summary": "更新 image_requests API 文字",
+            "ex_list": [
+                "更新common image_requests get 訊息"
+            ]
+        },
+        "update_time": "2022/04/01",
+        "commit_code": "c3b8f3cba1ea046f6e5d13944975202806385305"
+    },
+    {
         "version": "1.1.0",
         "explanation": {
             "summary": "發布common API 1.1.0",
