@@ -87,7 +87,13 @@ paths:
           required: true
           schema:
             type: string
-            example: os
+          examples:
+            VCS:
+              summary: With VCS
+              value: os
+            CCS:
+              summary: With CCS
+              value: container
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
@@ -174,14 +180,16 @@ paths:
             enum: [approved, failed, finished, requested]
         - name: src_project
           in: query
-          description: filter src project ID
+          description: Filter Source Image Project ID
           schema:
             type: integer
+            format: int32
         - name: dst_project
           in: query
-          description: filter dst project ID
+          description: Filter Destination Project ID
           schema:
             type: integer
+            format: int32
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
