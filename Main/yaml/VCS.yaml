@@ -11,32 +11,27 @@ info:
 security:
   - ApiKeyAuth: []
 tags:
-  - name: project(使用者)
-  - name: project(租戶管理員)
-  - name: flavor(使用者/租戶管理員)
-  - name: image(使用者/租戶管理員)
-  - name: keypair(使用者/租戶管理員)
-  - name: load balancer(使用者/租戶管理員)
-  - name: security group(使用者/租戶管理員)
-  - name: network(使用者)
-  - name: network(租戶管理員)
-  - name: ip(使用者)
-  - name: ip(租戶管理員)
-  - name: volume(使用者)
-  - name: volume(租戶管理員)
-  - name: snapshot(使用者)
-  - name: snapshot(租戶管理員)
-  - name: server(使用者/租戶管理員)
-  - name: site(使用者/租戶管理員)
-  - name: firewall(租戶管理員)
-  - name: secret(使用者/租戶管理員)
-  - name: availability zone(使用者/租戶管理員)
-  - name: auto scaling policy(使用者/租戶管理員)
+  - name: project
+  - name: flavor
+  - name: image
+  - name: keypair
+  - name: load balancer
+  - name: security group
+  - name: network
+  - name: ip
+  - name: volume
+  - name: snapshot
+  - name: server
+  - name: site
+  - name: firewall
+  - name: secret
+  - name: availability zone
+  - name: auto scaling policy
 paths:
   /projects/:
     get:
       tags:
-        - project(使用者)
+        - project
       summary: 取得專案列表
       description: 查詢所有擁有的專案
       parameters:
@@ -63,7 +58,7 @@ paths:
   /projects/{project_id}/:
     get:
       tags:
-        - project(使用者)
+        - project
       summary: 取得單一專案訊息
       description: |
         查詢所有擁有的專案
@@ -88,7 +83,7 @@ paths:
   /projects/{project_id}/solutions/:
     get:
       tags:
-        - project(使用者)
+        - project
       summary: 取得專案的解決方案list
       description: |
         查詢該專案的解決放案(Res: 解決方案ID)
@@ -118,7 +113,7 @@ paths:
   /projects/{project_id}/solutions/{solutions_id}/:
     get:
       tags:
-        - project(使用者)
+        - project
       summary: Get extra properties of a solution for a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
@@ -148,7 +143,7 @@ paths:
   /projects/reports/:
     get:
       tags:
-        - project(使用者)
+        - project
       summary: Get assets reports for the projects.
       description: Get assets reports for the projects.
       parameters:
@@ -170,7 +165,7 @@ paths:
   /project_quotas/:
     get:
       tags:
-        - project(使用者)
+        - project
       summary: get project quotas
       description: get project quotas
       parameters:
@@ -188,7 +183,7 @@ paths:
   /projects/{project_id}/user_quotas/:
     get:
       tags:
-        - project(租戶管理員)
+        - project
       summary: get user quotas
       description: get user quotas
       parameters:
@@ -206,7 +201,7 @@ paths:
   /projects/{project_id}/business_network/:
     get:
       tags:
-        - project(租戶管理員)
+        - project
       summary: get a business network info
       description: get a business network info in a openstack project
       parameters:
@@ -224,7 +219,7 @@ paths:
   /flavors/:
     get:
       tags:
-        - flavor(使用者/租戶管理員)
+        - flavor
       summary: List flavors
       parameters:
         - in: query
@@ -253,7 +248,7 @@ paths:
   /flavors/{flavor_id}/:
     get:
       tags:
-        - flavor(使用者/租戶管理員)
+        - flavor
       summary: Get details of a flavor
       parameters:
         - $ref: '#/components/parameters/FlavorIDParam'
@@ -268,7 +263,7 @@ paths:
   /images/:
     get:
       tags:
-        - image(使用者/租戶管理員)
+        - image
       summary: List images
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -285,7 +280,7 @@ paths:
   /images/{image_id}/:
     get:
       tags:
-        - image(使用者/租戶管理員)
+        - image
       summary: Get details of a image
       description: |-
         Image is not public if it was saved from an server or
@@ -302,7 +297,7 @@ paths:
                 $ref: '#/components/schemas/ImageDetailSerializer'
     patch:
       tags:
-        - image(使用者/租戶管理員)
+        - image
       summary: Patch details of a image
       description: Patch details of a image
       parameters:
@@ -334,7 +329,7 @@ paths:
                 $ref: '#/components/schemas/ImageSerializer'
     delete:
       tags:
-        - image(使用者/租戶管理員)
+        - image
       summary: Delete an image
       parameters:
         - $ref: '#/components/parameters/ImageIDParam'
@@ -346,7 +341,7 @@ paths:
   /images/{server_id}/save/:
     put:
       tags:
-        - image(使用者/租戶管理員)
+        - image
       summary: Save an instance as an image
       description: |-
         Save an image for server <server_id>.
@@ -382,7 +377,7 @@ paths:
   /keypairs/:
     get:
       tags:
-      - keypair(使用者/租戶管理員)
+      - keypair
       summary: List Keypairs
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
@@ -397,7 +392,7 @@ paths:
                   $ref: '#/components/schemas/KeypairSerializer'
     post:
       tags:
-      - keypair(使用者/租戶管理員)
+      - keypair
       summary: Create a Keypair
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
@@ -425,7 +420,7 @@ paths:
   /keypairs/{key_name}/:
     get:
       tags:
-      - keypair(使用者/租戶管理員)
+      - keypair
       summary: Get Keypair Detail
       parameters:
       - name: key_name
@@ -452,7 +447,7 @@ paths:
                     format: date-time
     delete:
       tags:
-      - keypair(使用者/租戶管理員)
+      - keypair
       summary: Delete a Keypair
       parameters:
       - name: key_name
@@ -469,7 +464,7 @@ paths:
   /loadbalancers/:
     get:
       tags:
-      - load balancer(使用者/租戶管理員)
+      - load balancer
       summary: Lists load balancers
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -485,7 +480,7 @@ paths:
                   $ref: '#/components/schemas/LBSerializer'
     post:
       tags:
-      - load balancer(使用者/租戶管理員)
+      - load balancer
       summary: Creates a load balancer
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
@@ -528,7 +523,7 @@ paths:
   /loadbalancers/{loadbalancer_id}/:
     get:
       tags:
-      - load balancer(使用者/租戶管理員)
+      - load balancer
       summary: Shows details for a load balancer
       description: Shows details for a load balancer.
       parameters:
@@ -543,7 +538,7 @@ paths:
                 $ref: '#/components/schemas/LBDetailSerializer'
     delete:
       tags:
-      - load balancer(使用者/租戶管理員)
+      - load balancer
       summary: Delete a load balancer
       description: Delete a load balancer.
       parameters:
@@ -555,7 +550,7 @@ paths:
           content: {}
     patch:
       tags:
-      - load balancer(使用者/租戶管理員)
+      - load balancer
       summary: Updates a load balancer
       description: Updates a load balancer
       parameters:
@@ -587,7 +582,7 @@ paths:
   /loadbalancers/reports/:
     get:
       tags:
-      - load balancer(使用者/租戶管理員)
+      - load balancer
       summary: Shows report for a load balancer member
       description: Shows report for a load balancer member.
       parameters:
@@ -613,7 +608,7 @@ paths:
   /loadbalancers/{loadbalancer_id}/action/:
     put:
       tags:
-      - load balancer(使用者/租戶管理員)
+      - load balancer
       summary: Shows details for a load balancer
       description: Shows details for a load balancer.
       parameters:
@@ -688,7 +683,7 @@ paths:
   /loadbalancers/{loadbalancer_id}/reports/:
     get:
       tags:
-      - load balancer(使用者/租戶管理員)
+      - load balancer
       summary: Shows report for a load balancer member
       description: Shows report for a load balancer member.
       parameters:
@@ -759,7 +754,7 @@ paths:
   /security_groups/:
     get:
       tags:
-      - security group(使用者/租戶管理員)
+      - security group
       summary: List security rules of a server
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -778,7 +773,7 @@ paths:
   /security_groups/{security_group_id}/:
     patch:
       tags: 
-      - security group(使用者/租戶管理員)
+      - security group
       summary: Add a security rule to a security group.
       parameters: 
         - $ref: '#/components/parameters/SecurityGroupIDParam'
@@ -814,7 +809,7 @@ paths:
   /security_group_rules/{rule_id}/:
     delete:
       tags: 
-      - security group(使用者/租戶管理員)
+      - security group
       summary: Delete a rule in a security group.
       parameters: 
         - $ref: '#/components/parameters/RuleIDParam'
@@ -827,7 +822,7 @@ paths:
   /networks/:
     get:
       tags:
-      - network(使用者)
+      - network
       summary: Lists networks
       parameters: 
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -843,7 +838,7 @@ paths:
                   $ref: '#/components/schemas/NetworkSerializer'
     post:
       tags: 
-      - network(租戶管理員)
+      - network
       summary: Creates a network
       parameters: 
         - $ref: '#/components/parameters/ApiHostParam'
@@ -863,7 +858,7 @@ paths:
   /networks/{network_id}/:
     get:
       tags: 
-      - network(租戶管理員)
+      - network
       summary: Shows details for a network
       parameters:
         - $ref: '#/components/parameters/NetworkIDParam'
@@ -877,7 +872,7 @@ paths:
                 $ref: '#/components/schemas/NetworkDetailSerializer'
     delete:
       tags: 
-      - network(租戶管理員)
+      - network
       summary: Deletes a network
       parameters: 
         - $ref: '#/components/parameters/NetworkIDParam'
@@ -888,9 +883,8 @@ paths:
           content: {}
     patch:
       tags: 
-      - network(租戶管理員)
+      - network
       summary: Update a network
-      operationId: Network_Detail_PATCH
       parameters: 
         - $ref: '#/components/parameters/NetworkIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -917,7 +911,7 @@ paths:
   /networks/{network_id}/security_group_rules/:
     get:
       tags: 
-      - network(租戶管理員)
+      - network
       summary: Get security group rules by a network
       parameters:
         - $ref: '#/components/parameters/NetworkIDParam'
@@ -959,7 +953,7 @@ paths:
   /ips/:
     get:
       tags: 
-      - ip(使用者)
+      - ip
       summary: List IPs
       parameters:
           - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -975,7 +969,7 @@ paths:
                   $ref: '#/components/schemas/IPSerializer'
     post:
       tags: 
-      - ip(租戶管理員)
+      - ip
       summary: Create a STATIC Elastic IP
       description: Create a STATIC Elastic IP
       parameters: 
@@ -1002,7 +996,7 @@ paths:
   /ips/{ip_id}/:
     get:
       tags: 
-      - ip(使用者)
+      - ip
       summary: Get a Elastic IP detail
       parameters: 
         - $ref: '#/components/parameters/IPIDParam'
@@ -1016,7 +1010,7 @@ paths:
                 $ref: '#/components/schemas/IPSerializer'
     patch:
       tags: 
-      - ip(使用者)
+      - ip
       summary: Update a Elastic IP's Description
       description: Update a Elastic IP's description
       parameters: 
@@ -1041,7 +1035,7 @@ paths:
                 $ref: '#/components/schemas/IPSerializer'
     delete:
       tags: 
-      - ip(租戶管理員)
+      - ip
       summary: Unsubscribe a STATIC Elastic IP
       description: Unsubscribe a STATIC Elastic IP
       parameters: 
@@ -1054,7 +1048,7 @@ paths:
   /volumes/:
     get:
       tags:
-      - volume(使用者)
+      - volume
       summary: List volumes
       description: List volumes
       parameters:
@@ -1071,7 +1065,7 @@ paths:
                   $ref: '#/components/schemas/VolumeSerializer'
     post:
       tags:
-      - volume(使用者)
+      - volume
       summary: Create a volume
       description: Create a volume
       parameters:
@@ -1105,7 +1099,7 @@ paths:
   /volumes/{volume_id}/:
     get:
       tags:
-      - volume(使用者)
+      - volume
       summary: Get details of a volume
       parameters:
         - $ref: '#/components/parameters/VolumeIDParam'
@@ -1119,7 +1113,7 @@ paths:
                 $ref: '#/components/schemas/VolumeSerializer'
     delete:
       tags: 
-      - volume(使用者)
+      - volume
       summary: Delete a volume
       parameters:
         - $ref: '#/components/parameters/VolumeIDParam'
@@ -1131,7 +1125,7 @@ paths:
   /volumes/{volume_id}/action/:
     put:
       tags: 
-      - volume(使用者)
+      - volume
       summary: 連結或段開VM
       parameters: 
         - $ref: '#/components/parameters/VolumeIDParam'
@@ -1165,7 +1159,7 @@ paths:
   /volumes/reports/:
     get:
       tags:
-      - volume(租戶管理員)
+      - volume
       summary: Get volume report of all groups.
       description: Get volume report of all groups
       parameters:
@@ -1196,7 +1190,7 @@ paths:
   /snapshots/:
     get:
       tags: 
-      - snapshot(使用者)
+      - snapshot
       summary: Get snapshots
       parameters: 
         - name: status
@@ -1218,7 +1212,7 @@ paths:
                   $ref: '#/components/schemas/SnapshotSerializer'
     post:
       tags: 
-      - snapshot(使用者)
+      - snapshot
       summary: Take a snapshot
       parameters: 
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1251,7 +1245,7 @@ paths:
   /snapshots/{snapshot_id}/:
     get:
       tags: 
-      - snapshot(使用者)
+      - snapshot
       summary: Get details of a snapshot
       parameters: 
         - $ref: '#/components/parameters/SnapshotIDParam'
@@ -1265,7 +1259,7 @@ paths:
                 $ref: '#/components/schemas/SnapshotSerializer'
     delete:
       tags: 
-      - snapshot(使用者)
+      - snapshot
       summary: Delete a snapshot
       parameters: 
         - $ref: '#/components/parameters/SnapshotIDParam'
@@ -1277,7 +1271,7 @@ paths:
   /snapshots/reports/:
     get:
       tags:
-      - snapshot(租戶管理員)
+      - snapshot
       summary: Get snapshots report
       description: Get snapshots report
       parameters:
@@ -1308,7 +1302,7 @@ paths:
   /servers/:
     get:
       tags: 
-      - server(使用者/租戶管理員)
+      - server
       summary: List servers
       parameters: 
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -1325,7 +1319,7 @@ paths:
   /servers/{server_id}/:
     get:
       tags: 
-      - server(使用者/租戶管理員)
+      - server
       summary: Get details of a server
       parameters: 
         - $ref: '#/components/parameters/ServerIDParam'
@@ -1340,7 +1334,7 @@ paths:
   /servers/{server_id}/auto_scaling_policy/:
     post:
       tags: 
-      - server(使用者/租戶管理員)
+      - server
       summary: Set Auto Scaling Policy On a Server
       description: Set Auto Scaling Policy On a Server
       parameters: 
@@ -1395,7 +1389,7 @@ paths:
                     format: int32
     delete:
       tags:
-      - server(使用者/租戶管理員)
+      - server
       summary: Remove Auto Scaling Policy From a Server
       description: Remove Auto Scaling Policy From a Server
       parameters: 
@@ -1408,7 +1402,7 @@ paths:
   /servers/{server_id}/action/:
     put:
       tags: 
-      - server(使用者/租戶管理員)
+      - server
       summary: Execute an action to a server
       description: Execute an action to a server
       parameters: 
@@ -1440,7 +1434,7 @@ paths:
   /servers/{server_id}/cpu/:
     get:
       tags: 
-      - server(使用者/租戶管理員)
+      - server
       summary: Get a Server CPU Utilization
       parameters: 
         - name: begin_time
@@ -1467,7 +1461,7 @@ paths:
   /servers/{server_id}/disk/:
     get:
       tags: 
-      - server(使用者/租戶管理員)
+      - server
       summary: Get a Server Disk Utilization
       parameters: 
         - name: meter_name
@@ -1501,7 +1495,7 @@ paths:
   /servers/{server_id}/memory/:
     get:
       tags: 
-      - server(使用者/租戶管理員)
+      - server
       summary: Get a Server Memory Utilization
       parameters: 
         - name: begin_time
@@ -1528,7 +1522,7 @@ paths:
   /servers/{server_id}/net/:
     get:
       tags: 
-      - server(使用者/租戶管理員)
+      - server
       summary: Get a Server Network Utilization
       parameters: 
         - name: begin_time
@@ -1562,7 +1556,7 @@ paths:
   /sites/:
     get:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: List sites
       description: List sites
       parameters:
@@ -1592,7 +1586,7 @@ paths:
                   $ref: '#/components/schemas/SiteSerializer'
     post:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Create a site
       description: Create a site
       parameters:
@@ -1668,7 +1662,7 @@ paths:
   /sites/{site_id}/:
     get:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Get details of a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -1682,7 +1676,7 @@ paths:
                  $ref: '#/components/schemas/SiteSerializer'
     delete:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Delete a site
       description: Delete a site
       parameters:
@@ -1694,7 +1688,7 @@ paths:
           content: {}
     put:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Update site extra-property
       description: Update site extra-property
       parameters:
@@ -1714,7 +1708,7 @@ paths:
                  $ref: '#/components/schemas/SiteDetailSerializer'
     patch:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Patch details of a site
       description: Patch details of a site
       parameters:
@@ -1741,7 +1735,7 @@ paths:
   /sites/{site_id}/parameters/:
     get:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Get parameters of a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -1777,7 +1771,7 @@ paths:
   /sites/{site_id}/event_logs/:
     get:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Get event logs of a site
       description: Get event logs of a site
       parameters:
@@ -1795,7 +1789,7 @@ paths:
   /sites/{site_id}/action/:
     put:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Action status of a site
       description: Action status of a site
       parameters:
@@ -1845,7 +1839,7 @@ paths:
   /firewalls/:
     get:
       tags:
-      - firewall(租戶管理員)
+      - firewall
       summary: get firewalls list
       description: get firewalls list
       parameters:
@@ -1863,7 +1857,7 @@ paths:
   /firewalls/{firewall_id}/:
     get:
       tags:
-      - firewall(租戶管理員)
+      - firewall
       summary: get a firewall detail
       description: get a firewall detail
       parameters:
@@ -1879,7 +1873,7 @@ paths:
   /firewall_rules/:
     get:
       tags:
-      - firewall(租戶管理員)
+      - firewall
       summary: get firewall rules list
       description: get firewall rules list
       parameters:
@@ -1897,7 +1891,7 @@ paths:
   /firewall_rules/{firewall_rule_id}/:
     get:
       tags:
-      - firewall(租戶管理員)
+      - firewall
       summary: get firewall rules list
       description: get firewall rules list
       parameters:
@@ -1915,7 +1909,7 @@ paths:
   /secret/:
     get:
       tags:
-        - secret(使用者/租戶管理員)
+        - secret
       summary: List Barbican Secrets
       description: List Secrets
       parameters:
@@ -1932,7 +1926,7 @@ paths:
                   $ref: '#/components/schemas/SecretSerializer'
     post:
       tags:
-        - secret(使用者/租戶管理員)
+        - secret
       summary: List Barbican Secrets
       description: List Secrets
       parameters:
@@ -1970,7 +1964,7 @@ paths:
   /secrets/{secret_id}/:
     get:
       tags:
-        - secret(使用者/租戶管理員)
+        - secret
       summary: Get a Secret Detail
       description: Get a secret detail
       parameters:
@@ -1985,7 +1979,7 @@ paths:
                 $ref: '#/components/schemas/SecretSerializer'
     delete:
       tags:
-        - secret(使用者/租戶管理員)
+        - secret
       summary: Get a Secret Detail
       description: Get a secret detail
       parameters:
@@ -1998,7 +1992,7 @@ paths:
   /availability_zones/:
     get:
       tags:
-        - availability zone(使用者/租戶管理員)
+        - availability zone
       summary: List availability zones
       description: List availability zones
       parameters:
@@ -2016,7 +2010,7 @@ paths:
   /availability_zones/{az_id}/:
     get:
       tags:
-        - availability zone(使用者/租戶管理員)
+        - availability zone
       summary: Get availability zone details
       description: Get availability zone details
       parameters:
@@ -2032,7 +2026,7 @@ paths:
   /auto_scaling_policies/:
     get:
       tags:
-        - auto scaling policy(使用者/租戶管理員)
+        - auto scaling policy
       summary: get auto scaling policies list
       description: get auto scaling policies list
       parameters:
@@ -2049,7 +2043,7 @@ paths:
                   $ref: '#/components/schemas/AutoScalingPolicySerializer'
     post:
       tags:
-        - auto scaling policy(使用者/租戶管理員)
+        - auto scaling policy
       summary: create an auto scaling policy
       description: create an auto scaling policy
       parameters:
@@ -2098,7 +2092,7 @@ paths:
   /auto_scaling_policies/{auto_scaling_policy_id}:
     get:
       tags:
-        - auto scaling policy(使用者/租戶管理員)
+        - auto scaling policy
       summary: get an auto scaling policy detail
       description: get an auto scaling policy detail
       parameters:
@@ -2113,7 +2107,7 @@ paths:
                 $ref: '#/components/schemas/AutoScalingPolicySerializer'
     delete:
       tags:
-        - auto scaling policy(使用者/租戶管理員)
+        - auto scaling policy
       summary: delete an auto scaling policy
       description: delete an auto scaling policy
       parameters:
