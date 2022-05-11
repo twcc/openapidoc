@@ -1,0 +1,20 @@
+{
+    "operations-project-get_projects_": "user",
+    "operations-project-get_projects__project_id__": "user",
+    "operations-project-get_project_quotas_": "user",
+    "operations-flavor-get_flavors_": "user",
+    "operations-flavor-get_sites_": "user",
+    "operations-job-get_jobs_": "user",
+    "operations-job-post_jobs_": "user",
+    "operations-job-get_jobs__job_id__": "user",
+    "operations-job-delete_jobs__job_id__": "user",
+    "operations-job-patch_jobs__job_id__": "user",
+    "operations-job-get_jobs__job_id__runs_": "user",
+    "operations-job-get_jobs__job_id__runs__run_id__": "user",
+    "operations-job-get_jobs__job_id__runs__run_id__gpu_": "user",
+    "operations-job-get_jobs__job_id__runs__run_id__gpu_memory_": "user",
+    "operations-job-get_jobs__job_id__runs__run_id__cpu_": "user",
+    "operations-job-get_jobs__job_id__runs__run_id__memory_": "user",
+    "operations-job-get_jobs__job_id__runs__run_id__disk_": "user",
+    "operations-job-post_jobs__job_id___action__": "user"
+}

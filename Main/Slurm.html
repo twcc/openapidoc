@@ -1,31 +1,57 @@
 <html>
-    <head>
-        <!-- Load the latest Swagger UI code and style from npm using unpkg.com -->
-        <link rel="icon" href="https://www.twcc.ai/assets/favicon.ico">
-        <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css"/>
-        <title>Slurm API</title>
-    </head>
-    <body>
-        <a href="../" target="_self">回到入口</a>
-        <div id="swagger-ui"></div> <!-- Div to hold the UI component -->
-        <script>
-            window.onload = function () {
-                // Begin Swagger UI call region
-                const ui = SwaggerUIBundle({
-                    url: "yaml/Slurm.yaml", //Location of Open API spec in the repo
-                    dom_id: '#swagger-ui',
-                    deepLinking: true,
-                    presets: [
-                        SwaggerUIBundle.presets.apis,
-                        SwaggerUIBundle.SwaggerUIStandalonePreset
-                    ],
-                    plugins: [
-                        SwaggerUIBundle.plugins.DownloadUrl
-                    ],
-                })
-                window.ui = ui
-            }
-        </script>
-    </body>
+
+<head>
+    <!-- Load the latest Swagger UI code and style from npm using unpkg.com -->
+    <link rel="icon" href="https://www.twcc.ai/assets/favicon.ico">
+    <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css" />
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <title>VCS API</title>
+</head>
+
+<body>
+    <a href="../" target="_self">回到入口</a><br><br>
+    <select name="selector" id="selector">
+        <!-- <option value="sysadmin">系統管理員</option> -->
+        <option value="admin">租戶管理員</option>
+        <option value="user">租戶使用者</option>
+    </select>
+    <div id="swagger-ui"></div> <!-- Div to hold the UI component -->
+    <script>
+        // Begin Swagger UI call region
+        const ui = SwaggerUIBundle({
+            url: "yaml/Slurm.yaml", //Location of Open API spec in the repo
+            dom_id: '#swagger-ui',
+            deepLinking: true,
+            presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIBundle.SwaggerUIStandalonePreset
+            ],
+            plugins: [
+                SwaggerUIBundle.plugins.DownloadUrl
+            ],
+        })
+        window.ui = ui
+        window.onload = function () {
+            let permission = {}
+            const permission_config = { "sysadmin": 3, "admin": 2, "user": 1 }
+            $.ajaxSettings.async = false;
+            $.getJSON('../config/permission/Slurm.json', function (res) {
+                permission = res
+            })
+            $("#selector").change(function () {
+                for (let key in permission) {
+                    if (permission[key] == $("#selector").val()) {
+                        $(`#${key}`).attr("style","");
+                    } else if (permission_config[$("#selector").val()] > permission_config[permission[key]]) {
+                        $(`#${key}`).attr("style","");
+                    } else {
+                        $(`#${key}`).css("display", "none");
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
 </html>

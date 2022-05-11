@@ -10,15 +10,14 @@ info:
 security:
   - ApiKeyAuth: []
 tags:
-  - name: project(使用者)
-  - name: flavor(使用者/租戶管理員)
-  - name: job(使用者/租戶管理員)
-  - name: availability zone(使用者/租戶管理員)
+  - name: project
+  - name: flavor
+  - name: job
 paths:
   /projects/:
     get:
       tags:
-        - project(使用者)
+        - project
       summary: 取得專案列表
       description: 查詢所有擁有的專案
       parameters:
@@ -41,7 +40,7 @@ paths:
   /projects/{project_id}/:
     get:
       tags:
-        - project(使用者)
+        - project
       summary: 取得單一專案訊息
       description: |
         查詢所有擁有的專案
@@ -58,7 +57,7 @@ paths:
   /project_quotas/:
     get:
       tags:
-        - project(使用者)
+        - project
       summary: get project quotas
       description: get project quotas
       parameters:
@@ -76,7 +75,7 @@ paths:
   /flavors/:
     get:
       tags:
-        - flavor(使用者/租戶管理員)
+        - flavor
       summary: List flavors
       parameters:
         - in: query
@@ -105,7 +104,7 @@ paths:
   /flavors/{flavor_id}/:
     get:
       tags:
-        - flavor(使用者/租戶管理員)
+        - flavor
       summary: Get details of a flavor
       parameters:
         - $ref: '#/components/parameters/FlavorIDParam'
@@ -120,7 +119,7 @@ paths:
   /jobs/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: List jobs
       description: List jobs
       parameters:
@@ -142,7 +141,7 @@ paths:
                   $ref: '#/components/schemas/JobAbstrationSerializer'
     post:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Create job
       description: List jobs
       parameters:
@@ -164,7 +163,7 @@ paths:
   /jobs/{job_id}/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Get details of a job
       description: Get details of a job
       parameters:
@@ -179,7 +178,7 @@ paths:
                 $ref: '#/components/schemas/JobAbstrationDetailSerializer'
     delete:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Delete a job
       description: Delete a job
       parameters:
@@ -191,7 +190,7 @@ paths:
           content: {}
     patch:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Update a Job
       description: Update a Job
       parameters:
@@ -214,7 +213,7 @@ paths:
   /jobs/{job_id}/runs/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: List job runs
       description: List job runs
       parameters:
@@ -232,7 +231,7 @@ paths:
   /jobs/{job_id}/runs/{run_id}/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Get a specific run
       description: Get a specific run
       parameters:
@@ -251,7 +250,7 @@ paths:
   /jobs/{job_id}/runs/{run_id}/gpu/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Get GPU utilization of a run
       description: Get GPU utilization of a run
       parameters:
@@ -280,7 +279,7 @@ paths:
   /jobs/{job_id}/runs/{run_id}/gpu_memory/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Get gpu memory utilization of a run
       description: Get gpu memory utilization of a run
       parameters:
@@ -309,7 +308,7 @@ paths:
   /jobs/{job_id}/runs/{run_id}/cpu/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Get CPU utilization of a run
       description: Get CPU utilization of a run
       parameters:
@@ -338,7 +337,7 @@ paths:
   /jobs/{job_id}/runs/{run_id}/memory/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Get memory utilization of a run
       description: Get memory utilization of a run
       parameters:
@@ -367,7 +366,7 @@ paths:
   /jobs/{job_id}/runs/{run_id}/disk/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Get disk utilization of a run
       description: Get disk utilization of a run
       parameters:
@@ -436,7 +435,7 @@ paths:
   /jobs/{job_id}/{action}/:
     post:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: start or stop a job
       description: start or stop a job
       parameters:

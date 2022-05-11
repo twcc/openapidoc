@@ -38,23 +38,13 @@
             $.ajaxSettings.async = false;
             $.getJSON('../config/permission/VCS.json', function (res) {
                 permission = res
-                $("#selector option[value='user']").prop('selected', true);
-                for (let key in permission) {
-                    if (permission[key] == $("#selector").val()) {
-                        $(`#${key}`).css("display", "block");
-                    } else if (permission_config[$("#selector").val()] > permission_config[permission[key]]) {
-                        $(`#${key}`).css("display", "block");
-                    } else {
-                        $(`#${key}`).css("display", "none");
-                    }
-                }
             })
             $("#selector").change(function () {
                 for (let key in permission) {
                     if (permission[key] == $("#selector").val()) {
-                        $(`#${key}`).css("display", "block");
+                        $(`#${key}`).attr("style","");
                     } else if (permission_config[$("#selector").val()] > permission_config[permission[key]]) {
-                        $(`#${key}`).css("display", "block");
+                        $(`#${key}`).attr("style","");
                     } else {
                         $(`#${key}`).css("display", "none");
                     }

@@ -1,0 +1,15 @@
+{
+    "operations-solution-get_solutions_": "user",
+    "operations-solution-get_solutions__solutions_id__": "user",
+    "operations-tag-image_requests": "admin",
+    "operations-image_requests-get_image_requests_": "admin",
+    "operations-image_requests-post_image_requests_": "admin",
+    "operations-image_requests-get_image_requests__image_request_id__": "admin",
+    "operations-image_requests-delete_image_requests__image_request_id__": "admin",
+    "operations-image_requests-patch_image_requests__image_request_id__": "admin",
+    "operations-version-get_version_": "user",
+    "operations-token_request-get_token_requests_": "user",
+    "operations-token_request-get_token_requests__token_request_id__": "user",
+    "operations-project-get_projects__project_name__favorites_": "user",
+    "operations-project-patch_projects__project_name__favorites_": "user"
+}

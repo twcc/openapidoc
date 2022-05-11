@@ -10,16 +10,15 @@ info:
 security:
   - ApiKeyAuth: []
 tags:
-  - name: project(使用者)
-  - name: flavor(使用者/租戶管理員)
-  - name: site(使用者/租戶管理員)
-  - name: job(使用者/租戶管理員)
-  - name: availability zone(使用者/租戶管理員)
+  - name: project
+  - name: flavor
+  - name: site
+  - name: job
 paths:
   /projects/:
     get:
       tags:
-        - project(使用者)
+        - project
       summary: 取得專案列表
       description: 查詢所有擁有的專案
       parameters:
@@ -42,7 +41,7 @@ paths:
   /projects/{project_id}/:
     get:
       tags:
-        - project(使用者)
+        - project
       summary: 取得單一專案訊息
       description: |
         查詢所有擁有的專案
@@ -59,7 +58,7 @@ paths:
   /project_quotas/:
     get:
       tags:
-        - project(使用者)
+        - project
       summary: get project quotas
       description: get project quotas
       parameters:
@@ -77,7 +76,7 @@ paths:
   /projects/{project_id}/solutions/:
     get:
       tags:
-        - project(使用者)
+        - project
       summary: 取得專案的解決方案list
       description: |
         查詢該專案的解決放案(Res: 解決方案ID)
@@ -99,7 +98,7 @@ paths:
   /projects/{project_id}/solutions/{solutions_id}/:
     get:
       tags:
-        - project(使用者)
+        - project
       summary: Get extra properties of a solution for a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
@@ -121,7 +120,7 @@ paths:
   /flavors/:
     get:
       tags:
-        - flavor(使用者/租戶管理員)
+        - flavor
       summary: List flavors
       parameters:
         - in: query
@@ -150,7 +149,7 @@ paths:
   /flavors/{flavor_id}/:
     get:
       tags:
-        - flavor(使用者/租戶管理員)
+        - flavor
       summary: Get details of a flavor
       parameters:
         - $ref: '#/components/parameters/FlavorIDParam'
@@ -165,7 +164,7 @@ paths:
   /sites/:
     get:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: List sites
       description: List sites
       parameters:
@@ -195,7 +194,7 @@ paths:
                   $ref: '#/components/schemas/SiteSerializer'
     post:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Create a site
       description: Create a site
       parameters:
@@ -251,7 +250,7 @@ paths:
   /sites/{site_id}/:
     get:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Get details of a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -265,7 +264,7 @@ paths:
                  $ref: '#/components/schemas/SiteSerializer'
     delete:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Delete a site
       description: Delete a site
       parameters:
@@ -277,7 +276,7 @@ paths:
           content: {}
     put:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Update site extra-property
       description: Update site extra-property
       parameters:
@@ -298,7 +297,7 @@ paths:
   /sites/{site_id}/container/:
     get:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Get site detail of containers
       description: Get site detail of containers
       parameters:
@@ -314,7 +313,7 @@ paths:
   /sites/{site_id}/container/action/:
     put:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Execute an action to a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -346,7 +345,7 @@ paths:
   /sites/{site_id}/container/logs/:
     get:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Get logs of a container from a kubernetes site
       description: Get logs of a container from a kubernetes site
       parameters:
@@ -378,7 +377,7 @@ paths:
   /sites/{site_id}/container/gpu/:
     get:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Get GPU utilization of a pod
       description: Get GPU utilization of a pod
       parameters:
@@ -412,7 +411,7 @@ paths:
   /sites/{site_id}/container/gpu_memory/:
     get:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Get gpu memory utilization of a pod
       description: Get gpu memory utilization of a pod
       parameters:
@@ -446,7 +445,7 @@ paths:
   /sites/{site_id}/container/cpu/:
     get:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Get CPU utilization of a pod
       description: Get CPU utilization of a pod
       parameters:
@@ -480,7 +479,7 @@ paths:
   /sites/{site_id}/container/memory/:
     get:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Get memory utilization of a pod
       description: Get memory utilization of a pod
       parameters:
@@ -514,7 +513,7 @@ paths:
   /sites/{site_id}/container/disk/:
     get:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Get disk utilization of a pod
       description: Get disk utilization of a pod
       parameters:
@@ -578,7 +577,7 @@ paths:
   /sites/{site_id}/container/net/:
     get:
       tags:
-      - site(使用者/租戶管理員)
+      - site
       summary: Get network utilization of a pod
       description: Get network utilization of a pod
       parameters:
@@ -642,7 +641,7 @@ paths:
   /jobs/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: List jobs
       description: List jobs
       parameters:
@@ -664,7 +663,7 @@ paths:
                   $ref: '#/components/schemas/JobAbstrationSerializer'
     post:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Create job
       description: List jobs
       parameters:
@@ -686,7 +685,7 @@ paths:
   /jobs/{job_id}/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Get details of a job
       description: Get details of a job
       parameters:
@@ -701,7 +700,7 @@ paths:
                 $ref: '#/components/schemas/JobAbstrationDetailSerializer'
     delete:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Delete a job
       description: Delete a job
       parameters:
@@ -713,7 +712,7 @@ paths:
           content: {}
     patch:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Update a Job
       description: Update a Job
       parameters:
@@ -736,7 +735,7 @@ paths:
   /jobs/{job_id}/runs/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: List job runs
       description: List job runs
       parameters:
@@ -754,7 +753,7 @@ paths:
   /jobs/{job_id}/runs/{run_id}/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Get a specific run
       description: Get a specific run
       parameters:
@@ -773,7 +772,7 @@ paths:
   /jobs/{job_id}/runs/{run_id}/gpu/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Get GPU utilization of a run
       description: Get GPU utilization of a run
       parameters:
@@ -802,7 +801,7 @@ paths:
   /jobs/{job_id}/runs/{run_id}/gpu_memory/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Get gpu memory utilization of a run
       description: Get gpu memory utilization of a run
       parameters:
@@ -831,7 +830,7 @@ paths:
   /jobs/{job_id}/runs/{run_id}/cpu/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Get CPU utilization of a run
       description: Get CPU utilization of a run
       parameters:
@@ -860,7 +859,7 @@ paths:
   /jobs/{job_id}/runs/{run_id}/memory/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Get memory utilization of a run
       description: Get memory utilization of a run
       parameters:
@@ -889,7 +888,7 @@ paths:
   /jobs/{job_id}/runs/{run_id}/disk/:
     get:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: Get disk utilization of a run
       description: Get disk utilization of a run
       parameters:
@@ -958,7 +957,7 @@ paths:
   /jobs/{job_id}/{action}/:
     post:
       tags:
-      - job(使用者/租戶管理員)
+      - job
       summary: start or stop a job
       description: start or stop a job
       parameters:
@@ -1235,6 +1234,76 @@ components:
                 type: string
               status:
                 type: string
+        termination_protection:
+          type: boolean
+    SiteDetailSerializer:
+      required:
+      - callback
+      - create_time
+      - desc
+      - id
+      - is_preemptive
+      - name
+      - platform
+      - progress
+      - project
+      - public_ip
+      - servers
+      - solution
+      - status
+      - status_reason
+      - termination_protection
+      - user
+      type: object
+      properties:
+        callback:
+          type: string
+        create_time:
+          type: string
+          format: date-time
+        desc:
+          type: string
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        platform:
+          type: string
+        progress:
+          type: integer
+          format: int64
+        project:
+          type: integer
+          format: int64
+        public_ip:
+          type: string
+        servers:
+          type: array
+          items:
+            type: object
+            properties:
+              flavor_id:
+                type: integer
+                format: int64
+              id:
+                type: integer
+                format: int64
+              hostname:
+                type: string
+              status:
+                type: string
+        solution:
+          type: integer
+          format: int64
+        status:
+          type: string
+        status_reason:
+          type: string
+        is_preemptive:
+          type: boolean
+        user:
+          $ref: '#/components/schemas/UserSerializer'
         termination_protection:
           type: boolean
     UserSerializer:
@@ -1629,11 +1698,65 @@ components:
           type: string
           description: Job type
           enum:
-          - DOCKER
+          - KUBERNETES:DOCKER
         steps:
           type: array
           items:
             $ref: '#/components/schemas/WriteJobStepSerializer'
+    JobStepSerializer:
+      required:
+      - availability_zone
+      - command
+      - dependency_policy
+      - depends_on
+      - env
+      - flavor
+      - image
+      - runs
+      - stepname
+      - volumes
+      type: object
+      properties:
+        stepname:
+          type: string
+        availability_zone:
+          type: string
+        depends_on:
+          type: array
+          items:
+            type: string
+        dependency_policy:
+          type: string
+          enum:
+          - AFTEROK
+          - AFTERNOTOK
+          - AFTERANY
+        command:
+          type: string
+        env:
+          type: object
+          properties: {}
+        image:
+          type: string
+        flavor:
+          $ref: '#/components/schemas/JobFlavorSerializer'
+        runs:
+          type: integer
+          format: int32
+        slots:
+          type: integer
+          format: int32
+        volumes:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobVolumeSerializer'
+    JobFlavorSerializer:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
     WriteJobStepSerializer:
       required:
       - flavor
@@ -1819,6 +1942,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GPUUtilSerializer'
+    JobGPUMemoryUtilSerializer:
+      required:
+      - pod_name
+      - utilizations
+      type: object
+      properties:
+        pod_name:
+          type: string
+        utilizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContainerGPUMemoryUtilSerializer'
     JobCPUUtilSerializer:
       required:
       - pod_name

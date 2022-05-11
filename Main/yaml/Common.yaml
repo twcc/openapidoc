@@ -11,16 +11,16 @@ info:
 security:
   - ApiKeyAuth: []
 tags:
-  - name: solution(使用者)
-  - name: image requests(租戶管理員)
-  - name: version(使用者)
-  - name: token request(使用者)
-  - name: project(使用者/租戶管理員)
+  - name: solution
+  - name: image requests
+  - name: version
+  - name: token request
+  - name: project
 paths:
   /version/:
     get:
       tags: 
-        - version(使用者)
+        - version
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
@@ -33,7 +33,7 @@ paths:
   /token_requests/:
     get:
       tags:
-      - token request(使用者)
+      - token request
       summary: Lists token requests
       description: Lists token requests
       parameters:
@@ -50,7 +50,7 @@ paths:
   /token_requests/{token_request_id}/:
     get:
       tags:
-      - token request(使用者)
+      - token request
       summary: Shows details for a token request
       description: Shows details for a token request.
       parameters:
@@ -66,7 +66,7 @@ paths:
   /solutions/:
     get:
       tags:
-        - solution(使用者)
+        - solution
       summary: List solutions
       parameters:
         - in: query
@@ -111,7 +111,7 @@ paths:
   /solutions/{solutions_id}/:
     get:
       tags:
-        - solution(使用者)
+        - solution
       summary: Get a solution detail
       parameters:
         - $ref: '#/components/parameters/SolutionsIDParam'
@@ -127,7 +127,7 @@ paths:
   /projects/{project_name}/favorites/:
     get:
       tags:
-        - project(使用者/租戶管理員)
+        - project
       summary: Get Favorite context of a specific project name
       description: Get Favorite context of a specific project name
       parameters:
@@ -142,7 +142,7 @@ paths:
                 $ref: '#/components/schemas/FavoriteSerializer'
     patch:
       tags:
-        - project(使用者/租戶管理員)
+        - project
       summary: Update Favorite context of a specific project name
       description: Update Favorite context of a specific project name
       parameters:
@@ -168,7 +168,7 @@ paths:
   /image_requests/:
     get:
       tags: 
-        - image requests(租戶管理員)
+        - image requests
       summary: List image copy request
       description: List image copy requests.
       parameters: 
@@ -202,7 +202,7 @@ paths:
                   $ref: '#/components/schemas/ImageRequestSerializer'
     post:
       tags: 
-        - image requests(租戶管理員)
+        - image requests
       summary: Create image copy request
       description: Create image copy request
       parameters:
@@ -226,7 +226,7 @@ paths:
   /image_requests/{image_request_id}/:
     get:
       tags: 
-        - image requests(租戶管理員)
+        - image requests
       summary: Get a image copy request
       description: Get a image copy request
       parameters:
@@ -241,7 +241,7 @@ paths:
                 $ref: '#/components/schemas/ImageRequestSerializer'
     delete:
       tags:
-        - image requests(租戶管理員)
+        - image requests
       summary: Delete a image copy request
       description: Delete a image copy request
       parameters:
@@ -253,7 +253,7 @@ paths:
           content: {}
     patch:
       tags:
-        - image requests(租戶管理員)
+        - image requests
       summary: PATCH the image copy request status to approved.
       parameters:
         - $ref: '#/components/parameters/ImageRequestIDParam'
