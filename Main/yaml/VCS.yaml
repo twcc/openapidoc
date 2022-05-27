@@ -890,7 +890,7 @@ paths:
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
               properties:
                 name:

@@ -61,5 +61,19 @@
         "record_path": null,
         "update_time": "2022/05/04",
         "commit_code": "75b0b03a49a3ec5b3a994476e3133fea3bdc180d"
+    },
+    {
+        "situation": "Harbor API",
+        "version": "1.0.0-alpha",
+        "explanation": {
+            "summary": "新增5個API",
+            "ex_list": [
+                "新增project 5個API"
+            ]
+        },
+        "path": "./Main/Harbor.html",
+        "record_path": null,
+        "update_time": "2022/05/27",
+        "commit_code": "c0438f64b90480d4662320b8923c2568807b0536"
     }
 ]
