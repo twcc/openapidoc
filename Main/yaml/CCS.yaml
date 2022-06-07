@@ -218,11 +218,23 @@ paths:
           description: 
           schema:
             type: string
+        - name: x-extra-property-env
+          in: header
+          description: env 參數
+          schema:
+            type: string
+            example: '[{"TASK_ID":"gpu_burn"},{"testkey1":"testvalue1"}]'
+        - name: x-extra-property-command
+          in: header
+          description: command
+          schema:
+            type: string
+            example: 'su test /home/test/run.sh'
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
         description: body
         content:
-          application/x-www-form-urlencoded:
+          application/json:
             schema:
               required:
               - name
