@@ -10,6 +10,7 @@
     "operations-site-get_sites__site_id__": "user",
     "operations-site-delete_sites__site_id__": "user",
     "operations-site-put_sites__site_id__": "user",
+    "operations-site-patch_sites__site_id__": "user",
     "operations-site-get_sites__site_id__container_": "user",
     "operations-site-put_sites__site_id__container_action_": "user",
     "operations-site-get_sites__site_id__container_logs_": "user",

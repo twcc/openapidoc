@@ -1,5 +1,29 @@
 [
     {
+        "version": "1.2.1",
+        "explanation": {
+            "summary": "補充site參數",
+            "ex_list": [
+                "補充site的post x-extra-property-env參數",
+                "補充site的post x-extra-property-command參數"
+            ]
+        },
+        "update_time": "2022/06/07",
+        "commit_code": "a698ca35256002e290a2ed03eef582b97915d83b"
+    },
+    {
+        "version": "1.2.0",
+        "explanation": {
+            "summary": "收錄job與project API",
+            "ex_list": [
+                "收錄 project 2個API",
+                "收錄 job 1個API"
+            ]
+        },
+        "update_time": "2022/04/12",
+        "commit_code": "4d50d15e75eed07be4c7f3985cc3e8f7995bf2b0"
+    },
+    {
         "version": "1.1.0",
         "explanation": {
             "summary": "更新flavor+收錄12個API",
