@@ -1,20 +1,17 @@
 [
     {
         "situation": "VCS API",
-        "version": "1.2.0",
+        "version": "1.2.1",
         "explanation": {
-            "summary": "更新flavor+收錄3個API",
+            "summary": "補充servers api examples",
             "ex_list": [
-                "擴充flavors get可以進行project filter matchLabels",
-                "更新FlavorSerializer的資料格式",
-                "修正/flavors/{flavor_id}/的responses錯誤",
-                "收錄 load balancer 3個 API"
+                "補充servers action的examples"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2022/04/08",
-        "commit_code": "05905dda30d9f16790cc7d2a401c62d0cd33b57e"
+        "update_time": "2022/06/13",
+        "commit_code": "77fc5fca6a9ff340bfae88330f8fd0f72ffcf8b2"
     },
     {
         "situation": "Common API",
