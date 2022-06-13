@@ -1426,6 +1426,37 @@ paths:
                 ip:
                   type: string
                   description: STATIC type IP ID for associateIP
+            examples:
+              start example:
+                summary: Example with start
+                value:
+                  action: start
+              stop example:
+                summary: Example with stop
+                value:
+                  action: stop
+              reboot example:
+                summary: Example with reboot
+                value:
+                  action: reboot
+                  reboot_type: SOFT
+              shelve example:
+                summary: Example with shelve
+                value:
+                  action: shelve
+              unshelve example:
+                summary: Example with unshelve
+                value:
+                  action: unshelve
+              associateIP example:
+                summary: Example with associateIP
+                value:
+                  action: associateIP
+                  ip: 0.0.0.0
+              disassociateIP example:
+                summary: Example with disassociateIP
+                value:
+                  action: disassociateIP
         required: true
       responses:
         202:
