@@ -71,5 +71,18 @@
         "record_path": null,
         "update_time": "2022/05/27",
         "commit_code": "c0438f64b90480d4662320b8923c2568807b0536"
+    },
+    {
+        "situation": "Ceph API",
+        "version": "1.0.0",
+        "explanation": {
+            "summary": "新增6個API",
+            "ex_list": [
+            ]
+        },
+        "path": "./Main/Ceph.html",
+        "record_path": null,
+        "update_time": "2022/06/17",
+        "commit_code": "25bdf728f39a86a2f11d41c15c87e9e5ba2d5cd2"
     }
 ]
