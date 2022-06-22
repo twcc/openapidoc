@@ -32,18 +32,17 @@
     },
     {
         "situation": "Load Balancer 使用 security group",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "explanation": {
-            "summary": "用於Load Balancer設定security group案例",
+            "summary": "補充參考API",
             "ex_list": [
-                "建立 LB設定SG需要API",
-                "引用 LB設定SG 所需 API"
+                "補充參考API"
             ]
         },
         "path": "./Other/LB-enable-security-group.html",
-        "commit_code": "b798f4fb23c27726cdc3715681f216657f1d47b7",
+        "commit_code": "ac7b955c2973ebf121941a43e6f5862fe772ff22",
         "git": "https://git.twcc.ai/twcc/ma-team/-/issues/5063",
-        "record_path": null,
-        "update_time": "2022/03/10"
+        "record_path": "LB-SG.json",
+        "update_time": "2022/06/22"
     }
 ]
