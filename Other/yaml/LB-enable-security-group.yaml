@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 1.0.0
+  version: 1.0.1
   title: LB enable security group
   description: ''
 security:
@@ -29,6 +29,21 @@ paths:
       responses:
         200:
           $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/responses/200'
+  /loadbalancers/:
+    get:
+      tags:
+        - 參考API
+      summary:
+        $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/summary'
+      servers:
+      - $ref: '../../Main/yaml/VCS.yaml#/servers/0'
+      - $ref: '../../Main/yaml/VCS.yaml#/servers/1'
+      parameters:
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/parameters/1'
+      responses:
+        200:
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1loadbalancers~1/get/responses/200'
   /security_groups/:
     get:
       tags:
