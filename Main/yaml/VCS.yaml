@@ -6,7 +6,7 @@ servers:
     url: https://apigateway.twcc.tw/api/v3/openstack-taichung-default/
 info:
   # description: This is a simple API
-  version: 1.2.1
+  version: 1.3.0
   title: VCS API
 security:
   - ApiKeyAuth: []
@@ -268,6 +268,52 @@ paths:
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ApiHostParam'
+        - name: sol_categ
+          in: query
+          description: Solution Categories
+          schema:
+            type: string
+        - name: solution
+          in: query
+          description: Get image list of a solution
+          schema:
+            type: integer
+            format: int32
+        - name: name
+          in: query
+          description: Image Nmae
+          schema:
+            type: string
+        - name: os
+          in: query
+          description: Image OS Name
+          schema:
+            type: string
+        - name: os_version
+          in: query
+          description: Image OS Version
+          schema:
+            type: string
+        - name: desc
+          in: query
+          description: Image Description
+          schema:
+            type: string
+        - name: user__username
+          in: query
+          description: Image's User Name
+          schema:
+            type: string
+        - name: create_time_start
+          in: query
+          description: Create Time Start
+          schema:
+            type: string
+        - name: create_time_end
+          in: query
+          description: Create Time End
+          schema:
+            type: string
       responses:
         200:
           description: 取得所有
@@ -1958,8 +2004,8 @@ paths:
     post:
       tags:
         - secret
-      summary: List Barbican Secrets
-      description: List Secrets
+      summary: Create a Barbican Secret
+      description: Create a Secret
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2417,6 +2463,15 @@ components:
           $ref: '#/components/schemas/UserSerializer'
         server:
           $ref: '#/components/schemas/ServerFieldSerializer'
+        desc:
+          type: string
+        project:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
         status:
           type: string
     ServerFieldSerializer:
@@ -2783,6 +2838,7 @@ components:
           format: int64
         status:
           type: string
+          enum: [start, stop, reboot, shelve, unshelve]
         fqdn:
           type: string
     ServerNetObject:
@@ -2901,6 +2957,7 @@ components:
           format: int64
         status:
           type: string
+          enum: [start, stop, reboot, suspend, resume, shelve, unshelve]
         is_preemptive:
           type: boolean
         user:
