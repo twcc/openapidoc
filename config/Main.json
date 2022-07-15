@@ -1,23 +1,27 @@
 [
     {
         "situation": "VCS API",
-        "version": "1.2.1",
+        "version": "1.3.0",
         "explanation": {
-            "summary": "補充servers api examples",
+            "summary": "修正與補充images跟secret",
             "ex_list": [
-                "補充servers action的examples"
+                "images get 補充parameters",
+                "修正 secret post 說明",
+                "ImageSerializer 添加desc跟project",
+                "ServerSerializer 補充status範例",
+                "SiteSerializer 補充status範例"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2022/06/13",
-        "commit_code": "77fc5fca6a9ff340bfae88330f8fd0f72ffcf8b2"
+        "update_time": "2022/07/14",
+        "commit_code": "af6e5ad838492aaab50e10fefcaed60ed12fe3a2"
     },
     {
         "situation": "Common API",
-        "version": "1.1.2",
+        "version": "1.1.3",
         "explanation": {
-            "summary": "更新solution跟image_requests",
+            "summary": "補充image_requests status 類型",
             "ex_list": [
                 "添加solutions get的example",
                 "修正image_requests說明文字"
@@ -25,8 +29,8 @@
         },
         "path": "./Main/Common.html",
         "record_path": "Common.json",
-        "update_time": "2022/05/04",
-        "commit_code": "b7ccc56aeb974b684f60b592c12f3293ad9c7b49"
+        "update_time": "2022/07/14",
+        "commit_code": "62c2e70513e8868ea31c76e614857f318eda214a"
     },
     {
         "situation": "CCS API",

@@ -1,5 +1,16 @@
 [
     {
+        "version": "1.2.1",
+        "explanation": {
+            "summary": "補充servers api examples",
+            "ex_list": [
+                "補充servers action的examples"
+            ]
+        },
+        "update_time": "2022/06/13",
+        "commit_code": "77fc5fca6a9ff340bfae88330f8fd0f72ffcf8b2"
+    },
+    {
         "version": "1.2.0",
         "explanation": {
             "summary": "更新flavor+收錄3個API",

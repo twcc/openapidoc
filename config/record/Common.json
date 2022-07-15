@@ -1,5 +1,17 @@
 [
     {
+        "version": "1.1.2",
+        "explanation": {
+            "summary": "更新solution跟image_requests",
+            "ex_list": [
+                "添加solutions get的example",
+                "修正image_requests說明文字"
+            ]
+        },
+        "update_time": "2022/05/04",
+        "commit_code": "b7ccc56aeb974b684f60b592c12f3293ad9c7b49"
+    },
+    {
         "version": "1.1.1",
         "explanation": {
             "summary": "更新 image_requests API 文字",
