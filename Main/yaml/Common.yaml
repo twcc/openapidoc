@@ -6,7 +6,7 @@ servers:
         default: apigateway.twcc.ai
 info:
   # description: This is a simple API
-  version: 1.1.3
+  version: 1.1.4
   title: Common API
   description: |
     This is Common API.

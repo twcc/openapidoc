@@ -1,5 +1,17 @@
 [
     {
+        "version": "1.1.3",
+        "explanation": {
+            "summary": "補充image_requests status 類型",
+            "ex_list": [
+                "添加solutions get的example",
+                "修正image_requests說明文字"
+            ]
+        },
+        "update_time": "2022/07/14",
+        "commit_code": "62c2e70513e8868ea31c76e614857f318eda214a"
+    },
+    {
         "version": "1.1.2",
         "explanation": {
             "summary": "更新solution跟image_requests",

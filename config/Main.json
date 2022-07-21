@@ -1,50 +1,46 @@
 [
     {
         "situation": "VCS API",
-        "version": "1.3.0",
+        "version": "1.3.1",
         "explanation": {
-            "summary": "修正與補充images跟secret",
+            "summary": "修正 secrets delete敘述",
             "ex_list": [
-                "images get 補充parameters",
-                "修正 secret post 說明",
-                "ImageSerializer 添加desc跟project",
-                "ServerSerializer 補充status範例",
-                "SiteSerializer 補充status範例"
+                "修正 secrets delete敘述"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2022/07/14",
-        "commit_code": "af6e5ad838492aaab50e10fefcaed60ed12fe3a2"
+        "update_time": "2022/07/21",
+        "commit_code": "b65e45a1b20f11c071df3a5c1b04ecccc1d3b43d"
     },
     {
         "situation": "Common API",
-        "version": "1.1.3",
+        "version": "1.1.4",
         "explanation": {
-            "summary": "補充image_requests status 類型",
+            "summary": "補充version說明",
             "ex_list": [
-                "添加solutions get的example",
-                "修正image_requests說明文字"
+                "補充 version 說明"
             ]
         },
         "path": "./Main/Common.html",
         "record_path": "Common.json",
-        "update_time": "2022/07/14",
-        "commit_code": "62c2e70513e8868ea31c76e614857f318eda214a"
+        "update_time": "2022/07/21",
+        "commit_code": "b65e45a1b20f11c071df3a5c1b04ecccc1d3b43d"
     },
     {
         "situation": "CCS API",
-        "version": "1.3.0",
+        "version": "1.3.1",
         "explanation": {
-            "summary": "收錄site API",
+            "summary": "補充缺失JobVolumeSerializer",
             "ex_list": [
-                "新增site 1個API"
+                "刪除無用description",
+                "補充缺失JobVolumeSerializer"
             ]
         },
         "path": "./Main/CCS.html",
         "record_path": "CCS.json",
-        "update_time": "2022/06/07",
-        "commit_code": "8b37b634e0eb17d5e328abac21c66671fa5efb49"
+        "update_time": "2022/07/21",
+        "commit_code": "b65e45a1b20f11c071df3a5c1b04ecccc1d3b43d"
     },
     {
         "situation": "Slurm API",
