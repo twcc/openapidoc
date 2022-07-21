@@ -1,12 +1,16 @@
 openapi: 3.0.0
 servers:
-  - description: production url
-    url: https://apigateway.twcc.ai/api/v3/slurm-taichung-default/
-  - description: staging url
-    url: https://apigateway.twcc.tw/api/v3/slurm-taichung-default/
+  - url: https://{apigateway}/api/v3/{ApiHost}/
+    variables:
+      apigateway:
+        default: apigateway.twcc.ai
+      ApiHost:
+        default: slurm-taichung-default
 info:
   version: 1.0.0
   title: Slurm API
+  description: |
+    This is Slurm API.
 security:
   - ApiKeyAuth: []
 tags:
@@ -1230,10 +1234,10 @@ components:
       schema:
         type: string
         default: slurm-taichung-default
-      examples:
-        production:
-          summary: production
-          value: slurm-taichung-default
-        staging:
-          summary: staging
-          value: slurm-taichung-default
+      # examples:
+      #   production:
+      #     summary: production
+      #     value: slurm-taichung-default
+      #   staging:
+      #     summary: staging
+      #     value: slurm-taichung-default
