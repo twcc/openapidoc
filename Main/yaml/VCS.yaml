@@ -1714,7 +1714,7 @@ paths:
       requestBody:
         description: body
         content:
-          application/x-www-form-urlencoded:
+          application/json:
             schema:
               required:
               - name
