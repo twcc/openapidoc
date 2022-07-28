@@ -60,17 +60,19 @@
     },
     {
         "situation": "Harbor API",
-        "version": "1.0.0-alpha",
+        "version": "1.0.0-alpha.1",
         "explanation": {
-            "summary": "新增5個API",
+            "summary": "添加projects API",
             "ex_list": [
-                "新增project 5個API"
+                "補充projects 兩個API",
+                "ApiHost換名",
+                "增加GroupSerializer"
             ]
         },
         "path": "./Main/Harbor.html",
-        "record_path": null,
-        "update_time": "2022/05/27",
-        "commit_code": "c0438f64b90480d4662320b8923c2568807b0536"
+        "record_path": "Harbor.json",
+        "update_time": "2022/07/28",
+        "commit_code": "febf3efc9433288bfa572b6b44d73baf814a46b9"
     },
     {
         "situation": "Ceph API",

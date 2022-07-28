@@ -1,0 +1,13 @@
+[
+    {
+        "version": "1.0.0-alpha",
+        "explanation": {
+            "summary": "新增5個API",
+            "ex_list": [
+                "新增project 5個API"
+            ]
+        },
+        "update_time": "2022/05/27",
+        "commit_code": "c0438f64b90480d4662320b8923c2568807b0536"
+    }
+]
