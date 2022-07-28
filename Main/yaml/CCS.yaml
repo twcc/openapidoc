@@ -23,19 +23,19 @@ paths:
     get:
       tags:
         - project
-      summary: 取得專案列表
-      description: 查詢所有擁有的專案
+      summary: List projects
+      description: List projects
       parameters:
         - in: query
           name: name
-          description: 利用專案名查詢
+          description: The name of the project
           required: false
           schema:
             type: string
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
-          description: 取得專案詳細資訊
+          description:  OK
           content:
             application/json:
               schema:
@@ -46,15 +46,14 @@ paths:
     get:
       tags:
         - project
-      summary: 取得單一專案訊息
-      description: |
-        查詢所有擁有的專案
+      summary: Get details of a project
+      description: Get details of a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
-          description: 取得專案詳細資訊
+          description:  OK
           content:
             application/json:
               schema:
@@ -81,15 +80,14 @@ paths:
     get:
       tags:
         - project
-      summary: 取得專案的解決方案list
-      description: |
-        查詢該專案的解決放案(Res: 解決方案ID)
+      summary: Get solutions of a project
+      description: Get solutions of a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
-          description:  解決方案
+          description:  OK
           content:
             application/json:
               schema:
@@ -110,7 +108,7 @@ paths:
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
-          description:  解決方案
+          description:  OK
           content:
             application/json:
               schema:
