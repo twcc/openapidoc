@@ -132,6 +132,7 @@ paths:
           description: Tag for exclude filter
           schema:
             type: string
+            default: aimaker
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
