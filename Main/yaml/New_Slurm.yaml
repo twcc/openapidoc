@@ -16,6 +16,7 @@ security:
 tags:
   - name: project
   - name: job
+  - name: global
 paths:
   /projects/:
     get:
@@ -264,12 +265,6 @@ paths:
               properties:
                 desc:
                   type: string
-                scripts:
-                  type: string
-                  description: The scripts need to be executed in the image
-                image:
-                  type: string
-                  description: The image used
         required: true
       responses:
         200:
@@ -431,10 +426,10 @@ paths:
                     type: integer
                   reason:
                     type: string
-  /jobs/modules/:
+  /modules/:
     get:
       tags:
-      - job
+      - global
       summary: List job modules
       description: List job modules
       parameters:
@@ -458,10 +453,10 @@ paths:
                       type: string
                     desc:
                       type: string
-  /jobs/partition/:
+  /partition/:
     get:
       tags:
-      - job
+      - global
       summary: List partition
       description: List partition
       parameters:
