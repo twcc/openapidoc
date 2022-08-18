@@ -97,30 +97,10 @@ paths:
                     status:
                       type: string
                       enum:
-                      - BOOT_FAIL
-                      - CANCELLED
-                      - COMPLETED
-                      - CONFIGURING
-                      - COMPLETING
-                      - DEADLINE
-                      - FAILED
-                      - NODE_FAIL  
-                      - OUT_OF_MEMORY
-                      - PENDING
-                      - PREEMPTED
-                      - RUNNING
-                      - RESV_DEL_HOLD
-                      - REQUEUE_FED
-                      - REQUEUE_HOLD
-                      - REQUEUED
-                      - RESIZING
-                      - REVOKED
-                      - SIGNALING
-                      - SPECIAL_EXIT
-                      - STAGE_OUT
-                      - STOPPED
-                      - SUSPENDED
-                      - TIMEOUT
+                      - submitted
+                      - running
+                      - completed
+                      - Error
                     user:
                       $ref: '#/components/schemas/UserSerializer'
     post:
@@ -330,7 +310,7 @@ paths:
                     type: string
                   result:
                     type: string
-  /jobs/{job_id}/record/:
+  /jobs/{job_id}/runs/:
     get:
       tags:
       - job
@@ -377,36 +357,16 @@ paths:
                     status:
                       type: string
                       enum:
-                      - BOOT_FAIL
-                      - CANCELLED
-                      - COMPLETED
-                      - CONFIGURING
-                      - COMPLETING
-                      - DEADLINE
-                      - FAILED
-                      - NODE_FAIL  
-                      - OUT_OF_MEMORY
-                      - PENDING
-                      - PREEMPTED
-                      - RUNNING
-                      - RESV_DEL_HOLD
-                      - REQUEUE_FED
-                      - REQUEUE_HOLD
-                      - REQUEUED
-                      - RESIZING
-                      - REVOKED
-                      - SIGNALING
-                      - SPECIAL_EXIT
-                      - STAGE_OUT
-                      - STOPPED
-                      - SUSPENDED
-                      - TIMEOUT
+                      - submitted
+                      - running
+                      - completed
+                      - Error
   /jobs/{job_id}/queue/:
     get:
       tags:
       - job
-      summary: get job queue
-      description: get job queue
+      summary: get queue by job
+      description: get queue by job
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -418,14 +378,51 @@ paths:
               schema:
                 type: object
                 properties:
-                  partition:
+                  PARTITION:
                     type: string
-                  nodes:
+                  NODES:
                     type: string
-                  order:
+                  NODELIST:
+                    type: string
+                  USER:
+                    type: string
+                  NAME:
+                    type: string
+  /jobs/queue/:
+    get:
+      tags:
+      - job
+      summary: get queue by partition
+      description: get queue by partition
+      parameters:
+        - name: partition
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  TIME:
+                      type: string
+                      format: date-time
+                  NODES:
+                    type: string
+                  NODELIST:
+                    type: string
+                  USER:
+                    type: string
+                  NAME:
+                    type: string
+                  ST:
+                    type: string
+                  JOBID:
                     type: integer
-                  reason:
-                    type: string
   /modules/:
     get:
       tags:
