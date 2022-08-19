@@ -358,6 +358,7 @@ paths:
                 desc:
                   type: string
                   description: Image description
+                  maximum: 200
                 is_public:
                   type: boolean
                   description: Image visibility. Only the system admin can update
@@ -413,6 +414,8 @@ paths:
                   type: string
                 desc:
                   type: string
+                  description: Image description
+                  maximum: 200
         required: true
       responses:
         201:
@@ -1004,6 +1007,11 @@ paths:
       summary: List IPs
       parameters:
           - $ref: '#/components/parameters/ProjectInQueryParam'
+          - name: address
+            in: query
+            description: IP Address
+            schema:
+              type: string
           - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
@@ -1693,6 +1701,12 @@ paths:
           description: The extra property of floating-ip (Just for example)
           schema:
             type: string
+            enum:
+              - hdd
+              - ssd
+              - LUKS-hdd
+              - LUKS-ssd
+            default: hdd
         - name: x-extra-property-volume-size
           in: header
           description: Volume Size
@@ -1703,11 +1717,25 @@ paths:
           description: Volume Type
           schema:
             type: string
-        - name: x-extra-property-availability-zone
+            enum:
+              - floating
+              - nofloating
+        - name: x-extra-property-system-volume-type
           in: header
-          description: The extra property of availability-zone (Just for example)
+          description: System Volume Type
           schema:
             type: string
+            enum:
+              - local_disk
+              - block_storage-ssd-thick
+              - block_storage-hdd
+            default: block_storage-hdd
+        - name: x-extra-property-availability-zone
+          in: header
+          description: The extra property of availability-zone
+          schema:
+            type: string
+            default: nova
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
         description: body
@@ -1768,7 +1796,7 @@ paths:
       tags:
       - site
       summary: Update site extra-property
-      description: Update site extra-property
+      description: Update site extra-property，This API no request body
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - name: x-extra-property-flavor
@@ -1777,6 +1805,9 @@ paths:
           schema:
             type: string
         - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        description: no request body
+        required: false
       responses:
         200:
           description: OK
