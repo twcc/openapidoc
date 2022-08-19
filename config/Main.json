@@ -1,17 +1,19 @@
 [
     {
         "situation": "VCS API",
-        "version": "1.3.1",
+        "version": "1.3.2",
         "explanation": {
-            "summary": "修正 secrets delete敘述",
+            "summary": "補充預設選像跟說明",
             "ex_list": [
-                "修正 secrets delete敘述"
+                "補充image desc maximum",
+                "補充VCS site post 預設參數",
+                "補充put site request body說明"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2022/07/21",
-        "commit_code": "b65e45a1b20f11c071df3a5c1b04ecccc1d3b43d"
+        "update_time": "2022/08/19",
+        "commit_code": "48235644553a161de62ea73ff4c5b3fada1e9145"
     },
     {
         "situation": "Common API",
