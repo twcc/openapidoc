@@ -57,6 +57,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GroupDetailSerializer'
+  /project_quotas/:
+    get:
+      tags:
+        - project
+      summary: get project quotas
+      description: get project quotas
+      parameters:
+        - $ref: '#/components/parameters/ProjectInQueryParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description:  OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectQuotaSerializer'
   /jobs/:
     get:
       tags:
@@ -376,18 +394,19 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  PARTITION:
-                    type: string
-                  NODES:
-                    type: string
-                  NODELIST:
-                    type: string
-                  USER:
-                    type: string
-                  NAME:
-                    type: string
+                type: array
+                items:
+                  type: object
+                  properties:
+                    NODES:
+                      type: string
+                    NODELIST:
+                      type: string
+                      description: ST ON ONPD is Reason
+                    USER:
+                      type: string
+                    NAME:
+                      type: string
   /jobs/queue/:
     get:
       tags:
@@ -406,23 +425,28 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  TIME:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    PARTITION:
                       type: string
-                      format: date-time
-                  NODES:
-                    type: string
-                  NODELIST:
-                    type: string
-                  USER:
-                    type: string
-                  NAME:
-                    type: string
-                  ST:
-                    type: string
-                  JOBID:
-                    type: integer
+                    TIME:
+                        type: string
+                        format: date-time
+                    NODES:
+                      type: string
+                    NODELIST:
+                      type: string
+                      description: ST ON ONPD is Reason
+                    USER:
+                      type: string
+                    NAME:
+                      type: string
+                    ST:
+                      type: string
+                    JOBID:
+                      type: integer
   /modules/:
     get:
       tags:
@@ -576,6 +600,31 @@ components:
           type: string
         email:
           type: string
+    ProjectQuotaSerializer:
+      required:
+      - cpu
+      - gpu
+      - memory
+      - project
+      type: object
+      properties:
+        project:
+          $ref: '#/components/schemas/GroupSerializer'
+        gpu:
+          type: integer
+          format: int64
+        cpu:
+          type: integer
+          format: int64
+        memory:
+          type: integer
+          format: int64
+        ipvs_port:
+          type: integer
+          format: int64
+        floatingip:
+          type: integer
+          format: int32
   parameters:
     ProjectInQueryParam:
       name: project
