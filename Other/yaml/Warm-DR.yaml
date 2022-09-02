@@ -1,0 +1,140 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Warm-DR
+  description: ''
+security:
+  - ApiKeyAuth: []
+servers:
+  - url: https://{apigateway}/api/v3/{ApiHost}/
+    variables:
+      apigateway:
+        default: apigateway.twcc.ai
+      ApiHost:
+        default: openstack-taichung-default-2
+tags:
+  - name: 基本
+  - name: 方案A
+  - name: 方案B
+paths: 
+  /projects/:
+    get:
+      tags:
+      - 基本
+      summary: 'Get projects List'
+      parameters:
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/parameters/1'
+      responses:
+        200:
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/responses/200'
+  /sites/{site_id}/:
+    get:
+      tags:
+      - 方案B
+      summary: 'Get VCS detail'
+      parameters:
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1{site_id}~1/get/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1{site_id}~1/get/parameters/1'
+      responses:
+        200:
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1{site_id}~1/get/responses/200'
+  /servers/{server_id}/:
+    get:
+      tags:
+      - 方案B
+      summary: 'Get details of a server'
+      parameters:
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1servers~1{server_id}~1/get/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1servers~1{server_id}~1/get/parameters/1'
+      responses:
+        200:
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1servers~1{server_id}~1/get/responses/200'
+  /images/{server_id}/save/:
+    put:
+      tags:
+        - 方案B
+      summary: Save an instance as an image
+      description: |-
+        Save an image for server <server_id>.
+        os can be "Linux" or "Windows" depends on image of the server
+        Image is not public if it saved from an server.
+      parameters:
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1images~1{server_id}~1save~1/put/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1images~1{server_id}~1save~1/put/parameters/1'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../../Main/yaml/VCS.yaml#/paths/~1images~1{server_id}~1save~1/put/requestBody/content/application~1json/schema'
+        required: true
+      responses:
+        201:
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1images~1{server_id}~1save~1/put/responses/201'
+  /solutions/:
+    get:
+      tags:
+      - 方案B
+      summary: 'List solutions'
+      description: 'servers url： https://apigateway.twcc.ai/api/v3/'
+      servers:
+      - $ref: '../../Main/yaml/Common.yaml#/servers/0'
+      parameters:
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1solutions~1/get/parameters/0'
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1solutions~1/get/parameters/2'
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1solutions~1/get/parameters/3'
+      responses:
+        200:
+          $ref: '../../Main/yaml/Common.yaml#/paths/~1solutions~1/get/responses/200'
+  /projects/{project_id}/solutions/{solutions_id}/:
+    get:
+      tags:
+      - 方案B
+      summary: 'Get extra properties of a solution for a project'
+      parameters:
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1{project_id}~1solutions~1{solutions_id}~1/get/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1{project_id}~1solutions~1{solutions_id}~1/get/parameters/1'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1{project_id}~1solutions~1{solutions_id}~1/get/parameters/2'
+      responses:
+        200:
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1{project_id}~1solutions~1{solutions_id}~1/get/responses/200'
+  /sites/:
+    get:
+      tags:
+      - 基本
+      summary: 'Get VCS List'
+      parameters:
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/get/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/get/parameters/3'
+      responses:
+        200:
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/get/responses/200'
+    post:
+      tags:
+      - 方案B
+      summary: 'Create a site'
+      parameters:
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/1'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/2'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/3'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/4'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/5'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/6'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/7'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/requestBody/content/application~1json/schema'
+      responses:
+        200:
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/responses/201'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+  parameters:
+  schemas:

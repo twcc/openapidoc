@@ -1702,34 +1702,39 @@ paths:
           schema:
             type: string
             enum:
-              - hdd
-              - ssd
-              - LUKS-hdd
-              - LUKS-ssd
-            default: hdd
+              - floating
+              - nofloating
         - name: x-extra-property-volume-size
           in: header
           description: Volume Size
           schema:
-            type: string
+            type: integer
         - name: x-extra-property-volume-type
           in: header
           description: Volume Type
           schema:
             type: string
             enum:
-              - floating
-              - nofloating
-        - name: x-extra-property-system-volume-type
+              - hdd
+              - ssd
+              - LUKS-hdd
+              - LUKS-ssd
+            default: hdd
+        - name: x-extra-property-system-volume-size
           in: header
-          description: System Volume Type
+          description: System Volume Size
           schema:
-            type: string
-            enum:
-              - local_disk
-              - block_storage-ssd-thick
-              - block_storage-hdd
-            default: block_storage-hdd
+            type: integer
+        # - name: x-extra-property-system-volume-type
+        #   in: header
+        #   description: System Volume Type
+        #   schema:
+        #     type: string
+        #     enum:
+        #       - local_disk
+        #       - block_storage-ssd-thick
+        #       - block_storage-hdd
+        #     default: block_storage-hdd
         - name: x-extra-property-availability-zone
           in: header
           description: The extra property of availability-zone
@@ -4344,7 +4349,7 @@ components:
     ApiHostParam:
       name: x-api-host
       in: header
-      description: 認證必要參數
+      description: Authentication Required Parameters
       required: true
       schema:
         type: string

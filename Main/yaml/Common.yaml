@@ -329,7 +329,7 @@ components:
     ApiHostParam:
       name: x-api-host
       in: header
-      description: 認證必要參數
+      description: Authentication Required Parameters
       required: true
       schema:
         type: string
