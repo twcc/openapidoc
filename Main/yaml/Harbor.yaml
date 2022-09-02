@@ -259,7 +259,7 @@ components:
     ProjectInPathParam:
       name: project_id
       in: path
-      description: 專案ID
+      description: Project ID
       required: true
       schema:
         type: integer

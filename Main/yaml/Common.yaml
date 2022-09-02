@@ -75,13 +75,13 @@ paths:
       parameters:
         - in: query
           name: project
-          description: 此項與project_name必填一個
+          description: One of project and project_name is required
           required: false
           schema:
             type: string
         - in: query
           name: project_name
-          description: 此項與project必填一個
+          description: One of project and project_name is required
           required: false
           schema:
             type: string
@@ -292,14 +292,14 @@ components:
     ProjectInQueryParam:
       name: project
       in: query
-      description: 需要project ID才能查詢
+      description: Project ID is required to request
       required: true
       schema:
         type: integer
     SolutionsIDParam:
       name: solutions_id
       in: path
-      description: 方案ID
+      description: Solution ID
       required: true
       schema:
         type: integer

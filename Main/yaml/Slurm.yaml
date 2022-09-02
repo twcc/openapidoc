@@ -1178,14 +1178,14 @@ components:
     ProjectInQueryParam:
       name: project
       in: query
-      description: 需要project ID才能請求
+      description: Project ID is required to request
       required: true
       schema:
         type: integer
     ProjectInPathParam:
       name: project_id
       in: path
-      description: 專案ID
+      description: Project ID
       required: true
       schema:
         type: integer
@@ -1222,7 +1222,7 @@ components:
     SolutionsIDParam:
       name: solutions_id
       in: path
-      description: 方案ID
+      description: Solution ID
       required: true
       schema:
         type: integer
