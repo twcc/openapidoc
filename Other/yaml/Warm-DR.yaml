@@ -13,14 +13,15 @@ servers:
       ApiHost:
         default: openstack-taichung-default-2
 tags:
-  - name: 基本
+  - name: DR前
   - name: 方案A
   - name: 方案B
 paths: 
   /projects/:
     get:
       tags:
-      - 基本
+      - DR前
+      - 方案B
       summary: 'Get projects List'
       parameters:
         - $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1/get/parameters/0'
@@ -31,7 +32,8 @@ paths:
   /flavors/:
     get:
       tags:
-      - 基本
+      - 方案B
+      - DR前
       summary: 'List flavors'
       parameters:
         - $ref: '../../Main/yaml/VCS.yaml#/paths/~1flavors~1/get/parameters/0'
@@ -40,17 +42,6 @@ paths:
       responses:
         200:
           $ref: '../../Main/yaml/VCS.yaml#/paths/~1flavors~1/get/responses/200'
-  # /sites/{site_id}/:
-  #   get:
-  #     tags:
-  #     - 方案B
-  #     summary: 'Get Site detail'
-  #     parameters:
-  #       - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1{site_id}~1/get/parameters/0'
-  #       - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1{site_id}~1/get/parameters/1'
-  #     responses:
-  #       200:
-  #         $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1{site_id}~1/get/responses/200'
   /servers/{server_id}/:
     get:
       tags:
@@ -62,9 +53,25 @@ paths:
       responses:
         200:
           $ref: '../../Main/yaml/VCS.yaml#/paths/~1servers~1{server_id}~1/get/responses/200'
+  /sites/{site_id}/:
+    put:
+      tags:
+      - 方案A
+      summary: Update site extra-property
+      parameters:
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1{site_id}~1/put/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1{site_id}~1/put/parameters/1'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1{site_id}~1/put/parameters/2'
+      requestBody:
+        description: no request body
+        required: false
+      responses:
+        200:
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1{site_id}~1/put/responses/200'
   /images/{server_id}/save/:
     put:
       tags:
+        - DR前
         - 方案B
       summary: Save an instance as an image
       description: |-
@@ -87,6 +94,7 @@ paths:
     get:
       tags:
       - 方案B
+      - DR前
       summary: 'List solutions'
       description: 'servers url： https://apigateway.twcc.ai/api/v3/'
       servers:
@@ -95,6 +103,7 @@ paths:
         - $ref: '../../Main/yaml/Common.yaml#/paths/~1solutions~1/get/parameters/0'
         - $ref: '../../Main/yaml/Common.yaml#/paths/~1solutions~1/get/parameters/2'
         - $ref: '../../Main/yaml/Common.yaml#/paths/~1solutions~1/get/parameters/3'
+        - $ref: '../../Main/yaml/Common.yaml#/paths/~1solutions~1/get/parameters/8'
       responses:
         200:
           $ref: '../../Main/yaml/Common.yaml#/paths/~1solutions~1/get/responses/200'
@@ -102,6 +111,7 @@ paths:
     get:
       tags:
       - 方案B
+      - DR前
       summary: 'Get extra properties of a solution for a project'
       parameters:
         - $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1{project_id}~1solutions~1{solutions_id}~1/get/parameters/0'
@@ -113,7 +123,8 @@ paths:
   /sites/:
     get:
       tags:
-      - 基本
+      - 方案B
+      - DR前
       summary: 'Get Site List'
       parameters:
         - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/get/parameters/0'
@@ -131,9 +142,10 @@ paths:
         - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/2'
         - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/3'
         - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/4'
-        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/5'
-        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/6'
+        # - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/5'
+        # - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/6'
         - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/7'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/9'
       requestBody:
         content:
           application/json:

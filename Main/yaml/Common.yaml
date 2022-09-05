@@ -98,6 +98,31 @@ paths:
             CCS:
               summary: With CCS
               value: container
+        - name: name
+          in: query
+          description: Solution Nmae
+          schema:
+            type: string
+        - name: state
+          in: query
+          description: Solution State
+          schema:
+            type: string
+        - name: desc
+          in: query
+          description: Solution Description
+          schema:
+            type: string
+        - name: create_time_start
+          in: query
+          description: Create Time Start
+          schema:
+            type: string
+        - name: create_time_end
+          in: query
+          description: Create Time End
+          schema:
+            type: string
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
