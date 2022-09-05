@@ -46,6 +46,7 @@ paths:
     get:
       tags:
       - 方案B
+      - DR前
       summary: 'Get details of a server'
       parameters:
         - $ref: '../../Main/yaml/VCS.yaml#/paths/~1servers~1{server_id}~1/get/parameters/0'
@@ -54,6 +55,16 @@ paths:
         200:
           $ref: '../../Main/yaml/VCS.yaml#/paths/~1servers~1{server_id}~1/get/responses/200'
   /sites/{site_id}/:
+    get:
+      tags:
+      - 方案B
+      summary: Get details of a site
+      parameters:
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1{site_id}~1/get/parameters/0'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1{site_id}~1/get/parameters/1'
+      responses:
+        200:
+          $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1{site_id}~1/get/responses/200'
     put:
       tags:
       - 方案A
@@ -121,20 +132,10 @@ paths:
         200:
           $ref: '../../Main/yaml/VCS.yaml#/paths/~1projects~1{project_id}~1solutions~1{solutions_id}~1/get/responses/200'
   /sites/:
-    get:
-      tags:
-      - 方案B
-      - DR前
-      summary: 'Get Site List'
-      parameters:
-        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/get/parameters/0'
-        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/get/parameters/3'
-      responses:
-        200:
-          $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/get/responses/200'
     post:
       tags:
       - 方案B
+      - DR前
       summary: 'Create a Site'
       parameters:
         - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/0'
