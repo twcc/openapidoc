@@ -1725,16 +1725,16 @@ paths:
           description: System Volume Size
           schema:
             type: integer
-        # - name: x-extra-property-system-volume-type
-        #   in: header
-        #   description: System Volume Type
-        #   schema:
-        #     type: string
-        #     enum:
-        #       - local_disk
-        #       - block_storage-ssd-thick
-        #       - block_storage-hdd
-        #     default: block_storage-hdd
+        - name: x-extra-property-system-volume-type
+          in: header
+          description: System Volume Type
+          schema:
+            type: string
+            enum:
+              - local_disk
+              - block_storage-ssd-thick
+              - block_storage-hdd
+            default: block_storage-hdd
         - name: x-extra-property-availability-zone
           in: header
           description: The extra property of availability-zone
