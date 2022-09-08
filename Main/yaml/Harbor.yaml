@@ -7,7 +7,7 @@ servers:
       ApiHost:
         default: tcr
 info:
-  version: 1.0.0-alpha
+  version: 1.0.0-alpha.1
   title: Harbor API
   description: |
     This is Harbor API.
@@ -248,6 +248,45 @@ components:
         - name
         - platform
         - transparent_mode
+    GroupDetailSerializer:
+      type: object
+      properties:
+        desc:
+          type: string
+        id:
+          format: int64
+          type: integer
+        matchLabels:
+          type: array
+          items:
+            type: string
+            example: twsc
+        name:
+          type: string
+          example: ENT123456
+        status:
+          type: string
+          example: Ready
+        status_reason:
+          type: string
+        tm_uuid:
+          type: string
+        transparent_mode:
+          type: boolean
+          example: false
+        uuid:
+          type: string
+          format: uuid
+      required:
+        - desc
+        - id
+        - matchLabels
+        - name
+        - status
+        - status_reason
+        - tm_uuid
+        - transparent_mode
+        - uuid
   parameters:
     ProjectInQueryParam:
       name: project

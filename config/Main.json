@@ -3,62 +3,57 @@
         "situation": "VCS API",
         "version": "1.3.2",
         "explanation": {
-            "summary": "補充預設選像跟說明",
+            "summary": "修正Status 狀態",
             "ex_list": [
-                "補充image desc maximum",
-                "補充VCS site post 預設參數",
-                "補充put site request body說明"
+                "修正 sites Status 狀態"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2022/08/19",
-        "commit_code": "48235644553a161de62ea73ff4c5b3fada1e9145"
+        "update_time": "2022/09/08",
+        "commit_code": "97548e54046ce05aa6283f0f8fd2293d8c4014ec"
     },
     {
         "situation": "Common API",
-        "version": "1.1.4",
+        "version": "1.2.0",
         "explanation": {
-            "summary": "補充version說明",
+            "summary": "收錄image_commit API",
             "ex_list": [
-                "補充 version 說明"
+                "收錄image_commit 4個API"
             ]
         },
         "path": "./Main/Common.html",
         "record_path": "Common.json",
-        "update_time": "2022/07/21",
-        "commit_code": "b65e45a1b20f11c071df3a5c1b04ecccc1d3b43d"
+        "update_time": "2022/09/08",
+        "commit_code": "1baa6b717772492f1ba459fba21a24fa8c60decb"
     },
     {
         "situation": "CCS API",
-        "version": "1.3.1",
+        "version": "1.4.0",
         "explanation": {
-            "summary": "補充缺失JobVolumeSerializer",
+            "summary": "補收錄job API",
             "ex_list": [
-                "刪除無用description",
-                "補充缺失JobVolumeSerializer"
+                "收錄job 1個API"
             ]
         },
         "path": "./Main/CCS.html",
         "record_path": "CCS.json",
-        "update_time": "2022/07/21",
-        "commit_code": "b65e45a1b20f11c071df3a5c1b04ecccc1d3b43d"
+        "update_time": "2022/09/08",
+        "commit_code": "ed10888baee3d41c4e86babda45b614b86a74c79"
     },
     {
         "situation": "Slurm API",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "explanation": {
-            "summary": "收錄project、flavor、job API",
+            "summary": "補收錄job API",
             "ex_list": [
-                "收錄 project 3個API",
-                "收錄 flavor 2個API",
-                "收錄 job 13個API"
+                "收錄job 1個API"
             ]
         },
         "path": "./Main/Slurm.html",
-        "record_path": null,
-        "update_time": "2022/05/04",
-        "commit_code": "75b0b03a49a3ec5b3a994476e3133fea3bdc180d"
+        "record_path": "Slurm.json",
+        "update_time": "2022/09/08",
+        "commit_code": "ed10888baee3d41c4e86babda45b614b86a74c79"
     },
     {
         "situation": "Harbor API",

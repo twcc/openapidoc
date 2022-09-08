@@ -1,0 +1,15 @@
+[
+    {
+        "version": "1.0.0",
+        "explanation": {
+            "summary": "收錄project、flavor、job API",
+            "ex_list": [
+                "收錄 project 3個API",
+                "收錄 flavor 2個API",
+                "收錄 job 13個API"
+            ]
+        },
+        "update_time": "2022/05/04",
+        "commit_code": "75b0b03a49a3ec5b3a994476e3133fea3bdc180d"
+    }
+]
