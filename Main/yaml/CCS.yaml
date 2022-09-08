@@ -7,7 +7,7 @@ servers:
       ApiHost:
         default: k8s-taichung-default
 info:
-  version: 1.3.1
+  version: 1.4.0
   title: CCS API
   description: |
     This is CCS API.
@@ -994,6 +994,25 @@ paths:
                         ]
                       }
                     ]
+  /jobs/{job_id}/runs/{run_id}/logs/:
+    get:
+      tags:
+      - job
+      summary: Get logs information from a run
+      description: Get logs information from a run
+      parameters:
+        - $ref: '#/components/parameters/JobIDParam'
+        - $ref: '#/components/parameters/RunIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
   /jobs/{job_id}/{action}/:
     post:
       tags:

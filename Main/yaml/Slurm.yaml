@@ -7,7 +7,7 @@ servers:
       ApiHost:
         default: slurm-taichung-default
 info:
-  version: 1.0.0
+  version: 1.1.0
   title: Slurm API
   description: |
     This is Slurm API.
@@ -436,6 +436,25 @@ paths:
                         ]
                       }
                     ]
+  /jobs/{job_id}/runs/{run_id}/logs/:
+    get:
+      tags:
+      - job
+      summary: Get logs information from a run
+      description: Get logs information from a run
+      parameters:
+        - $ref: '#/components/parameters/JobIDParam'
+        - $ref: '#/components/parameters/RunIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
   /jobs/{job_id}/{action}/:
     post:
       tags:
