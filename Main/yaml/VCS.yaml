@@ -1732,7 +1732,7 @@ paths:
             type: string
             enum:
               - local_disk
-              - block_storage-ssd-thick
+              # - block_storage-ssd-thick
               - block_storage-hdd
             default: block_storage-hdd
         - name: x-extra-property-availability-zone
