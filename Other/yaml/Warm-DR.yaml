@@ -143,11 +143,12 @@ paths:
         - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/2'
         - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/3'
         - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/4'
-        # - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/5'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/5'
         # - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/6'
-        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/7'
+        # - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/7'
         - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/8'
-        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/10'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/9'
+        - $ref: '../../Main/yaml/VCS.yaml#/paths/~1sites~1/post/parameters/11'
       requestBody:
         content:
           application/json:

@@ -1688,7 +1688,12 @@ paths:
             type: string
         - name: x-extra-property-keypair
           in: header
-          description: The extra property of keypair (Just for example)
+          description: Required when use linux os，choose at least one with x-extra-property-password
+          schema:
+            type: string
+        - name: x-extra-property-password
+          in: header
+          description: Required when use windows os，choose at least one with x-extra-property-keypair
           schema:
             type: string
         - name: x-extra-property-private-network
@@ -4251,14 +4256,14 @@ components:
     ServerInQueryParam:
       name: server
       in: query
-      description: server ID，需與loadbalancer ID至少選一個
+      description: server ID，choose at least one with loadbalancer ID
       required: false
       schema:
         type: integer
     LoadBalancerInQueryParam:
       name: loadbalancer
       in: query
-      description: loadbalancer ID，需與server ID至少選一個
+      description: loadbalancer ID，choose at least one with server ID
       required: false
       schema:
         type: integer
@@ -4279,7 +4284,7 @@ components:
     SecurityGroupIDParam:
       name: security_group_id
       in: path
-      description: 安全性群組ID
+      description: Security Group ID
       required: true
       schema:
         type: string
