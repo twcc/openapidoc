@@ -348,6 +348,31 @@ paths:
                       - running
                       - completed
                       - Error
+  /jobs/{job_id}/runs/{slurm_job_id}/logs/:
+    get:
+      tags:
+      - job
+      summary: Get slurm job logs
+      description: Get slurm job logs
+      parameters:
+        - $ref: '#/components/parameters/JobIDParam'
+        - name: slurm_job_id
+          in: path
+          description: slurm job ID
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
   /jobs/{job_id}/queue/:
     get:
       tags:
