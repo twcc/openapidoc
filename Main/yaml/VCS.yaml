@@ -2025,7 +2025,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/FirewallRuleDetailSerializer'
-  /secret/:
+  /secrets/:
     get:
       tags:
         - secret

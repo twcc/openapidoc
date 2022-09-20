@@ -1,5 +1,18 @@
 [
     {
+        "version": "1.0.0-alpha.1",
+        "explanation": {
+            "summary": "添加projects API",
+            "ex_list": [
+                "補充projects 兩個API",
+                "ApiHost換名",
+                "增加GroupSerializer"
+            ]
+        },
+        "update_time": "2022/07/28",
+        "commit_code": "febf3efc9433288bfa572b6b44d73baf814a46b9"
+    },
+    {
         "version": "1.0.0-alpha",
         "explanation": {
             "summary": "新增5個API",

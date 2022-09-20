@@ -386,7 +386,7 @@ paths:
     patch:
       tags:
         - image requests
-      summary: PATCH the image copy request status to approved.
+      summary: PATCH the image copy request status to requested.
       parameters:
         - $ref: '#/components/parameters/ImageRequestIDParam'
         - $ref: '#/components/parameters/ApiHostParam'

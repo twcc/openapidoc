@@ -1,1 +1,9 @@
-{}
+{
+    "operations-project-get_projects_": "user",
+    "operations-project-operations-project-get_projects__project_id__": "user",
+    "operations-project-get_projects__project_id__images_": "user",
+    "operations-project-post_projects__project_id__images__image_name__tags_": "user",
+    "operations-project-delete_projects__project_id__images__image_name__tags__tag_name__": "admin",
+    "operations-project-get_projects__project_id__harbor_quotas_": "user",
+    "operations-project-patch_projects__project_id__harbor_quotas_": "user"
+}
