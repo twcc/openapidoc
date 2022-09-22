@@ -202,7 +202,13 @@ paths:
       summary: List image commit
       description: List image commit request.
       parameters: 
-        - $ref: '#/components/parameters/ProjectInQueryParam'
+        # - $ref: '#/components/parameters/ProjectInQueryParam'
+        - ProjectInQueryParam:
+          name: project
+          in: query
+          description: Project ID is required to request
+          schema:
+            type: integer
         - name: site
           in: query
           description: Site ID
