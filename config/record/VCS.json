@@ -2,6 +2,17 @@
     {
         "version": "1.3.2",
         "explanation": {
+            "summary": "修正Status 狀態",
+            "ex_list": [
+                "修正 sites Status 狀態"
+            ]
+        },
+        "update_time": "2022/09/08",
+        "commit_code": "97548e54046ce05aa6283f0f8fd2293d8c4014ec"
+    },
+    {
+        "version": "1.3.2",
+        "explanation": {
             "summary": "補充預設選像跟說明",
             "ex_list": [
                 "補充image desc maximum",
