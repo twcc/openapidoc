@@ -1,5 +1,16 @@
 [
     {
+        "version": "1.4.0",
+        "explanation": {
+            "summary": "修正projects API",
+            "ex_list": [
+                "修正 /projects/reports/回應格式"
+            ]
+        },
+        "update_time": "2022/09/22",
+        "commit_code": "885bc86dab12325d71ea2392ec0fe028702740bf"
+    },
+    {
         "version": "1.3.2",
         "explanation": {
             "summary": "修正Status 狀態",

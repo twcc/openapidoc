@@ -2,6 +2,7 @@
     "operations-project-get_projects_": "user",
     "operations-project-get_projects__project_id__": "user",
     "operations-project-get_project_quotas_": "user",
+    "operations-project-get_projects_reports_": "user",
     "operations-flavor-get_flavors_": "user",
     "operations-flavor-get_sites_": "user",
     "operations-job-get_jobs_": "user",
