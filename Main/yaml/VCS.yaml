@@ -1205,7 +1205,28 @@ paths:
                   type: integer
                 status:
                   type: string
-                  example: extend
+                  enum:
+                  - attach
+                  - detach
+                  - extend
+                size:
+                  type: integer
+            examples:
+              attachServer example:
+                summary: Example with attach Server
+                value:
+                  server: 0
+                  status: attach
+              detachServer example:
+                summary: Example with detach Server
+                value:
+                  server: 0
+                  status: detach
+              extendSize example:
+                summary: Example with extend Size
+                value:
+                  size: 0
+                  status: extend
       responses:
         200:
           description: OK
@@ -1982,6 +2003,47 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/FirewallSerializer'
+    post:
+      tags:
+      - firewall
+      summary: create a firewall
+      description: Create a firewall, 'rules' is an optional parameter to define filrewall
+        rules list for this firewall. And 'associate_networks' is another optional
+        parameter to define which private networks list associate to this firewall.
+      parameters:
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        description: Post
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                project:
+                  type: integer
+                  format: int32
+                rules:
+                  type: array
+                  items:
+                    type: integer
+                    format: int32
+                associate_networks:
+                  type: array
+                  items:
+                    type: integer
+                    format: int32
+                desc:
+                  type: string
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirewallSerializer'
   /firewalls/{firewall_id}/:
     get:
       tags:
@@ -1998,6 +2060,53 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FirewallDetailSerializer'
+    patch:
+      tags:
+      - firewall
+      summary: update a firewall
+      description: update a firewall
+      parameters:
+        - $ref: '#/components/parameters/FirewallIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        description: Patch
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rules:
+                  type: array
+                  items:
+                    type: integer
+                    format: int32
+                associate_networks:
+                  type: array
+                  items:
+                    type: integer
+                    format: int32
+                desc:
+                  type: string
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirewallDetailSerializer'
+    delete:
+      tags:
+      - firewall
+      summary: delete a firewall
+      description: delete a firewall
+      parameters:
+        - $ref: '#/components/parameters/FirewallIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        204:
+          description: No Content
+          content: {}
   /firewall_rules/:
     get:
       tags:
@@ -2016,6 +2125,63 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/FirewallRuleSerializer'
+    post:
+      tags:
+      - firewall
+      summary: create a firewall rule
+      description: create a firewall rule
+      parameters:
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        description: Post
+        content:
+          application/json:
+            schema:
+              required:
+              - name
+              - project
+              properties:
+                name:
+                  type: string
+                  description: Firewall rule name
+                project:
+                  type: integer
+                  description: Project ID
+                  format: int32
+                protocol:
+                  type: string
+                  description: Firewall rule IP protocol
+                  enum:
+                  - icmp
+                  - tcp
+                  - udp
+                action:
+                  type: string
+                  description: The action that the API performs on traffic
+                  enum:
+                  - allow
+                  - deny
+                  - reject
+                destination_ip_address:
+                  type: string
+                  description: The destination IPv4 or IPv6 address or CIDR
+                destination_port:
+                  type: string
+                  description: 'The destination port or port range ex: (80:90)'
+                source_ip_address:
+                  type: string
+                  description: The source IPv4 or IPv6 address or CIDR
+                source_port:
+                  type: string
+                  description: 'The source port or port range ex: (80:90)'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirewallRuleSerializer'
   /firewall_rules/{firewall_rule_id}/:
     get:
       tags:
@@ -2034,6 +2200,66 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/FirewallRuleDetailSerializer'
+    delete:
+      tags:
+      - firewall
+      summary: delete a firewall rule
+      description: delete a firewall rule
+      parameters:
+        - $ref: '#/components/parameters/FirewallRuleIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        204:
+          description: No Content
+          content: {}
+    patch:
+      tags:
+      - firewall
+      summary: update a firewall rule
+      description: update a firewall rule
+      parameters:
+        - $ref: '#/components/parameters/FirewallRuleIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        description: Patch
+        content:
+          application/json:
+            schema:
+              properties:
+                protocol:
+                  type: string
+                  description: Firewall rule IP protocol
+                  enum:
+                  - icmp
+                  - tcp
+                  - udp
+                action:
+                  type: string
+                  description: The action that the API performs on traffic
+                  enum:
+                  - allow
+                  - deny
+                  - reject
+                destination_ip_address:
+                  type: string
+                  description: The destination IPv4 or IPv6 address or CIDR
+                destination_port:
+                  type: string
+                  description: 'The destination port or port range ex: (80:90)'
+                source_ip_address:
+                  type: string
+                  description: The source IPv4 or IPv6 address or CIDR
+                source_port:
+                  type: string
+                  description: 'The source port or port range ex: (80:90)'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirewallRuleDetailSerializer'
   /secrets/:
     get:
       tags:
