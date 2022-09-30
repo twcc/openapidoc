@@ -7,7 +7,7 @@ servers:
       ApiHost:
         default: k8s-taichung-default
 info:
-  version: 1.5.0
+  version: 1.5.1
   title: CCS API
   description: |
     This is CCS API.
@@ -1034,6 +1034,23 @@ paths:
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/RunIDParam'
+        - name: tail_lines
+          in: query
+          description: 
+          schema:
+            type: string
+            default: 800000
+        - name: limit_bytes
+          in: query
+          description: 
+          schema:
+            type: string
+            default: 10000
+        - name: since_time
+          in: query
+          description: 
+          schema:
+            type: string
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
