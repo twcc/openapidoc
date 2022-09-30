@@ -30,17 +30,17 @@
     },
     {
         "situation": "CCS API",
-        "version": "1.5.0",
+        "version": "1.5.1",
         "explanation": {
-            "summary": "補收錄projects API",
+            "summary": "新增job run log 參數",
             "ex_list": [
-                "收錄projects 1個API"
+                "新增job run log 參數"
             ]
         },
         "path": "./Main/CCS.html",
         "record_path": "CCS.json",
-        "update_time": "2022/09/22",
-        "commit_code": "885bc86dab12325d71ea2392ec0fe028702740bf"
+        "update_time": "2022/09/30",
+        "commit_code": "a7478b88329a95d75aa2ae989443287e4b99ccc0"
     },
     {
         "situation": "Slurm API",
