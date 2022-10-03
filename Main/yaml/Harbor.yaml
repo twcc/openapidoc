@@ -342,6 +342,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/HarborTagSerializer'
+    HarborScanSerializer:
+      type: object
+      properties:
+        complete_percent:
+          type: integer
+          format: int64
+        end_time:
+          type: string
+          format: date-time
+        severity:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        scan_status:
+          type: string
+    HarborTagSerializer:
+      type: object
+      properties:
+        immutable:
+          type: boolean
+        name:
+          type: string
+        pull_time:
+          type: string
+          format: date-time
+        push_time:
+          type: string
+          format: date-time
+        signed:
+          type: boolean
   parameters:
     ProjectInQueryParam:
       name: project
