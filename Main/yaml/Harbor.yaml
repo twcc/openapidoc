@@ -323,6 +323,25 @@ components:
         update_time:
           type: string
           format: date-time
+    HarborArtifactSerializer:
+      type: object
+      properties:
+        digest:
+          type: string
+        pull_time:
+          type: string
+          format: date-time
+        push_time:
+          type: string
+          format: date-time
+        scan_overview:
+          $ref: '#/components/schemas/HarborScanSerializer'
+        size:
+          type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/HarborTagSerializer'
   parameters:
     ProjectInQueryParam:
       name: project
