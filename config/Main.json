@@ -1,18 +1,17 @@
 [
     {
         "situation": "VCS API",
-        "version": "1.5.0",
+        "version": "1.5.1",
         "explanation": {
-            "summary": "補收錄firewall",
+            "summary": "補收錄List volumes query 參數",
             "ex_list": [
-                "收錄6個 firewall API",
-                "補充volume action example"
+                "補充List volumes query 參數"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2022/09/28",
-        "commit_code": "925e8343beb5559c7a7d9460082daffe8ac20694"
+        "update_time": "2022/10/27",
+        "commit_code": "ca093aa8d24a72a05eedb0167d913a336b9eb787"
     },
     {
         "situation": "Common API",
@@ -72,15 +71,16 @@
     },
     {
         "situation": "Ceph API",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "explanation": {
-            "summary": "新增6個API",
+            "summary": "補收錄projects API",
             "ex_list": [
+                "收錄projects 2個API"
             ]
         },
         "path": "./Main/Ceph.html",
-        "record_path": null,
-        "update_time": "2022/06/17",
-        "commit_code": "25bdf728f39a86a2f11d41c15c87e9e5ba2d5cd2"
+        "record_path": "Ceph.json",
+        "update_time": "2022/10/27",
+        "commit_code": "ca093aa8d24a72a05eedb0167d913a336b9eb787"
     }
 ]

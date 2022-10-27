@@ -44,11 +44,6 @@ paths:
           required: false
           schema:
             type: string
-        - in: header
-          name: kong-debug
-          required: false
-          schema:
-            type: string
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:

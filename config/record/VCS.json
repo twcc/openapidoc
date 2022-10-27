@@ -1,5 +1,17 @@
 [
     {
+        "version": "1.5.0",
+        "explanation": {
+            "summary": "補收錄firewall",
+            "ex_list": [
+                "收錄6個 firewall API",
+                "補充volume action example"
+            ]
+        },
+        "update_time": "2022/09/28",
+        "commit_code": "925e8343beb5559c7a7d9460082daffe8ac20694"
+    },
+    {
         "version": "1.4.0",
         "explanation": {
             "summary": "修正projects API",
