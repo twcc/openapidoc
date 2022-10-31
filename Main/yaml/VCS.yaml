@@ -2262,6 +2262,9 @@ paths:
           application/json:
             schema:
               properties:
+                name:
+                  type: string
+                  description: Firewall rule name
                 protocol:
                   type: string
                   description: Firewall rule IP protocol
@@ -2699,6 +2702,10 @@ components:
           type: string
         ref_img_id:
           type: string
+        size:
+          type: integer
+          format: int64
+          description: The unit is bytes
         server:
           $ref: '#/components/schemas/ServerFieldSerializer'
         user:
@@ -2723,6 +2730,7 @@ components:
         - os
         - os_version
         - server
+        - size
     ImagePostSerializer:
       required:
       - create_time
@@ -2758,6 +2766,7 @@ components:
       - platform
       - server
       - status
+      - size
       type: object
       properties:
         create_time:
@@ -2778,6 +2787,10 @@ components:
           $ref: '#/components/schemas/ServerFieldSerializer'
         desc:
           type: string
+        size:
+          type: integer
+          format: int64
+          description: The unit is bytes
         project:
           type: object
           properties:
