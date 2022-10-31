@@ -1,5 +1,16 @@
 [
     {
+        "version": "1.5.1",
+        "explanation": {
+            "summary": "新增job run log 參數",
+            "ex_list": [
+                "新增job run log 參數"
+            ]
+        },
+        "update_time": "2022/09/30",
+        "commit_code": "a7478b88329a95d75aa2ae989443287e4b99ccc0"
+    },
+    {
         "version": "1.5.0",
         "explanation": {
             "summary": "補收錄projects API",

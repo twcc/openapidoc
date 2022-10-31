@@ -1,17 +1,18 @@
 [
     {
         "situation": "VCS API",
-        "version": "1.5.1",
+        "version": "1.5.2",
         "explanation": {
-            "summary": "補收錄List volumes query 參數",
+            "summary": "image新增欄位",
             "ex_list": [
-                "補充List volumes query 參數"
+                "VCS image增加size欄位",
+                "firewall patch 參數可送name"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2022/10/27",
-        "commit_code": "ca093aa8d24a72a05eedb0167d913a336b9eb787"
+        "update_time": "2022/10/31",
+        "commit_code": "2a0e4963319eb9b7b0d86aecf1ba9d17ea4fee66"
     },
     {
         "situation": "Common API",
@@ -31,15 +32,16 @@
         "situation": "CCS API",
         "version": "1.5.1",
         "explanation": {
-            "summary": "新增job run log 參數",
+            "summary": "修正log get參數說明",
             "ex_list": [
-                "新增job run log 參數"
+                "補充job log get 參數說明",
+                "site log get新增3個參數"
             ]
         },
         "path": "./Main/CCS.html",
         "record_path": "CCS.json",
-        "update_time": "2022/09/30",
-        "commit_code": "a7478b88329a95d75aa2ae989443287e4b99ccc0"
+        "update_time": "2022/10/31",
+        "commit_code": "ec1e0c38866676529599a40b4dc7d784b6ff1726"
     },
     {
         "situation": "Slurm API",

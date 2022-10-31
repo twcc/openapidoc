@@ -1,5 +1,16 @@
 [
     {
+        "version": "1.5.1",
+        "explanation": {
+            "summary": "補收錄List volumes query 參數",
+            "ex_list": [
+                "補充List volumes query 參數"
+            ]
+        },
+        "update_time": "2022/10/27",
+        "commit_code": "ca093aa8d24a72a05eedb0167d913a336b9eb787"
+    },
+    {
         "version": "1.5.0",
         "explanation": {
             "summary": "補收錄firewall",
