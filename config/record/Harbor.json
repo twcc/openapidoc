@@ -1,5 +1,16 @@
 [
     {
+        "version": "1.0.0-beta",
+        "explanation": {
+            "summary": "1.0.0-beta 發布",
+            "ex_list": [
+                "更新API說明內容"
+            ]
+        },
+        "update_time": "2022/09/20",
+        "commit_code": "f6d7d92a1a98650a0f3b7a93957c0e22c061414a"
+    },
+    {
         "version": "1.0.0-alpha.1",
         "explanation": {
             "summary": "添加projects API",

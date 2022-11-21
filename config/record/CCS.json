@@ -2,6 +2,18 @@
     {
         "version": "1.5.1",
         "explanation": {
+            "summary": "修正log get參數說明",
+            "ex_list": [
+                "補充job log get 參數說明",
+                "site log get新增3個參數"
+            ]
+        },
+        "update_time": "2022/10/31",
+        "commit_code": "ec1e0c38866676529599a40b4dc7d784b6ff1726"
+    },
+    {
+        "version": "1.5.1",
+        "explanation": {
             "summary": "新增job run log 參數",
             "ex_list": [
                 "新增job run log 參數"

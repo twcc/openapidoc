@@ -1,5 +1,17 @@
 [
     {
+        "version": "1.5.2",
+        "explanation": {
+            "summary": "image新增欄位",
+            "ex_list": [
+                "VCS image增加size欄位",
+                "firewall patch 參數可送name"
+            ]
+        },
+        "update_time": "2022/10/31",
+        "commit_code": "2a0e4963319eb9b7b0d86aecf1ba9d17ea4fee66"
+    },
+    {
         "version": "1.5.1",
         "explanation": {
             "summary": "補收錄List volumes query 參數",

@@ -1,75 +1,77 @@
 [
     {
         "situation": "VCS API",
-        "version": "1.5.2",
+        "version": "1.5.3",
         "explanation": {
-            "summary": "image新增欄位",
+            "summary": "命名唯一名",
             "ex_list": [
-                "VCS image增加size欄位",
-                "firewall patch 參數可送name"
+                "添加Only tenant admin can use說明",
+                "重新命名summary為唯一名"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2022/10/31",
-        "commit_code": "2a0e4963319eb9b7b0d86aecf1ba9d17ea4fee66"
+        "update_time": "2022/11/21",
+        "commit_code": "30d166eebf9c0018c68307345d3a3eeefe379895"
     },
     {
         "situation": "Common API",
-        "version": "1.2.0",
+        "version": "1.2.1",
         "explanation": {
-            "summary": "收錄image_commit API",
+            "summary": "添加tenant admin說明",
             "ex_list": [
-                "收錄image_commit 4個API"
+                "添加Only tenant admin can use說明",
+                "移除不正確資訊"
             ]
         },
         "path": "./Main/Common.html",
         "record_path": "Common.json",
-        "update_time": "2022/09/08",
-        "commit_code": "1baa6b717772492f1ba459fba21a24fa8c60decb"
+        "update_time": "2022/11/21",
+        "commit_code": "30d166eebf9c0018c68307345d3a3eeefe379895"
     },
     {
         "situation": "CCS API",
-        "version": "1.5.1",
+        "version": "2.0.0",
         "explanation": {
-            "summary": "修正log get參數說明",
+            "summary": "更新ApiHost",
             "ex_list": [
-                "補充job log get 參數說明",
-                "site log get新增3個參數"
+                "更新ApiHost",
+                "去除中文"
             ]
         },
         "path": "./Main/CCS.html",
         "record_path": "CCS.json",
-        "update_time": "2022/10/31",
-        "commit_code": "ec1e0c38866676529599a40b4dc7d784b6ff1726"
+        "update_time": "2022/11/21",
+        "commit_code": "32cd0ace036a2b62a1a1046da3bf4609cae5d141"
     },
     {
         "situation": "Slurm API",
-        "version": "1.2.0",
+        "version": "1.2.1",
         "explanation": {
-            "summary": "補收錄projects API",
+            "summary": "去除不正確資訊",
             "ex_list": [
-                "收錄projects 1個API"
+                "去除不正確資訊"
             ]
         },
         "path": "./Main/Slurm.html",
         "record_path": "Slurm.json",
-        "update_time": "2022/09/22",
-        "commit_code": "885bc86dab12325d71ea2392ec0fe028702740bf"
+        "update_time": "2022/11/21",
+        "commit_code": "30d166eebf9c0018c68307345d3a3eeefe379895"
     },
     {
         "situation": "Harbor API",
-        "version": "1.0.0-beta",
+        "version": "1.0.0-beta.1",
         "explanation": {
-            "summary": "1.0.0-beta 發布",
+            "summary": "修正說明文字",
             "ex_list": [
-                "更新API說明內容"
+                "添加Only tenant admin can use說明",
+                "修正說明文字"
             ]
         },
         "path": "./Main/Harbor.html",
         "record_path": "Harbor.json",
-        "update_time": "2022/09/20",
-        "commit_code": "f6d7d92a1a98650a0f3b7a93957c0e22c061414a"
+        "update_time": "2022/11/21",
+        "commit_code": "7d8e02229585ab3526f3470503c42b11b2da2508"
     },
     {
         "situation": "Ceph API",

@@ -1,5 +1,16 @@
 [
     {
+        "version": "1.2.0",
+        "explanation": {
+            "summary": "收錄image_commit API",
+            "ex_list": [
+                "收錄image_commit 4個API"
+            ]
+        },
+        "update_time": "2022/09/08",
+        "commit_code": "1baa6b717772492f1ba459fba21a24fa8c60decb"
+    },
+    {
         "version": "1.1.4",
         "explanation": {
             "summary": "補充version說明",
