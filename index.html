@@ -104,7 +104,7 @@
                             </v-card>
                             <v-card v-else color="basil" flat>
                                 <v-card-text>
-                                    <v-data-table :sort-by="['situation']" :sort-desc="[true]" :headers="headers"
+                                    <v-data-table :sort-by="['situation']" :sort-desc="[false]" :headers="headers"
                                         multi-sort :items="data[key]" hide-default-footer class="elevation-1"><template
                                             v-slot:item.explanation="{ item }">
                                             <v-tooltip bottom>
