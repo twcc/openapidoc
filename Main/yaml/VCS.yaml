@@ -7,7 +7,7 @@ servers:
       ApiHost:
         default: openstack-taichung-default-2
 info:
-  version: 1.5.3
+  version: 1.5.4
   title: VCS API
   description: |
     This is VCS API.

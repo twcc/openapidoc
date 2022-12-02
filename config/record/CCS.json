@@ -1,5 +1,17 @@
 [
     {
+        "version": "2.0.0",
+        "explanation": {
+            "summary": "更新ApiHost",
+            "ex_list": [
+                "更新ApiHost",
+                "去除中文"
+            ]
+        },
+        "update_time": "2022/11/21",
+        "commit_code": "32cd0ace036a2b62a1a1046da3bf4609cae5d141"
+    },
+    {
         "version": "1.5.1",
         "explanation": {
             "summary": "修正log get參數說明",

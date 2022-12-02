@@ -7,7 +7,7 @@ servers:
       ApiHost:
         default: k8s-D-twcc
 info:
-  version: 2.0.0
+  version: 2.1.0
   title: CCS API
   description: |
     This is CCS API.

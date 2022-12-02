@@ -1,18 +1,19 @@
 [
     {
         "situation": "VCS API",
-        "version": "1.5.3",
+        "version": "1.5.4",
         "explanation": {
-            "summary": "命名唯一名",
+            "summary": "修正user_quotas API",
             "ex_list": [
-                "添加Only tenant admin can use說明",
-                "重新命名summary為唯一名"
+                "修正user_quotas Res格式",
+                "user_quotas補User ID參數",
+                "修正associateIP範例"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2022/11/21",
-        "commit_code": "30d166eebf9c0018c68307345d3a3eeefe379895"
+        "update_time": "2022/12/02",
+        "commit_code": "c49e0b3b86d2f17be7b10cb9f1bae2af61c6f9de"
     },
     {
         "situation": "Common API",
@@ -31,18 +32,17 @@
     },
     {
         "situation": "CCS API",
-        "version": "2.0.0",
+        "version": "2.1.0",
         "explanation": {
-            "summary": "更新ApiHost",
+            "summary": "補收錄projects API",
             "ex_list": [
-                "更新ApiHost",
-                "去除中文"
+                "收錄project 1 API"
             ]
         },
         "path": "./Main/CCS.html",
         "record_path": "CCS.json",
-        "update_time": "2022/11/21",
-        "commit_code": "32cd0ace036a2b62a1a1046da3bf4609cae5d141"
+        "update_time": "2022/12/02",
+        "commit_code": "c49e0b3b86d2f17be7b10cb9f1bae2af61c6f9de"
     },
     {
         "situation": "Slurm API",

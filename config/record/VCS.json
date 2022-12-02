@@ -1,5 +1,17 @@
 [
     {
+        "version": "1.5.3",
+        "explanation": {
+            "summary": "命名唯一名",
+            "ex_list": [
+                "添加Only tenant admin can use說明",
+                "重新命名summary為唯一名"
+            ]
+        },
+        "update_time": "2022/11/21",
+        "commit_code": "30d166eebf9c0018c68307345d3a3eeefe379895"
+    },
+    {
         "version": "1.5.2",
         "explanation": {
             "summary": "image新增欄位",
