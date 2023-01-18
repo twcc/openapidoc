@@ -7,7 +7,7 @@ servers:
       ApiHost:
         default: openstack-taichung-default-2
 info:
-  version: 1.5.4
+  version: 1.6.0
   title: VCS API
   description: |
     This is VCS API.
@@ -343,6 +343,67 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ImageSerializer'
+    post:
+      tags:
+        - image
+      summary: CreateImage
+      description: |-
+        This API just create a metadata in database.
+        You need to use "Upload an Image" API to put an image to repository.</li>
+      parameters:
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  description: Image name
+                os:
+                  type: string
+                  description: Linux or Windows
+                os_version:
+                  type: string
+                  description: Operating System Version
+                project:
+                  type: integer
+                  description: Project ID
+                  format: int32
+                disk_format:
+                  type: string
+                  description: Image Disk Format
+                  enum:
+                  - raw
+                  - qcow2
+                  - vdi
+                  - iso
+                  - vhd
+                  - vhdx
+                  - ami
+                  - ari
+                  - aki
+                  - vmdk
+                  - ploop
+                desc:
+                  type: string
+                  description: Description
+                metadata_only:
+                  type: boolean
+                  description: |-
+                    If it is true, the image will be created into the database only.
+                    When this value is true, there must be an image with a name given
+                    by the field 'name' in the backend.  The value is false by default.
+                license_type:
+                  type: string
+                  description: Image license type
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagePostSerializer'
   /images/{image_id}/:
     get:
       tags:
@@ -405,6 +466,37 @@ paths:
       responses:
         204:
           description: No Content
+          content: {}
+  /images/{image_id}/import/:
+    post:
+      tags:
+        - image
+      summary: ImportUploadImage
+      description: Upload an image by importing
+      parameters:
+        - $ref: '#/components/parameters/ImageIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - bucket
+              - ceph_obj_name
+              properties:
+                bucket:
+                  type: string
+                  description: Bucket name, should under the same project name as
+                    image's project
+                ceph_obj_name:
+                  type: string
+                  description: Object name, under the bucket for image importing
+                sub_path:
+                  type: string
+                  description: Folder sub path in the bucket
+      responses:
+        201:
+          description: Created
           content: {}
   /images/{server_id}/save/:
     put:
@@ -2831,6 +2923,10 @@ components:
         desc:
           type: string
         size:
+          type: integer
+          format: int64
+          description: The unit is bytes
+        virtual_size:
           type: integer
           format: int64
           description: The unit is bytes
