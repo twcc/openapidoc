@@ -7,7 +7,7 @@ servers:
       ApiHost:
         default: openstack-taichung-default-2
 info:
-  version: 1.6.0
+  version: 2.0.0
   title: VCS API
   description: |
     This is VCS API.
@@ -26,6 +26,7 @@ tags:
   - name: project
   - name: secret
   - name: security group
+  - name: security group(Deprecated)
   - name: server
   - name: site
   - name: snapshot
@@ -919,12 +920,190 @@ paths:
                               "time": "2018-09-25T09:55:00.771000",
                             }
                           ]
-  /security_groups/:
+  /security-groups/:
     get:
       tags:
       - security group
+      summary: ListSecurityGroups
+      description: List security groups with permission control
+      parameters:
+        - $ref: '#/components/parameters/ProjectInQueryParam'
+        - $ref: '#/components/parameters/ServerInQueryParam'
+        - $ref: '#/components/parameters/LoadBalancerInQueryParam'
+        - name: type
+          in: query
+          description: SG type
+          schema:
+            type: string
+            enum:
+            - LB
+            - VM
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NewSecurityGroupSerializer'
+    post:
+      tags:
+      - security group
+      summary: CreateSecurityGroups
+      description: Create a security group in a project
+      parameters:
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  description: Security group name
+                project:
+                  type: integer
+                  description: Project ID
+                desc:
+                  type: string
+                  description: Security group description.
+                  default: ""
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NewSecurityGroupSerializer'
+  /security-groups/{security_group_id}/:
+    get:
+      tags:
+      - security group
+      summary: GetSecurityGroupDetail
+      description: Get security group detail
+      parameters:
+        - $ref: '#/components/parameters/SecurityGroupIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NewSecurityGroupSerializer'
+    patch:
+      tags:
+      - security group
+      summary: UpdateSecurityGroup
+      description: Update desc of a security group.
+      parameters:
+        - $ref: '#/components/parameters/SecurityGroupIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - desc
+              properties:
+                desc:
+                  type: string
+                  description: New security group desc
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SecurityGroupSerializer'
+    delete:
+      tags:
+      - security group
+      summary: DeleteSecurityGroup
+      description: Delete a security group in a project
+      parameters:
+        - $ref: '#/components/parameters/SecurityGroupIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        204:
+          description: No Content
+          content: {}
+  /security-group-rules/:
+    post:
+      tags:
+      - security group
+      summary: CreateSecurityGroupsRule
+      description: Add a security rule to a security group
+      parameters:
+        - $ref: '#/components/parameters/ApiHostParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - sg
+              properties:
+                sg:
+                  type: string
+                  description: Security group ID
+                direction:
+                  type: string
+                  default: ingress
+                  enum:
+                  - ingress
+                  - egress
+                protocol:
+                  type: string
+                  default: tcp
+                  enum: [None, ipv6-route, udp, ipv6-nonxt, esp, pgm, ah, udplite,
+                    egp, vrrp, tcp, ipv6-frag, ipv6-icmp, gre, ipv6-encap, ipv6-opts,
+                    rsvp, sctp, icmp, ospf, dccp, igmp, icmpv6]
+                port_range_max:
+                  type: integer
+                  description: end port
+                  format: int32
+                port_range_min:
+                  type: integer
+                  description: begin port
+                  format: int32
+                remote_ip_prefix:
+                  type: string
+                  description: IP address CIDR
+                  default: 0.0.0.0/0
+      responses:
+        201:
+          description: Created
+          content: {}
+  /security-group-rules/{rule_id}/:
+    delete:
+      tags: 
+      - security group
+      summary: DeleteSecurityGroupRule
+      description: Delete a rule in a security group with permission control
+      parameters: 
+        - $ref: '#/components/parameters/RuleIDParam'
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        204:
+          description: No Content
+          content: {}
+  /security_groups/:
+    get:
+      tags:
+      - security group(Deprecated)
       summary: ListSecurityRulesByServer
-      description: List security rules of a server
+      description: List security rules of a server/loadbalancer/site
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ServerInQueryParam'
@@ -942,7 +1121,7 @@ paths:
   /security_groups/{security_group_id}/:
     patch:
       tags: 
-      - security group
+      - security group(Deprecated)
       summary: AddSecurityRuleBySecurityGroup.
       description: Add a security rule to a security group.
       parameters: 
@@ -979,7 +1158,7 @@ paths:
   /security_group_rules/{rule_id}/:
     delete:
       tags: 
-      - security group
+      - security group(Deprecated)
       summary: DeleteRuleInSecurityGroup.
       description: Delete a rule in a security group.
       parameters: 
@@ -987,7 +1166,7 @@ paths:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
-        202:
+        204:
           description: No Content
           content: {}
   /networks/:
@@ -1580,7 +1759,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServerSerializer'
+                $ref: '#/components/schemas/ServerDetailSerializer'
   /servers/{server_id}/auto_scaling_policy/:
     post:
       tags: 
@@ -2841,6 +3020,9 @@ components:
           type: integer
           format: int64
           description: The unit is bytes
+        virtual_size:
+          format: int64
+          type: integer
         server:
           $ref: '#/components/schemas/ServerFieldSerializer'
         user:
@@ -2980,6 +3162,41 @@ components:
           type: string
         platform:
           type: string
+        user:
+          $ref: '#/components/schemas/UserSerializer'
+    NewSecurityGroupSerializer:
+      required:
+      - create_time
+      - desc
+      - id
+      - name
+      - project
+      - security_group_rules
+      - type
+      - user
+      type: object
+      properties:
+        create_time:
+          type: string
+          format: date-time
+        desc:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        project:
+          type: integer
+          format: int64
+        security_group_rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityRuleSerializer'
+        type:
+          type: string
+          enum:
+          - LB
+          - VM
         user:
           $ref: '#/components/schemas/UserSerializer'
     SecurityGroupSerializer:
@@ -3348,6 +3565,16 @@ components:
           enum:
           - FLOATING
           - STATIC
+    ServerSGObject:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
     ServerCPUUtilSerializer:
       required:
       - cpu_util
@@ -3362,6 +3589,83 @@ components:
           format: date-time
         unit:
           type: string
+    ServerDetailSerializer:
+      required:
+      - auto_scaling_policy
+      - availability_zone
+      - flavor
+      - fqdn
+      - hostname
+      - id
+      - image
+      - keypair
+      - os
+      - os_version
+      - platform
+      - private_nets
+      - public_nets
+      - security_groups
+      - site
+      - status
+      - waf
+      type: object
+      properties:
+        auto_scaling_policy:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+            name:
+              type: string
+            status:
+              type: string
+            status_reason:
+              type: string
+        availability_zone:
+          type: string
+        flavor:
+          type: string
+        hostname:
+          type: string
+        id:
+          type: integer
+          format: int64
+        image:
+          type: string
+        os:
+          type: string
+        os_version:
+          type: string
+        platform:
+          type: string
+        private_nets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerNetObject'
+        public_nets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerNetObject'
+        keypair:
+          type: string
+        site:
+          type: integer
+          format: int64
+        vnc_url:
+          type: string
+        waf:
+          $ref: '#/components/schemas/ServerFieldSerializer'
+        protect_object:
+          $ref: '#/components/schemas/WAFObjectSerializer'
+        status:
+          type: string
+        fqdn:
+          type: string
+        security_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerSGObject'
     ServerDiskReadUtilSerializer:
       required:
       - disk_read_bytes_rate
