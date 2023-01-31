@@ -1,19 +1,20 @@
 [
     {
         "situation": "VCS API",
-        "version": "1.5.4",
+        "version": "2.0.0",
         "explanation": {
-            "summary": "修正user_quotas API",
+            "summary": "新SG API 上架",
             "ex_list": [
-                "修正user_quotas Res格式",
-                "user_quotas補User ID參數",
-                "修正associateIP範例"
+                "新增新 SG API 7隻",
+                "舊SG準備棄用",
+                "GetServerDetail response 修正",
+                "ImageDetailSerializer補virtual_size"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2022/12/02",
-        "commit_code": "c49e0b3b86d2f17be7b10cb9f1bae2af61c6f9de"
+        "update_time": "2023/01/31",
+        "commit_code": "4713a26f5dacfbe3b0f939046c3986266f8408f2"
     },
     {
         "situation": "Common API",

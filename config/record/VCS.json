@@ -1,5 +1,30 @@
 [
     {
+        "version": "1.6.0",
+        "explanation": {
+            "summary": "收錄 image API",
+            "ex_list": [
+                "收錄 image 兩隻API",
+                "ImageSerializer增加virtual_size"
+            ]
+        },
+        "update_time": "2023/01/18",
+        "commit_code": "1aadefe6a41587b0280f2bf696cf6102feff42b9"
+    },
+    {
+        "version": "1.5.4",
+        "explanation": {
+            "summary": "修正user_quotas API",
+            "ex_list": [
+                "修正user_quotas Res格式",
+                "user_quotas補User ID參數",
+                "修正associateIP範例"
+            ]
+        },
+        "update_time": "2022/12/02",
+        "commit_code": "c49e0b3b86d2f17be7b10cb9f1bae2af61c6f9de"
+    },
+    {
         "version": "1.5.3",
         "explanation": {
             "summary": "命名唯一名",

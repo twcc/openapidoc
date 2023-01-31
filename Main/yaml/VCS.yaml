@@ -3575,6 +3575,16 @@ components:
           type: string
         name:
           type: string
+    WAFObjectSerializer:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        type:
+          type: string
     ServerCPUUtilSerializer:
       required:
       - cpu_util
