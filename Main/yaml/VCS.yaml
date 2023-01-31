@@ -350,7 +350,7 @@ paths:
       summary: CreateImage
       description: |-
         This API just create a metadata in database.
-        You need to use "Upload an Image" API to put an image to repository.</li>
+        You need to use "Upload an Image" API to put an image to repository.
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -977,9 +977,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/NewSecurityGroupSerializer'
+                $ref: '#/components/schemas/NewSecurityGroupSerializer'
   /security-groups/{security_group_id}/:
     get:
       tags:
