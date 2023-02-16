@@ -1,20 +1,20 @@
 [
     {
         "situation": "VCS API",
-        "version": "2.0.0",
+        "version": "2.1.0",
         "explanation": {
-            "summary": "新SG API 上架",
+            "summary": "SG應用相關API，補充規格",
             "ex_list": [
-                "新增新 SG API 7隻",
-                "舊SG準備棄用",
-                "GetServerDetail response 修正",
-                "ImageDetailSerializer補virtual_size"
+                "CreateSite添加SG參數",
+                "ExecuteActionServer添加SG使用範例",
+                "ListVolumes與GetVolumeDetail新增RES參數",
+                "ListServers補上query參數"
             ]
         },
         "path": "./Main/VCS.html",
         "record_path": "VCS.json",
-        "update_time": "2023/01/31",
-        "commit_code": "4713a26f5dacfbe3b0f939046c3986266f8408f2"
+        "update_time": "2023/02/16",
+        "commit_code": "40731a06b4a63d2e5a21a7fa67d3c04f7936dc5f"
     },
     {
         "situation": "Common API",

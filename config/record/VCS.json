@@ -1,5 +1,19 @@
 [
     {
+        "version": "2.0.0",
+        "explanation": {
+            "summary": "新SG API 上架",
+            "ex_list": [
+                "新增新 SG API 7隻",
+                "舊SG準備棄用",
+                "GetServerDetail response 修正",
+                "ImageDetailSerializer補virtual_size"
+            ]
+        },
+        "update_time": "2023/01/31",
+        "commit_code": "4713a26f5dacfbe3b0f939046c3986266f8408f2"
+    },
+    {
         "version": "1.6.0",
         "explanation": {
             "summary": "收錄 image API",
