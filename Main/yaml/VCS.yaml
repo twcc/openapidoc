@@ -1732,6 +1732,27 @@ paths:
       description: List servers
       parameters: 
         - $ref: '#/components/parameters/ProjectInQueryParam'
+        - name: image
+          in: query
+          description: Image ID
+          schema:
+            type: integer
+            format: int32
+        - name: site
+          in: query
+          description: Site ID
+          schema:
+            type: integer
+            format: int32
+        - name: all_users
+          in: query
+          description: List resources of all users
+          schema:
+            type: integer
+            format: int32
+            enum:
+            - 0
+            - 1
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         200:
@@ -1844,7 +1865,7 @@ paths:
               properties:
                 action:
                   type: string
-                  description: Action for a server, such as start/stop/reboot/associateIP/disassociateIP/shelve/unshelve
+                  description: Action for a server, such as start/stop/reboot/associateIP/disassociateIP/shelve/unshelve/addSecurityGroup/removeSecurityGroup
                 reboot_type:
                   type: string
                   description: SOFT for a software-level reboot, or HARD for a virtual
@@ -1884,6 +1905,16 @@ paths:
                 summary: Example with disassociateIP
                 value:
                   action: disassociateIP
+              addSecurityGroup example:
+                summary: Example with addSecurityGroup
+                value:
+                  action: addSecurityGroup
+                  sg: SG ID
+              removeSecurityGroup example:
+                summary: Example with removeSecurityGroup
+                value:
+                  action: removeSecurityGroup
+                  sg: SG ID
         required: true
       responses:
         202:
@@ -2054,12 +2085,12 @@ paths:
       parameters:
         - name: x-extra-property-image
           in: header
-          description: The extra property of image (Just for example)
+          description: The extra property of image 
           schema:
             type: string
         - name: x-extra-property-flavor
           in: header
-          description: The extra property of flavor (Just for example)
+          description: The extra property of flavor 
           schema:
             type: string
         - name: x-extra-property-keypair
@@ -2074,12 +2105,17 @@ paths:
             type: string
         - name: x-extra-property-private-network
           in: header
-          description: The extra property of private-network (Just for example)
+          description: The extra property of private-network 
+          schema:
+            type: string
+        - name: x-extra-property-sg
+          in: header
+          description: The extra property of security group
           schema:
             type: string
         - name: x-extra-property-floating-ip
           in: header
-          description: The extra property of floating-ip (Just for example)
+          description: The extra property of floating-ip 
           schema:
             type: string
             enum:
@@ -2188,7 +2224,7 @@ paths:
         - $ref: '#/components/parameters/SiteIDParam'
         - name: x-extra-property-flavor
           in: header
-          description: The extra property of flavor (Just for example)
+          description: The extra property of flavor 
           schema:
             type: string
         - $ref: '#/components/parameters/ApiHostParam'
@@ -3372,6 +3408,8 @@ components:
         id:
           type: integer
           format: int64
+        volume_uuid:
+          type: string
         is_bootable:
           type: boolean
         name:
