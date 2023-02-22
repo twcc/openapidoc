@@ -7,7 +7,7 @@ servers:
       ApiHost:
         default: k8s-D-twcc
 info:
-  version: 2.1.0
+  version: 2.1.1
   title: CCS API
   description: |
     This is CCS API.
@@ -23,7 +23,7 @@ paths:
     get:
       tags:
         - project
-      summary: List projects
+      summary: ListProjects
       description: List projects
       parameters:
         - in: query
@@ -46,7 +46,7 @@ paths:
     get:
       tags:
         - project
-      summary: Get details of a project
+      summary: GetProjectDetail
       description: Get details of a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
@@ -62,7 +62,7 @@ paths:
     get:
       tags:
         - project
-      summary: get project quotas
+      summary: GetProjectQuatas
       description: get project quotas
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -80,7 +80,7 @@ paths:
     get:
       tags:
         - project
-      summary: Get solutions of a project
+      summary: GetSolutionsOfProject
       description: Get solutions of a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
@@ -101,7 +101,8 @@ paths:
     get:
       tags:
         - project
-      summary: Get extra properties of a solution for a project
+      summary: GetPropertiesOfSolutionForProject
+      description: Get extra properties of a solution for a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - $ref: '#/components/parameters/SolutionsIDParam'
@@ -123,7 +124,7 @@ paths:
     get:
       tags:
         - project
-      summary: Get assets reports for the projects.
+      summary: GetAssetsReportsForProjects
       description: Get assets reports for the projects.
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -154,7 +155,7 @@ paths:
     get:
       tags:
         - project
-      summary: get user quotas
+      summary: GetUserQuatas
       description: get user quotas.
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
@@ -178,7 +179,8 @@ paths:
     get:
       tags:
         - flavor
-      summary: List flavors
+      summary: ListFlavor
+      description: List flavors
       parameters:
         - in: query
           name: is_public
@@ -207,7 +209,8 @@ paths:
     get:
       tags:
         - flavor
-      summary: Get details of a flavor
+      summary: GetFlavorDetail
+      description: Get details of a flavor
       parameters:
         - $ref: '#/components/parameters/FlavorIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -222,7 +225,7 @@ paths:
     get:
       tags:
       - site
-      summary: List sites
+      summary: ListSites
       description: List sites
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -252,7 +255,7 @@ paths:
     post:
       tags:
       - site
-      summary: Create a site
+      summary: CreateSite
       description: Create a site
       parameters:
         - name: x-extra-property-image
@@ -318,7 +321,8 @@ paths:
     get:
       tags:
       - site
-      summary: Get details of a site
+      summary: GetSiteDetail
+      description: Get details of a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -332,7 +336,7 @@ paths:
     delete:
       tags:
       - site
-      summary: Delete a site
+      summary: DeleteSite
       description: Delete a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -364,7 +368,7 @@ paths:
     patch:
       tags:
       - site
-      summary: Patch details of a site
+      summary: UpdateSiteDetail
       description: Patch details of a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -392,7 +396,7 @@ paths:
     get:
       tags:
       - site
-      summary: Get site detail of containers
+      summary: GetSiteDetailOfContainer
       description: Get site detail of containers
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -408,7 +412,8 @@ paths:
     put:
       tags:
       - site
-      summary: Execute an action to a pod
+      summary: ActionToPod
+      description: Execute an action to a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -440,7 +445,7 @@ paths:
     get:
       tags:
       - site
-      summary: Get logs of a container from a kubernetes site
+      summary: GetContainerLogByK8S
       description: Get logs of a container from a kubernetes site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -492,7 +497,7 @@ paths:
     get:
       tags:
       - site
-      summary: Get GPU utilization of a pod
+      summary: GetGPUUtilizationByPod
       description: Get GPU utilization of a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -526,7 +531,7 @@ paths:
     get:
       tags:
       - site
-      summary: Get gpu memory utilization of a pod
+      summary: GetGPUMemoryUtilizationByPod
       description: Get gpu memory utilization of a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -560,7 +565,7 @@ paths:
     get:
       tags:
       - site
-      summary: Get CPU utilization of a pod
+      summary: GetCPUUtilizationByPod
       description: Get CPU utilization of a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -594,7 +599,7 @@ paths:
     get:
       tags:
       - site
-      summary: Get memory utilization of a pod
+      summary: GetMemoryUtilizationByPod
       description: Get memory utilization of a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -628,7 +633,7 @@ paths:
     get:
       tags:
       - site
-      summary: Get disk utilization of a pod
+      summary: GetDiskUtilizationByPod
       description: Get disk utilization of a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -692,7 +697,7 @@ paths:
     get:
       tags:
       - site
-      summary: Get network utilization of a pod
+      summary: GetNetworkUtilizationByPod
       description: Get network utilization of a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
@@ -756,7 +761,7 @@ paths:
     get:
       tags:
       - job
-      summary: List jobs
+      summary: ListJobs
       description: List jobs
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -779,8 +784,8 @@ paths:
     post:
       tags:
       - job
-      summary: Create job
-      description: List jobs
+      summary: CreateJob
+      description: Create job
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -801,7 +806,7 @@ paths:
     get:
       tags:
       - job
-      summary: Get details of a job
+      summary: GetJobDetail
       description: Get details of a job
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
@@ -816,7 +821,7 @@ paths:
     delete:
       tags:
       - job
-      summary: Delete a job
+      summary: DeleteJob
       description: Delete a job
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
@@ -828,7 +833,7 @@ paths:
     patch:
       tags:
       - job
-      summary: Update a Job
+      summary: UpdateJobDetail
       description: Update a Job
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
@@ -851,7 +856,7 @@ paths:
     get:
       tags:
       - job
-      summary: List job runs
+      summary: ListJobRuns
       description: List job runs
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
@@ -869,7 +874,7 @@ paths:
     get:
       tags:
       - job
-      summary: Get a specific run
+      summary: GetJobRunDetail
       description: Get a specific run
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
@@ -888,7 +893,7 @@ paths:
     get:
       tags:
       - job
-      summary: Get GPU utilization of a run
+      summary: GetGPUUtilizationByRun
       description: Get GPU utilization of a run
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
@@ -917,7 +922,7 @@ paths:
     get:
       tags:
       - job
-      summary: Get gpu memory utilization of a run
+      summary: GetGPUUtilizationByRun
       description: Get gpu memory utilization of a run
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
@@ -946,7 +951,7 @@ paths:
     get:
       tags:
       - job
-      summary: Get CPU utilization of a run
+      summary: GetCPUUtilizationByRun
       description: Get CPU utilization of a run
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
@@ -975,7 +980,7 @@ paths:
     get:
       tags:
       - job
-      summary: Get memory utilization of a run
+      summary: GetMemoryUtilizationByRun
       description: Get memory utilization of a run
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
@@ -1004,7 +1009,7 @@ paths:
     get:
       tags:
       - job
-      summary: Get disk utilization of a run
+      summary: GetDiskUtilizationByRun
       description: Get disk utilization of a run
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
@@ -1073,7 +1078,7 @@ paths:
     get:
       tags:
       - job
-      summary: Get logs information from a run
+      summary: GetLogByRun
       description: Get logs information from a run
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
@@ -1105,22 +1110,27 @@ paths:
                 type: array
                 items:
                   type: string
-  /jobs/{job_id}/{action}/:
+  /jobs/{job_id}/stop/:
     post:
       tags:
       - job
-      summary: start or stop a job
-      description: start or stop a job
+      summary: StopJob
+      description: stop a job
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
-        - name: action
-          in: path
-          required: true
-          schema:
-            type: string
-            enum:
-            - submit
-            - stop
+        - $ref: '#/components/parameters/ApiHostParam'
+      responses:
+        201:
+          description: Created
+          content: {}
+  /jobs/{job_id}/submit/:
+    post:
+      tags:
+      - job
+      summary: StartJob
+      description: start a job
+      parameters:
+        - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
         201:
