@@ -35,15 +35,15 @@
         "situation": "CCS API",
         "version": "2.1.0",
         "explanation": {
-            "summary": "補收錄projects API",
+            "summary": "命名唯一名",
             "ex_list": [
-                "收錄project 1 API"
+                "重新命名summary為唯一名"
             ]
         },
         "path": "./Main/CCS.html",
         "record_path": "CCS.json",
-        "update_time": "2022/12/02",
-        "commit_code": "c49e0b3b86d2f17be7b10cb9f1bae2af61c6f9de"
+        "update_time": "2023/02/22",
+        "commit_code": "465103337a42f4d62fb16a965cfb974be2fd8538"
     },
     {
         "situation": "Slurm API",
