@@ -1098,6 +1098,7 @@ paths:
           content: {}
   /security_groups/:
     get:
+      deprecated: true
       tags:
       - security group(Deprecated)
       summary: ListSecurityRulesByServer
@@ -1118,6 +1119,7 @@ paths:
                   $ref: '#/components/schemas/SecurityGroupSerializer'
   /security_groups/{security_group_id}/:
     patch:
+      deprecated: true
       tags: 
       - security group(Deprecated)
       summary: AddSecurityRuleBySecurityGroup.
@@ -1155,6 +1157,7 @@ paths:
           content: {}
   /security_group_rules/{rule_id}/:
     delete:
+      deprecated: true
       tags: 
       - security group(Deprecated)
       summary: DeleteRuleInSecurityGroup.
