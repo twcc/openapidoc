@@ -260,12 +260,12 @@ paths:
       parameters:
         - name: x-extra-property-image
           in: header
-          description: The extra property of image (Just for example)
+          description: The extra property of imag
           schema:
             type: string
         - name: x-extra-property-flavor
           in: header
-          description: The extra property of flavor (Just for example)
+          description: The extra property of flavor
           schema:
             type: string
         - name: x-extra-property-gpfs01-mount-path
@@ -348,13 +348,13 @@ paths:
     put:
       tags:
       - site
-      summary: Update site extra-property
+      summary: UpdateSiteExtraProperty
       description: Update site extra-property
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - name: x-extra-property-flavor
           in: header
-          description: The extra property of flavor (Just for example)
+          description: The extra property of flavor
           schema:
             type: string
         - $ref: '#/components/parameters/ApiHostParam'
