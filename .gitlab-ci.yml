@@ -15,7 +15,9 @@ sync_to_github:
     - git config user.email "leo.chen@twsc.io"
     - git config user.name "Leo"
     - git pull origin main --ff-only
-    - cp -R ../. .
+    - cd ..
+    - cp -R . openapidoc/
+    - cd openapidoc
     - git add -A
     - git commit -m "Sync changes from GitLab CI/CD job $CI_JOB_ID"
     - git push origin main
