@@ -12,9 +12,9 @@ send-to-GitHub:
     - git config --global user.email "leo.chen@twsc.io"
     - git config --global user.name $LEO_USERNAME
     - git merge -s ours github/main --no-commit --no-ff --allow-unrelated-histories
-    - git checkout -b $CI_COMMIT_SHORT_SHA
+    #- git checkout -b $CI_COMMIT_SHORT_SHA
     - git push -u github $CI_COMMIT_SHORT_SHA
-    - gh pr create --title "v$CI_COMMIT_SHORT_SHA" --body "Release openapi"
-    - gh pr create --base main --title "v$CI_COMMIT_SHORT_SHA" --body "Release openapi"
-    - gh release create "v$CI_COMMIT_SHORT_SHA" --title "v$CI_COMMIT_SHORT_SHA"
+    #- gh pr create --title "v$CI_COMMIT_SHORT_SHA" --body "Release openapi"
+    #- gh pr create --base main --title "v$CI_COMMIT_SHORT_SHA" --body "Release openapi"
+    #- gh release create "v$CI_COMMIT_SHORT_SHA" --title "v$CI_COMMIT_SHORT_SHA"
 
