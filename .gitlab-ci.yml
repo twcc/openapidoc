@@ -1,22 +1,21 @@
 stages:        
   - sync
 
-sync_to_github:
-  image: ubuntu:latest
+send-to-GitHub:
+  image: alpine:3.16
   stage: sync
   script:
-    - apt-get update -qy
-    - apt-get install -y git   
-    - cd /tmp
-    - git clone https://github.com/twcc/openapidoc.git
-    - cd openapidoc
-    - git remote remove origin
-    - git remote add origin https://${LEO_USERNAME}:${Leo_ACCESS_TOKEN}@github.com/twcc/openapidoc.git
-    - git config user.email "leo.chen@twsc.io"
-    - git config user.name "Leo"
-    - git pull origin main --ff-only
-    - pwd
-    - cp -R $CI_PROJECT_DIR/. .
-    - git add -A
-    - git commit -m "Sync changes from GitLab CI/CD job $CI_JOB_ID"
-    - git push origin main
+    - apk update && apk add github-cli && apk add git
+    - export GH_TOKEN=$Leo_ACCESS_TOKEN
+    - git remote add github https://$LEO_USERNAME:$Leo_ACCESS_TOKEN@github.com/twcc/openapidoc
+    - git fetch --unshallow github
+    - git config --global user.email "leo.chen@twsc.io"
+    - git config --global user.name $LEO_USERNAME
+    - git merge -s ours github/main --no-commit --no-ff --allow-unrelated-histories
+    - git checkout -b $CI_COMMIT_SHORT_SHA
+    - cat .dont_send_to_github |xargs -n 1 rm -rf  # ignore internal assets
+    - git push -u github $CI_COMMIT_SHORT_SHA
+    - gh pr create --title "v$CI_COMMIT_SHORT_SHA" --body "Release openapi"
+    - gh pr create --base tws-sync --title "v$CI_COMMIT_SHORT_SHA" --body "Release openapi"
+    - gh release create "v$CI_COMMIT_SHORT_SHA" --title "v$CI_COMMIT_SHORT_SHA"
+
