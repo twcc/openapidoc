@@ -1,0 +1,17 @@
+
+stages:        
+  - sync
+ 
+
+sync_to_github:
+  stage: sync
+  script:
+    - git clone https://github.com/twcc/openapidoc.git
+    - cd openapidoc
+    - git config user.email "geniusshiun@gmail.com"
+    - git config user.name "Leo"
+    - git pull origin main --ff-only
+    - cp -R ../. .
+    - git add -A
+    - git commit -m "Sync changes from GitLab CI/CD job $CI_JOB_ID"
+    - git push origin main
