@@ -3,9 +3,11 @@ stages:
  
 
 sync_to_github:
-  image: node:18-alpine3.16
+  image: ubuntu:latest
   stage: sync
   script:
+    - apt-get update -qy
+    - apt-get install -y git
     - git clone https://github.com/twcc/openapidoc.git
     - git remote add origin https://${LEO_USERNAME}:${Leo_ACCESS_TOKEN}@github.com/twcc/openapidoc.git
     - cd openapidoc
