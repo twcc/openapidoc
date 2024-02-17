@@ -9,9 +9,9 @@ sync_to_github:
     - apt-get install -y git   
     - cd /tmp
     - git clone https://github.com/twcc/openapidoc.git
+    - cd openapidoc
     - git remote remove origin
     - git remote add origin https://${LEO_USERNAME}:${Leo_ACCESS_TOKEN}@github.com/twcc/openapidoc.git
-    - cd openapidoc
     - git config user.email "leo.chen@twsc.io"
     - git config user.name "Leo"
     - git pull origin main --ff-only
