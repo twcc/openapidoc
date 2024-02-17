@@ -15,6 +15,6 @@ send-to-GitHub:
     - git checkout -b $CI_COMMIT_SHORT_SHA
     - git push -u github $CI_COMMIT_SHORT_SHA
     - pr_url=$(gh pr create --title "v$CI_COMMIT_SHORT_SHA" --body "Release openapi")
-    - gh pr merge $pr_url --auto
+    - gh pr merge --auto --rebase
     #- gh release create "v$CI_COMMIT_SHORT_SHA" --title "v$CI_COMMIT_SHORT_SHA"
 
