@@ -13,7 +13,6 @@ send-to-GitHub:
     - git config --global user.name $LEO_USERNAME
     - git merge -s ours github/main --no-commit --no-ff --allow-unrelated-histories
     - git checkout -b $CI_COMMIT_SHORT_SHA
-    - cat .dont_send_to_github |xargs -n 1 rm -rf  # ignore internal assets
     - git push -u github $CI_COMMIT_SHORT_SHA
     - gh pr create --title "v$CI_COMMIT_SHORT_SHA" --body "Release openapi"
     - gh pr create --base tws-sync --title "v$CI_COMMIT_SHORT_SHA" --body "Release openapi"
