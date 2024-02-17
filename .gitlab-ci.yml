@@ -1,13 +1,12 @@
 stages:        
   - sync
- 
 
 sync_to_github:
   image: ubuntu:latest
   stage: sync
   script:
     - apt-get update -qy
-    - apt-get install -y git
+    - apt-get install -y git   
     - git clone https://github.com/twcc/openapidoc.git
     - git remote remove origin
     - git remote add origin https://${LEO_USERNAME}:${Leo_ACCESS_TOKEN}@github.com/twcc/openapidoc.git
@@ -15,9 +14,7 @@ sync_to_github:
     - git config user.email "leo.chen@twsc.io"
     - git config user.name "Leo"
     - git pull origin main --ff-only
-    - cd ..
-    - cp -R . openapidoc/
-    - cd openapidoc
+    - cp -R $CI_PROJECT_DIR/. .
     - git add -A
     - git commit -m "Sync changes from GitLab CI/CD job $CI_JOB_ID"
     - git push origin main
