@@ -1,0 +1,20 @@
+stages:        
+  - sync
+
+send-to-GitHub:
+  image: alpine:3.16
+  stage: sync
+  script:
+    - apk update && apk add github-cli && apk add git
+    - export GH_TOKEN=$Leo_ACCESS_TOKEN
+    - git remote add github https://$LEO_USERNAME:$Leo_ACCESS_TOKEN@github.com/twcc/openapidoc
+    - git fetch --unshallow github
+    - git config --global user.email "leo.chen@twsc.io"
+    - git config --global user.name $LEO_USERNAME
+    - git merge -s ours github/main --no-commit --no-ff --allow-unrelated-histories
+    - git checkout -b $CI_COMMIT_SHORT_SHA
+    - git push -u github $CI_COMMIT_SHORT_SHA
+    - pr_url=$(gh pr create --title "v$CI_COMMIT_SHORT_SHA" --body "Release openapi")
+    - gh pr merge --auto --rebase
+    #- gh release create "v$CI_COMMIT_SHORT_SHA" --title "v$CI_COMMIT_SHORT_SHA"
+
