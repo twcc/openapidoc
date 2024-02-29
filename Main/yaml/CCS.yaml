@@ -180,7 +180,7 @@ paths:
       tags:
         - flavor
       summary: ListFlavor
-      description: List flavors
+      description: CCS-flavor-0003 List flavors
       parameters:
         - in: query
           name: is_public
