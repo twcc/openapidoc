@@ -226,7 +226,7 @@ paths:
       tags:
       - site
       summary: ListSites
-      description: List sites
+      description: CCS-site-0033 List sites
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - name: sol_categ
