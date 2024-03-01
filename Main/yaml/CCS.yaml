@@ -210,7 +210,7 @@ paths:
       tags:
         - flavor
       summary: GetFlavorDetail
-      description: Get details of a flavor
+      description: CCS-flavor-0004 Get details of a flavor
       parameters:
         - $ref: '#/components/parameters/FlavorIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
