@@ -256,7 +256,7 @@ paths:
       tags:
       - site
       summary: CreateSite
-      description: Create a site
+      description: CCS-site-1012 Create a site
       parameters:
         - name: x-extra-property-image
           in: header
