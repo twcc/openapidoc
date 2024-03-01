@@ -180,7 +180,7 @@ paths:
       tags:
         - flavor
       summary: ListFlavor
-      description: List flavors
+      description: CCS-flavor-0003 List flavors
       parameters:
         - in: query
           name: is_public
@@ -210,7 +210,7 @@ paths:
       tags:
         - flavor
       summary: GetFlavorDetail
-      description: Get details of a flavor
+      description: CCS-flavor-0004 Get details of a flavor
       parameters:
         - $ref: '#/components/parameters/FlavorIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
