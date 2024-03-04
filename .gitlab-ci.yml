@@ -16,9 +16,8 @@ send-to-GitHub:
     - git push -u github $CI_COMMIT_SHORT_SHA
     - pr_url=$(gh pr create --title "v$CI_COMMIT_SHORT_SHA" --body "Release openapi")
     - gh pr merge --auto --rebase
-  only:
-    - merge_requests
-  refs:
-    - main
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"
     #- gh release create "v$CI_COMMIT_SHORT_SHA" --title "v$CI_COMMIT_SHORT_SHA"
 
