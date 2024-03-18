@@ -24,7 +24,7 @@ paths:
       tags:
         - project
       summary: ListProjects
-      description: List projects
+      description: CCS-project-0019 List projects
       parameters:
         - in: query
           name: name
@@ -47,7 +47,7 @@ paths:
       tags:
         - project
       summary: GetProjectDetail
-      description: Get details of a project
+      description: CCS-project-0020 Get details of a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -62,8 +62,8 @@ paths:
     get:
       tags:
         - project
-      summary: GetProjectQuatas
-      description: get project quotas
+      summary: GetProjectQuotas
+      description: CCS-project-0018 Get project quotas
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -81,7 +81,7 @@ paths:
       tags:
         - project
       summary: GetSolutionsOfProject
-      description: Get solutions of a project
+      description: CCS-project-0027 Get solutions of a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -102,7 +102,7 @@ paths:
       tags:
         - project
       summary: GetPropertiesOfSolutionForProject
-      description: Get extra properties of a solution for a project
+      description: CCS-project-0028 Get extra properties of a solution for a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - $ref: '#/components/parameters/SolutionsIDParam'
@@ -125,7 +125,7 @@ paths:
       tags:
         - project
       summary: GetAssetsReportsForProjects
-      description: Get assets reports for the projects.
+      description: CCS-project-0031 Get assets reports for the projects
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - name: begin_time
@@ -156,7 +156,7 @@ paths:
       tags:
         - project
       summary: GetUserQuatas
-      description: get user quotas.
+      description: CCS-project-0030 Get user quotas
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - name: user
@@ -322,7 +322,7 @@ paths:
       tags:
       - site
       summary: GetSiteDetail
-      description: Get details of a site
+      description: CCS-site-0034 Get details of a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -337,7 +337,7 @@ paths:
       tags:
       - site
       summary: DeleteSite
-      description: Delete a site
+      description: CCS-site-2007 Delete a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -349,7 +349,7 @@ paths:
       tags:
       - site
       summary: UpdateSiteExtraProperty
-      description: Update site extra-property
+      description: CCS-site-3003 Update site extra-property
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - name: x-extra-property-flavor
@@ -369,7 +369,7 @@ paths:
       tags:
       - site
       summary: UpdateSiteDetail
-      description: Patch details of a site
+      description: VCS-site-4024 Patch details of a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -397,7 +397,7 @@ paths:
       tags:
       - site
       summary: GetSiteDetailOfContainer
-      description: Get site detail of containers
+      description: CCS-site-0035 Get site detail of containers
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -413,7 +413,7 @@ paths:
       tags:
       - site
       summary: ActionToPod
-      description: Execute an action to a pod
+      description: CCS-site-3004 Execute an action to a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -446,7 +446,7 @@ paths:
       tags:
       - site
       summary: GetContainerLogByK8S
-      description: Get logs of a container from a kubernetes site
+      description: CCS-site-0040 Get logs of a container from a kubernetes site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - name: pod_name
@@ -498,7 +498,7 @@ paths:
       tags:
       - site
       summary: GetGPUUtilizationByPod
-      description: Get GPU utilization of a pod
+      description: CCS-site-0038 Get GPU utilization of a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - name: pod_name
@@ -532,7 +532,7 @@ paths:
       tags:
       - site
       summary: GetGPUMemoryUtilizationByPod
-      description: Get gpu memory utilization of a pod
+      description: CCS-site-0039 Get gpu memory utilization of a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - name: pod_name
@@ -566,7 +566,7 @@ paths:
       tags:
       - site
       summary: GetCPUUtilizationByPod
-      description: Get CPU utilization of a pod
+      description: CCS-site-0036 Get CPU utilization of a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - name: pod_name
@@ -600,7 +600,7 @@ paths:
       tags:
       - site
       summary: GetMemoryUtilizationByPod
-      description: Get memory utilization of a pod
+      description: CCS-site-0041 Get memory utilization of a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - name: pod_name
@@ -634,7 +634,7 @@ paths:
       tags:
       - site
       summary: GetDiskUtilizationByPod
-      description: Get disk utilization of a pod
+      description: CCS-site-0037 Get disk utilization of a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - name: pod_name
@@ -698,7 +698,7 @@ paths:
       tags:
       - site
       summary: GetNetworkUtilizationByPod
-      description: Get network utilization of a pod
+      description: CCS-site-0042 Get network utilization of a pod
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - name: pod_name
@@ -762,7 +762,7 @@ paths:
       tags:
       - job
       summary: ListJobs
-      description: List jobs
+      description: CCS-job-0007 List jobs
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - name: tag
@@ -785,7 +785,7 @@ paths:
       tags:
       - job
       summary: CreateJob
-      description: Create job
+      description: CCS-job-1003 Create job
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -807,7 +807,7 @@ paths:
       tags:
       - job
       summary: GetJobDetail
-      description: Get details of a job
+      description: CCS-job-0008 Get details of a job
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -822,7 +822,7 @@ paths:
       tags:
       - job
       summary: DeleteJob
-      description: Delete a job
+      description: CCS-job-2003 Delete a job
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -834,7 +834,7 @@ paths:
       tags:
       - job
       summary: UpdateJobDetail
-      description: Update a Job
+      description: CCS-job-4003 Update a Job
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -857,7 +857,7 @@ paths:
       tags:
       - job
       summary: ListJobRuns
-      description: List job runs
+      description: CCS-job-0009 List job runs
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -875,7 +875,7 @@ paths:
       tags:
       - job
       summary: GetJobRunDetail
-      description: Get a specific run
+      description: CCS-job-0010 Get a specific run
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/RunIDParam'
@@ -894,7 +894,7 @@ paths:
       tags:
       - job
       summary: GetGPUUtilizationByRun
-      description: Get GPU utilization of a run
+      description: CCS-job-0013 Get GPU utilization of a run
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/RunIDParam'
@@ -923,7 +923,7 @@ paths:
       tags:
       - job
       summary: GetGPUUtilizationByRun
-      description: Get gpu memory utilization of a run
+      description: CCS-job-0014 Get gpu memory utilization of a run
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/RunIDParam'
@@ -952,7 +952,7 @@ paths:
       tags:
       - job
       summary: GetCPUUtilizationByRun
-      description: Get CPU utilization of a run
+      description: CCS-job-0011 Get CPU utilization of a run
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/RunIDParam'
@@ -981,7 +981,7 @@ paths:
       tags:
       - job
       summary: GetMemoryUtilizationByRun
-      description: Get memory utilization of a run
+      description: CCS-job-0016 Get memory utilization of a run
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/RunIDParam'
@@ -1010,7 +1010,7 @@ paths:
       tags:
       - job
       summary: GetDiskUtilizationByRun
-      description: Get disk utilization of a run
+      description: CCS-job-0012 Get disk utilization of a run
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/RunIDParam'
@@ -1079,7 +1079,7 @@ paths:
       tags:
       - job
       summary: GetLogByRun
-      description: Get logs information from a run
+      description: CCS-job-0015 Get logs information from a run
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/RunIDParam'
@@ -1115,7 +1115,7 @@ paths:
       tags:
       - job
       summary: StopJob
-      description: stop a job
+      description: CCS-job-1004 Stop a job
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1128,7 +1128,7 @@ paths:
       tags:
       - job
       summary: StartJob
-      description: start a job
+      description: CCS-job-1006 Start a job
       parameters:
         - $ref: '#/components/parameters/JobIDParam'
         - $ref: '#/components/parameters/ApiHostParam'

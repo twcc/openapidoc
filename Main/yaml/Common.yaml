@@ -25,7 +25,7 @@ paths:
       tags: 
         - version
       summary: Show the version
-      description: Show the version
+      description: Comm-ver-0131 Show the version
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
@@ -40,7 +40,7 @@ paths:
       tags:
       - token request
       summary: Lists token requests
-      description: Lists token requests
+      description: Comm-token_req-0126 List token requests
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
@@ -57,7 +57,7 @@ paths:
       tags:
       - token request
       summary: Shows details for a token request
-      description: Shows details for a token request.
+      description: Comm-token_req-0127 Show details of a token request
       parameters:
         - $ref: '#/components/parameters/TokenRequestIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -72,7 +72,8 @@ paths:
     get:
       tags:
         - solution
-      summary: List solutions
+      summary: ListSolutions
+      description: Comm-sol-0123 List solutions
       parameters:
         - in: query
           name: project
@@ -101,7 +102,7 @@ paths:
               value: container
         - name: name
           in: query
-          description: Solution Nmae
+          description: Solution Name
           schema:
             type: string
         - name: state
@@ -142,7 +143,8 @@ paths:
     get:
       tags:
         - solution
-      summary: Get a solution detail
+      summary: GetSolutionDetail
+      description: Comm-sol-0124 Get details of a solution
       parameters:
         - $ref: '#/components/parameters/SolutionsIDParam'
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -159,7 +161,7 @@ paths:
       tags:
         - project
       summary: Get Favorite context of a specific project name
-      description: Get Favorite context of a specific project name
+      description: Comm-proj-0120 Get Favorite context of a specific project name
       parameters:
         - $ref: '#/components/parameters/ProjectNameParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -174,7 +176,7 @@ paths:
       tags:
         - project
       summary: Update Favorite context of a specific project name
-      description: Update Favorite context of a specific project name
+      description: Comm-proj-4029 Update Favorite context of a specific project name
       parameters:
         - $ref: '#/components/parameters/ProjectNameParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -199,8 +201,8 @@ paths:
     get:
       tags:
       - image commit
-      summary: List image commit
-      description: List image commit request.Only tenant admin can use
+      summary: ListImageCommit
+      description: Comm-img_cmt-0116 List image commit request. Only tenant admin can use
       parameters: 
         # - $ref: '#/components/parameters/ProjectInQueryParam'
         - ProjectInQueryParam:
@@ -231,8 +233,8 @@ paths:
     post:
       tags:
       - image commit
-      summary: Create image commit request
-      description: Create image commit request.Only tenant admin can use
+      summary: CreateImageCommitRequest
+      description: Comm-img_cmt-1043 Create an image commit request. Only tenant admin can use
       parameters: 
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -264,8 +266,8 @@ paths:
     delete:
       tags:
       - image commit
-      summary: Delete a image commit
-      description: Delete a image commit.Only tenant admin can use
+      summary: DeleteImageCommit
+      description: Comm-img_cmt-2033 Delete an image commit. Only tenant admin can use
       parameters:
       - $ref: '#/components/parameters/ImageCommitIDParam'
       - $ref: '#/components/parameters/ApiHostParam'
@@ -276,8 +278,8 @@ paths:
     patch:
       tags:
       - image commit
-      summary: PATCH the image commit.
-      description: PATCH the image commit.Only tenant admin can use
+      summary: UpdateImageCommit
+      description: Comm-img_cmt-4027 Update the image commit. Only tenant admin can use
       parameters:
       - $ref: '#/components/parameters/ImageCommitIDParam'
       - $ref: '#/components/parameters/ApiHostParam'
@@ -307,8 +309,8 @@ paths:
     get:
       tags: 
         - image requests
-      summary: List image copy request
-      description: List image copy requests.Only tenant admin can use
+      summary: ListImageCopyRequest
+      description: Comm-img_req-0117 List image copy requests. Only tenant admin can use
       parameters: 
         - name: status
           in: query
@@ -341,8 +343,8 @@ paths:
     post:
       tags: 
         - image requests
-      summary: Create image copy request
-      description: Create image copy request.Only tenant admin can use
+      summary: CreateImageCopyRequest
+      description: Comm-img_req-1044 Create an image copy request. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -365,8 +367,8 @@ paths:
     get:
       tags: 
         - image requests
-      summary: Get a image copy request
-      description: Get a image copy request.Only tenant admin can use
+      summary: GetImageCopyRequest
+      description: Comm-img_req-0118 Get an image copy request. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/ImageRequestIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -380,8 +382,8 @@ paths:
     delete:
       tags:
         - image requests
-      summary: Delete a image copy request
-      description: Delete a image copy request.Only tenant admin can use
+      summary: DeleteImageCopyRequest
+      description: Comm-img_req-2034 Delete an image copy request. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/ImageRequestIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -392,8 +394,8 @@ paths:
     patch:
       tags:
         - image requests
-      summary: PATCH the image copy request status to requested.
-      description: PATCH the image copy request status to requested.Only tenant admin can use
+      summary: UpdateImageCopyRequestStatus
+      description: Comm-img_req-4028 Update the image copy request status as requested. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/ImageRequestIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
