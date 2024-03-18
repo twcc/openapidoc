@@ -37,7 +37,7 @@ paths:
       tags:
         - project
       summary: ListProjects
-      description: List projects
+      description: VCS-proj-0073 List projects
       parameters:
         - in: query
           name: name
@@ -64,7 +64,7 @@ paths:
       tags:
         - project
       summary: GetProjectDetail
-      description: Get details of a project
+      description: VCS-proj-0074 Get details of a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -88,7 +88,7 @@ paths:
       tags:
         - project
       summary: GetSolutionsOfProject
-      description: Get solutions of a project
+      description: VCS-proj-0077 Get solutions of a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -117,7 +117,7 @@ paths:
       tags:
         - project
       summary: GetPropertiesOfSolutionForProject
-      description: Get extra properties of a solution for a project
+      description: VCS-proj-0078 Get extra properties of a solution for a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - $ref: '#/components/parameters/SolutionsIDParam'
@@ -148,7 +148,7 @@ paths:
       tags:
         - project
       summary: GetAssetsReportsForProjects
-      description: Get assets reports for the projects.
+      description: VCS-proj-0082 Get assets reports for the projects
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - name: begin_time
@@ -179,7 +179,7 @@ paths:
       tags:
         - project
       summary: GetProjectQuotas
-      description: get project quotas
+      description: VCS-proj_quota-0072 Get project quotas
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -197,7 +197,7 @@ paths:
       tags:
         - project
       summary: GetUserQuotas
-      description: get user quotas
+      description: VCS-proj-0081 Get user quotas
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - name: user
@@ -221,7 +221,7 @@ paths:
       tags:
         - project
       summary: GetBusinessNetworkInfo
-      description: get a business network info in a openstack project.Only tenant admin can use
+      description: VCS-proj-0075 Get a business network info in a openstack project. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -239,7 +239,7 @@ paths:
       tags:
         - flavor
       summary: ListFlavor
-      description: List flavors
+      description: VCS-flavor-0051 List flavors
       parameters:
         - in: query
           name: is_public
@@ -269,7 +269,7 @@ paths:
       tags:
         - flavor
       summary: GetFlavorDetail
-      description: Get details of a flavor
+      description: VCS-flavor-0052 Get details of a flavor
       parameters:
         - $ref: '#/components/parameters/FlavorIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -285,7 +285,7 @@ paths:
       tags:
         - image
       summary: ListImages
-      description: List images
+      description: VCS-image-0056 List images
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -349,7 +349,7 @@ paths:
         - image
       summary: CreateImage
       description: |-
-        This API just create a metadata in database.
+        VCS-image-1019 This API just create a metadata in database.
         You need to use "Upload an Image" API to put an image to repository.
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
@@ -411,7 +411,7 @@ paths:
         - image
       summary: GetImageDetail
       description: |-
-        Get details of a image,Image is not public if it was saved from an server or
+        VCS-image-0057 Get details of a image. Image is not public if it was saved from an server or
         was uploaded by a tenant admin.
       parameters:
         - $ref: '#/components/parameters/ImageIDParam'
@@ -427,7 +427,7 @@ paths:
       tags:
         - image
       summary: UpdateImageDetail
-      description: Patch details of a image
+      description: VCS-image-4014 Patch details of a image
       parameters:
         - $ref: '#/components/parameters/ImageIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -460,7 +460,7 @@ paths:
       tags:
         - image
       summary: DeleteImage
-      description: Delete an image
+      description: VCS-image-2014 Delete an image
       parameters:
         - $ref: '#/components/parameters/ImageIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -473,7 +473,7 @@ paths:
       tags:
         - image
       summary: ImportUploadImage
-      description: Upload an image by importing
+      description: VCS-image-1020 Upload an image by importing
       parameters:
         - $ref: '#/components/parameters/ImageIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -505,8 +505,8 @@ paths:
         - image
       summary: SaveInstanceImage
       description: |-
-        Save an image for server <server_id>.
-        os can be "Linux" or "Windows" depends on image of the server
+        VCS-image-3007 Save an image for server <server_id>.
+        os can be "Linux" or "Windows" depends on image of the server.
         Image is not public if it saved from an server.
       parameters:
         - $ref: '#/components/parameters/ServerIDParam'
@@ -542,7 +542,7 @@ paths:
       tags:
       - keypair
       summary: ListKeypairs
-      description: List Keypairs
+      description: VCS-keypair-0063 List Keypairs
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       responses:
@@ -558,7 +558,7 @@ paths:
       tags:
       - keypair
       summary: CreateKeypair
-      description: Create a Keypair
+      description: VCS-keypair-1023 Create a Keypair
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -587,7 +587,7 @@ paths:
       tags:
       - keypair
       summary: GetKeypairDetail
-      description: Get Keypair Detail
+      description: VCS-keypair-0064 Get Keypair Detail
       parameters:
       - name: key_name
         in: path
@@ -615,7 +615,7 @@ paths:
       tags:
       - keypair
       summary: DeleteKeypair
-      description: Delete a Keypair
+      description: VCS-keypair-2017 Delete a Keypair
       parameters:
       - name: key_name
         in: path
@@ -633,7 +633,7 @@ paths:
       tags:
       - load balancer
       summary: ListsLoadBalancers
-      description: Lists load balancers
+      description: VCS-lb-0065 List load balancers
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -650,7 +650,7 @@ paths:
       tags:
       - load balancer
       summary: CreatesLoadBalancer
-      description: Creates a load balancer
+      description: VCS-lb-1024 Create a load balancer
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -694,7 +694,7 @@ paths:
       tags:
       - load balancer
       summary: GetLoadBalancerDetail
-      description: Shows details for a load balancer.
+      description: VCS-lb-0066 Show details for a load balancer
       parameters:
         - $ref: '#/components/parameters/LoadBalancerIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -709,7 +709,7 @@ paths:
       tags:
       - load balancer
       summary: DeleteLoadBalancer
-      description: Delete a load balancer.
+      description: VCS-lb-2018 Delete a load balancer
       parameters:
         - $ref: '#/components/parameters/LoadBalancerIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -721,7 +721,7 @@ paths:
       tags:
       - load balancer
       summary: UpdatesLoadBalancer
-      description: Updates a load balancer
+      description: VCS-lb-4016 Update a load balancer
       parameters:
         - $ref: '#/components/parameters/LoadBalancerIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -753,7 +753,7 @@ paths:
       tags:
       - load balancer
       summary: GetLoadBalancersReports
-      description: Shows report for a load balancer member.
+      description: VCS-lb-0068 Show report for a load balancer member
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - name: begin_time
@@ -779,7 +779,7 @@ paths:
       tags:
       - load balancer
       summary: ExecuteActionLoadBalancer
-      description: Execute an action to a load balancer
+      description: VCS-lb-3008 Execute an action to a load balancer
       parameters:
         - $ref: '#/components/parameters/LoadBalancerIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -854,7 +854,7 @@ paths:
       tags:
       - load balancer
       summary: GetLoadBalancerReortByMemberIP
-      description: Shows report for a load balancer member IP.
+      description: VCS-lb-0067 Show report for a load balancer member IP
       parameters:
         - $ref: '#/components/parameters/LoadBalancerIDParam'
         - name: member
@@ -925,7 +925,7 @@ paths:
       tags:
       - security group
       summary: ListSecurityGroups
-      description: List security groups with permission control
+      description: VCS-sg-0087 List security groups with permission control
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ServerInQueryParam'
@@ -952,7 +952,7 @@ paths:
       tags:
       - security group
       summary: CreateSecurityGroups
-      description: Create a security group in a project
+      description: VCS-sg-1032 Create a security group in a project
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -983,7 +983,7 @@ paths:
       tags:
       - security group
       summary: GetSecurityGroupDetail
-      description: Get security group detail
+      description: VCS-sg-0088 Get security group detail
       parameters:
         - $ref: '#/components/parameters/SecurityGroupIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1000,7 +1000,7 @@ paths:
       tags:
       - security group
       summary: UpdateSecurityGroup
-      description: Update desc of a security group.
+      description: VCS-sg-4023 Update description of a security group
       parameters:
         - $ref: '#/components/parameters/SecurityGroupIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1028,7 +1028,7 @@ paths:
       tags:
       - security group
       summary: DeleteSecurityGroup
-      description: Delete a security group in a project
+      description: VCS-sg-2024 Delete a security group in a project
       parameters:
         - $ref: '#/components/parameters/SecurityGroupIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1041,7 +1041,7 @@ paths:
       tags:
       - security group
       summary: CreateSecurityGroupsRule
-      description: Add a security rule to a security group
+      description: VCS-sg-1031 Add a security rule to a security group
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -1088,7 +1088,7 @@ paths:
       tags: 
       - security group
       summary: DeleteSecurityGroupRule
-      description: Delete a rule in a security group with permission control
+      description: VCS-sg-2023 Delete a rule in a security group with permission control
       parameters: 
         - $ref: '#/components/parameters/RuleIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1102,7 +1102,7 @@ paths:
       tags:
       - security group(Deprecated)
       summary: ListSecurityRulesByServer
-      description: List security rules of a server/loadbalancer/site
+      description: VCS-sg-0086 List security rules of a server/loadbalancer/site
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ServerInQueryParam'
@@ -1123,7 +1123,7 @@ paths:
       tags: 
       - security group(Deprecated)
       summary: AddSecurityRuleBySecurityGroup.
-      description: Add a security rule to a security group.
+      description: VCS-sg-4022 Add a security rule to a security group
       parameters: 
         - $ref: '#/components/parameters/SecurityGroupIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1161,7 +1161,7 @@ paths:
       tags: 
       - security group(Deprecated)
       summary: DeleteRuleInSecurityGroup.
-      description: Delete a rule in a security group.
+      description: VCS-sg-2022 Delete a rule in a security group
       parameters: 
         - $ref: '#/components/parameters/RuleIDParam'
         - $ref: '#/components/parameters/ProjectInQueryParam'
@@ -1175,7 +1175,7 @@ paths:
       tags:
       - network
       summary: ListsNetworks
-      description: Lists networks
+      description: VCS-ntwk-0069 Lists networks
       parameters: 
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1192,7 +1192,7 @@ paths:
       tags: 
       - network
       summary: CreatesNetwork
-      description: Creates a network.Only tenant admin can use
+      description: VCS-ntwk-1025 Create a network. Only tenant admin can use
       parameters: 
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -1213,7 +1213,7 @@ paths:
       tags: 
       - network
       summary: GetNetworkDetail
-      description: Shows details for a network.Only tenant admin can use
+      description: VCS-ntwk-0070 Show details for a network. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/NetworkIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1228,7 +1228,7 @@ paths:
       tags: 
       - network
       summary: DeletesNetwork
-      description: Deletes a network.Only tenant admin can use
+      description: VCS-ntwk-2019 Delete a network. Only tenant admin can use
       parameters: 
         - $ref: '#/components/parameters/NetworkIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1240,7 +1240,7 @@ paths:
       tags: 
       - network
       summary: UpdateNetwork
-      description: Update a network.Only tenant admin can use
+      description: VCS-ntwk-4017 Update a network. Only tenant admin can use
       parameters: 
         - $ref: '#/components/parameters/NetworkIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1269,7 +1269,7 @@ paths:
       tags: 
       - network
       summary: GetSGRulesByNetwork
-      description: Get security group rules by a network.Only tenant admin can use
+      description: VCS-ntwk-0071 Get security group rules by a network. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/NetworkIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1312,7 +1312,7 @@ paths:
       tags: 
       - ip
       summary: ListStaticElasticIP
-      description: List Elastic IPs
+      description: VCS-ip-0059 List Elastic IPs
       parameters:
           - $ref: '#/components/parameters/ProjectInQueryParam'
           - name: address
@@ -1334,7 +1334,7 @@ paths:
       tags: 
       - ip
       summary: SubscribeStaticElasticIP
-      description: Create a STATIC Elastic IP.Only tenant admin can use
+      description: VCS-ip-1021 Create a STATIC Elastic IP. Only tenant admin can use
       parameters: 
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -1361,7 +1361,7 @@ paths:
       tags: 
       - ip
       summary: UnsubscribeStaticElasticIP
-      description: Unsubscribe a STATIC Elastic IP
+      description: VCS-ip-0060 Unsubscribe a STATIC Elastic IP
       parameters: 
         - $ref: '#/components/parameters/IPIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1376,7 +1376,7 @@ paths:
       tags: 
       - ip
       summary: UpdateStaticElasticIP
-      description: Update a Elastic IP's description
+      description: VCS-ip-4015 Update an Elastic IP's description
       parameters: 
         - $ref: '#/components/parameters/IPIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1401,7 +1401,7 @@ paths:
       tags: 
       - ip
       summary: UnsubscribeStaticElasticIP
-      description: Unsubscribe a STATIC Elastic IP.Only tenant admin can use
+      description: VCS-ip-2015 Unsubscribe a STATIC Elastic IP. Only tenant admin can use
       parameters: 
         - $ref: '#/components/parameters/IPIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1414,7 +1414,7 @@ paths:
       tags:
       - volume
       summary: ListVolumes
-      description: List volumes
+      description: VCS-vol-0108 List volumes
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - name: attached_host
@@ -1467,7 +1467,7 @@ paths:
       tags:
       - volume
       summary: CreateVolume
-      description: Create a volume
+      description: VCS-vol-1039 Create a volume
       parameters:
       - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -1501,7 +1501,7 @@ paths:
       tags:
       - volume
       summary: GetVolumeDetail
-      description: Get details of a volume
+      description: VCS-vol-0109 Get details of a volume
       parameters:
         - $ref: '#/components/parameters/VolumeIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1516,7 +1516,7 @@ paths:
       tags: 
       - volume
       summary: DeleteVolume
-      description: Delete a volume
+      description: VCS-vol-2030 Delete a volume
       parameters:
         - $ref: '#/components/parameters/VolumeIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1529,7 +1529,7 @@ paths:
       tags: 
       - volume
       summary: UpdateParametersOfVolume
-      description: Update status or extend size of a volume
+      description: VCS-vol-3014 Update status or extend size of a volume
       parameters: 
         - $ref: '#/components/parameters/VolumeIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1585,7 +1585,7 @@ paths:
       tags:
       - volume
       summary: GetVolumeReportOfAllGroups.
-      description: Get volume report of all groups.Only tenant admin can use
+      description: VCS-vol-0110 Get volume report of all groups. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - name: user
@@ -1616,7 +1616,7 @@ paths:
       tags: 
       - snapshot
       summary: ListSnapshots
-      description: Get snapshots
+      description: VCS-snap-0105 Get snapshots
       parameters: 
         - name: status
           in: query
@@ -1639,7 +1639,7 @@ paths:
       tags: 
       - snapshot
       summary: CreateSnapshot
-      description: Take a snapshot
+      description: VCS-snap-1038 Create a snapshot. The snapshot feature only supports Data Volumes and cannot be used on System Volumes.
       parameters: 
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -1673,7 +1673,7 @@ paths:
       tags: 
       - snapshot
       summary: GetSnapshotDetail
-      description: Get details of a snapshot
+      description: VCS-snap-0106 Get details of a snapshot
       parameters: 
         - $ref: '#/components/parameters/SnapshotIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1688,7 +1688,7 @@ paths:
       tags: 
       - snapshot
       summary: DeleteSnapshot
-      description: Delete a snapshot
+      description: VCS-snap-2029 Delete a snapshot
       parameters: 
         - $ref: '#/components/parameters/SnapshotIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1701,7 +1701,7 @@ paths:
       tags:
       - snapshot
       summary: GetSnapshotsReport
-      description: Get snapshots report
+      description: VCS-snap-0107 Get snapshots report
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - name: user
@@ -1732,7 +1732,7 @@ paths:
       tags: 
       - server
       summary: ListServers
-      description: List servers
+      description: VCS-serv-0089 List servers
       parameters: 
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - name: image
@@ -1771,7 +1771,7 @@ paths:
       tags: 
       - server
       summary: GetServerDetail
-      description: Get details of a server
+      description: VCS-serv-0090 Get details of a server
       parameters: 
         - $ref: '#/components/parameters/ServerIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1787,7 +1787,7 @@ paths:
       tags: 
       - server
       summary: SetAutoScalingPolicyOnServer
-      description: Set Auto Scaling Policy On a Server
+      description: VCS-serv-1033 Set Auto Scaling Policy on a server
       parameters: 
         - $ref: '#/components/parameters/ServerIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1842,7 +1842,7 @@ paths:
       tags:
       - server
       summary: DeleteAutoScalingPolicyFromServer
-      description: Remove Auto Scaling Policy From a Server
+      description: VCS-serv-2025 Remove Auto Scaling Policy from a Server
       parameters: 
         - $ref: '#/components/parameters/ServerIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1855,7 +1855,7 @@ paths:
       tags: 
       - server
       summary: ExecuteActionServer
-      description: Execute an action to a server
+      description: VCS-serv-3011 Execute an action to a server
       parameters: 
         - $ref: '#/components/parameters/ServerIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -1928,7 +1928,7 @@ paths:
       tags: 
       - server
       summary: GetCPUUtilizationByServer
-      description: Get a Server CPU Utilization
+      description: VCS-serv-0091 Get a Server CPU utilization
       parameters: 
         - name: begin_time
           in: query
@@ -1956,7 +1956,7 @@ paths:
       tags: 
       - server
       summary: GetDiskUtilizationByServer
-      description: Get a Server Disk Utilization
+      description: VCS-serv-0092 Get a Server Disk utilization
       parameters: 
         - name: meter_name
           in: query
@@ -1991,7 +1991,7 @@ paths:
       tags: 
       - server
       summary: GetMemoryUtilizationByServer
-      description: Get a Server Memory Utilization
+      description: VCS-serv-0093 Get a Server Memory utilization
       parameters: 
         - name: begin_time
           in: query
@@ -2019,7 +2019,7 @@ paths:
       tags: 
       - server
       summary: GetNetworkUtilizationByServer
-      description: Get a Server Network Utilization
+      description: VCS-serv-0094 Get a Server Network utilization
       parameters: 
         - name: begin_time
           in: query
@@ -2054,7 +2054,7 @@ paths:
       tags:
       - site
       summary: Listsites
-      description: List sites
+      description: VCS-site-0100 List sites
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - name: sol_categ
@@ -2084,7 +2084,7 @@ paths:
       tags:
       - site
       summary: CreateSite
-      description: Create a site
+      description: VCS-site-1037 Create a site
       parameters:
         - name: x-extra-property-image
           in: header
@@ -2195,7 +2195,7 @@ paths:
       tags:
       - site
       summary: GetSiteDetail
-      description: List sites
+      description: VCS-site-0101 Get details of a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2210,7 +2210,7 @@ paths:
       tags:
       - site
       summary: DeleteSite
-      description: Delete a site
+      description: VCS-site-2028 Delete a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2222,7 +2222,7 @@ paths:
       tags:
       - site
       summary: UpdateSiteExtraProperty
-      description: Update site extra-property，This API no request body
+      description: VCS-site-3012 Update site extra-property. This API has no request body
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - name: x-extra-property-flavor
@@ -2245,7 +2245,7 @@ paths:
       tags:
       - site
       summary: UpdateSiteDetail
-      description: Patch details of a site
+      description: VCS-site-4024 Patch details of a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2272,7 +2272,7 @@ paths:
       tags:
       - site
       summary: GetParametersOfSite
-      description: List sites
+      description: VCS-site-0103 Get parameters of a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2309,7 +2309,7 @@ paths:
       tags:
       - site
       summary: GetEventLogsOfSite
-      description: Get event logs of a site
+      description: VCS-site-0102 Get event logs of a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2327,7 +2327,7 @@ paths:
       tags:
       - site
       summary: ActionStatusOfSite
-      description: Action status of a site
+      description: VCS-site-3013 Action status of a site
       parameters:
         - $ref: '#/components/parameters/SiteIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2377,7 +2377,7 @@ paths:
       tags:
       - firewall
       summary: ListFirewall
-      description: get firewalls list.Only tenant admin can use
+      description: VCS-wall-0049 Get firewalls list. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2394,9 +2394,9 @@ paths:
       tags:
       - firewall
       summary: CreateFirewall
-      description: Create a firewall, 'rules' is an optional parameter to define filrewall
-        rules list for this firewall. And 'associate_networks' is another optional
-        parameter to define which private networks list associate to this firewall.Only tenant admin can use
+      description: VCS-wall-1016 Create a firewall. 'Rules' is an optional parameter to define filrewall
+        rules list for this firewall, and 'associate_networks' is another optional
+        parameter to define which private networks list associate to this firewall. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -2436,7 +2436,7 @@ paths:
       tags:
       - firewall
       summary: GetFirewallDetail
-      description: get a firewall detail.Only tenant admin can use
+      description: VCS-wall-0048 Get a firewall detail. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/FirewallIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2451,7 +2451,7 @@ paths:
       tags:
       - firewall
       summary: UpdateFirewall
-      description: update a firewall.Only tenant admin can use
+      description: VCS-wall-4010 Update a firewall. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/FirewallIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2486,7 +2486,7 @@ paths:
       tags:
       - firewall
       summary: DeleteFirewall
-      description: delete a firewall.Only tenant admin can use
+      description: VCS-wall-2010 Delete a firewall. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/FirewallIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2499,7 +2499,7 @@ paths:
       tags:
       - firewall
       summary: ListFirewallRules
-      description: get firewall rules list.Only tenant admin can use
+      description: VCS-wall-0047 Get firewall rules list. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2516,7 +2516,7 @@ paths:
       tags:
       - firewall
       summary: CreateFirewallRule
-      description: create a firewall rule.Only tenant admin can use
+      description: VCS-wall-1015 Create a firewall rule. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -2574,7 +2574,7 @@ paths:
       tags:
       - firewall
       summary: GetFirewallRuleDetail
-      description: get firewall rules list.Only tenant admin can use
+      description: VCS-wall-0048 Get firewall rules list. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/FirewallRuleIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2591,7 +2591,7 @@ paths:
       tags:
       - firewall
       summary: DeleteFirewallRule
-      description: delete a firewall rule.Only tenant admin can use
+      description: VCS-wall-2010 Delete a firewall rule. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/FirewallRuleIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2603,7 +2603,7 @@ paths:
       tags:
       - firewall
       summary: UpdateFirewallRule
-      description: update a firewall rule.Only tenant admin can use
+      description: VCS-wall-4010 Update a firewall rule. Only tenant admin can use
       parameters:
         - $ref: '#/components/parameters/FirewallRuleIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2655,7 +2655,7 @@ paths:
       tags:
         - secret
       summary: ListSecrets
-      description: List Barbican Secrets
+      description: VCS-secret-0084 List Barbican Secrets
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2672,7 +2672,7 @@ paths:
       tags:
         - secret
       summary: CreateSecret
-      description: Create a Barbican Secret
+      description: VCS-secret-1030 Create a Barbican Secret
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2710,7 +2710,7 @@ paths:
       tags:
         - secret
       summary: GetSecretDetail
-      description: Get a secret detail
+      description: VCS-secret-0085 Get a secret detail
       parameters:
         - $ref: '#/components/parameters/SecretIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2725,7 +2725,7 @@ paths:
       tags:
         - secret
       summary: DeleteSecret
-      description: Delete a secret
+      description: VCS-secret-2021 Delete a secret
       parameters:
         - $ref: '#/components/parameters/SecretIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2738,7 +2738,7 @@ paths:
       tags:
         - availability zone
       summary: ListAvailabilityZones
-      description: List availability zones
+      description: VCS-az-0045 List availability zones
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2756,7 +2756,7 @@ paths:
       tags:
         - availability zone
       summary: GetAvailabilityZoneDetail
-      description: Get availability zone details
+      description: VCS-az-0046 Get availability zone details
       parameters:
         - $ref: '#/components/parameters/AZIDParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2772,7 +2772,7 @@ paths:
       tags:
         - auto scaling policy
       summary: ListAutoScalingPolicies
-      description: get auto scaling policies list
+      description: VCS-as_pcy-0043 Get auto scaling policies list
       parameters:
         - $ref: '#/components/parameters/ProjectInQueryParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2789,7 +2789,7 @@ paths:
       tags:
         - auto scaling policy
       summary: CreateAutoScalingPolicy
-      description: create an auto scaling policy
+      description: VCS-as_pcy-1013 Create an auto scaling policy
       parameters:
         - $ref: '#/components/parameters/ApiHostParam'
       requestBody:
@@ -2838,7 +2838,7 @@ paths:
       tags:
         - auto scaling policy
       summary: GetAutoScalingPolicyDetail
-      description: get an auto scaling policy detail
+      description: VCS-as_pcy-0044 Get an auto scaling policy detail
       parameters:
         - $ref: '#/components/parameters/AutoScalingPolicyID'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -2853,7 +2853,7 @@ paths:
       tags:
         - auto scaling policy
       summary: DeleteAutoScalingPolicy
-      description: delete an auto scaling policy
+      description: VCS-as_pcy-2008 Delete an auto scaling policy
       parameters:
         - $ref: '#/components/parameters/AutoScalingPolicyID'
         - $ref: '#/components/parameters/ApiHostParam'

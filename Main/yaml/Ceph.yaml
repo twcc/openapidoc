@@ -21,7 +21,7 @@ paths:
       tags:
         - project
       summary: List projects
-      description: List projects
+      description: ceph-proj-0156 List projects
       parameters:
         - in: query
           name: name
@@ -44,7 +44,7 @@ paths:
       tags:
         - project
       summary: Get details of a project
-      description: Get details of a project
+      description: ceph-proj-0157 Get details of a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -60,7 +60,7 @@ paths:
       tags:
       - project
       summary: Get ceph subuser's key from a project
-      description: Get ceph subuser's key from a project
+      description: ceph-proj-0158 Get ceph subuser's key from a project
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - $ref: '#/components/parameters/ApiHostParam'
@@ -75,7 +75,7 @@ paths:
         tags:
         - project
         summary: Renew ceph subuser's public key from a project
-        description: Renew ceph subuser's public key from a project
+        description: ceph-proj-3020 Renew ceph subuser's public key from a project
         parameters:
           - $ref: '#/components/parameters/ProjectInPathParam'
           - $ref: '#/components/parameters/ApiHostParam'
@@ -103,7 +103,7 @@ paths:
         tags:
         - project
         summary: Create ceph subuser's private key from a project
-        description: Create ceph subuser's private key from a project
+        description: ceph-proj-1061 Create ceph subuser's private key from a project
         parameters:
           - $ref: '#/components/parameters/ProjectInPathParam'
           - $ref: '#/components/parameters/ApiHostParam'
@@ -128,7 +128,7 @@ paths:
         tags:
         - project
         summary: Delete ceph subuser's private key from a project
-        description: Delete ceph subuser's private key from a project
+        description: ceph-proj-2044 Delete ceph subuser's private key from a project
         parameters:
           - $ref: '#/components/parameters/ProjectInPathParam'
           - $ref: '#/components/parameters/ApiHostParam'
@@ -154,7 +154,7 @@ paths:
       tags:
       - project
       summary: Get buckets of a user
-      description: Get buckets of a user
+      description: ceph-proj-0159 Get buckets of a user
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - name: all
@@ -190,7 +190,7 @@ paths:
       tags:
       - project
       summary: Get buckets total usages of a user
-      description: Get buckets total usages of a user
+      description: ceph-proj-0160 Get buckets total usages of a user
       parameters:
         - $ref: '#/components/parameters/ProjectInPathParam'
         - name: all
