@@ -1,0 +1,344 @@
+openapi: 3.0.0
+servers:
+  - description: STG environment
+    url: '{apigateway}/api/v1/{ApiHost}/'
+    variables:
+      apigateway:
+        default: https://tproof-stg.twcc.ai
+      ApiHost:
+        default: tproof
+  - description: PROD environment
+    url: '{apigateway}/api/v1/{ApiHost}/'
+    variables:
+      apigateway:
+        default: https://tproof.twcc.ai
+      ApiHost:
+        default: tproof
+info:
+  version: 1.5.0216
+  title: T-Proof Forensic API
+  description: 
+    An API for T-Proof Service.
+paths:
+  /tproof/forensics/:
+    post:
+      tags:
+        - T-Proof
+      summary: Retrieve forensic information for a T-Proof Token
+      description: Forensic a T-Proof 
+      requestBody:
+        description: body
+        content:
+          application/json:
+            schema:
+              required:
+              - apikey
+              - tokenId
+              type: object
+              properties:
+                apikey:
+                  type: string
+                tokenId:
+                  type: string
+      responses:
+        200:
+          description: Forensic information retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  data:
+                      type: object
+                      properties:
+                        tokenVersion:
+                          type: string
+                        tokenId:
+                          type: string
+                        description:
+                          type: string
+                        identity:
+                          type: string
+                        appTime:
+                          type: string
+                        root:
+                          type: string
+                        proof:
+                          type: string
+                        blockchainTx:
+                          type: string
+                        tsaTime:
+                          type: string
+                        blockchainTime:
+                          type: string
+        400:
+          description: Bad Request
+          content:
+            application/plain:
+              schema:
+                type: string
+        401:
+          description: Unauthorized
+          content:
+            application/plain:
+              schema:
+                type: string
+        403:
+          description: Forbidden
+          content:
+            application/plain:
+              schema:
+                type: string
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                  error:
+                    type: string
+                  message:
+                    type: string
+        422:
+          description: Unprocessable Entity
+          content:
+            application/plain:
+              schema:
+                type: string
+        429:
+          description: Too Many Requests
+          content:
+            application/plain:
+              schema:
+                type: string
+        502:
+          description: Bad Gateway
+          content:
+            application/plain:
+              schema:
+                type: string
+        503:
+          description: Service Unavailable
+          content:
+            application/plain:
+              schema:
+                type: string
+  /tproof/verify/:
+    post:
+      tags:
+        - T-Proof
+      summary: Verify a TProof Token
+      description: Verify a TProof Token 
+      requestBody:
+        description: body
+        content:
+          application/json:
+            schema:
+              required:
+              - apikey
+              - tokenId
+              - signature
+              - proof
+              type: object
+              properties:
+                apikey:
+                  type: string
+                tokenId:
+                  type: string
+                signature:
+                  type: string
+                proof:
+                  type: string
+      responses:
+        200:
+          description: Successfully verified
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  data:
+                      type: object
+                      properties:
+                        tokenId:
+                          type: string
+                        signature:
+                          type: string
+                        onwerVerify:
+                          type: string
+                        organization:
+                          type: string
+                        cn:
+                          type: string
+                        integrityVerify:
+                          type: string
+                        appTime:
+                          type: string
+                        blockChainTime:
+                          type: string
+                        tsaTime:
+                          type: string
+                        blockChainTxID:
+                          type: string
+                        certDescription:
+                          type: string
+        400:
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                type: string
+        401:
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                type: string
+        403:
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                type: string
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                  error:
+                    type: string
+                  message:
+                    type: string
+        422:
+          description: Unprocessable Entity
+          content:
+            text/plain:
+              schema:
+                type: string
+        429:
+          description: Too Many Requests
+          content:
+            text/plain:
+              schema:
+                type: string
+        502:
+          description: Bad Gateway
+          content:
+            text/plain:
+              schema:
+                type: string
+        503:
+          description: Service Unavailable
+          content:
+            text/plain:
+              schema:
+                type: string
+  /deposit/:
+    post:
+      tags:
+        - T-Proof
+      summary: Deposit
+      description: Deposit a TProof 
+      requestBody:
+        description: body
+        content:
+          application/json:
+            schema:
+              required:
+              - apikey
+              - data
+              type: object
+              properties:
+                apikey:
+                  type: string
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      signature:
+                        type: string
+                      tags:
+                        type: array
+                        items:
+                          type: string
+      responses:
+        200:
+          description: Successfully deposited
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  data:
+                      type: array
+                      items:
+                        type: string
+        400:
+          description: Bad Request
+          content:
+            application/plain:
+              schema:
+                type: string
+        401:
+          description: Unauthorized
+          content:
+            application/plain:
+              schema:
+                type: string
+        403:
+          description: Forbidden
+          content:
+            application/plain:
+              schema:
+                type: string
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                  error:
+                    type: string
+                  message:
+                    type: string
+        422:
+          description: Unprocessable Entity
+          content:
+            application/plain:
+              schema:
+                type: string
+        429:
+          description: Too Many Requests
+          content:
+            application/plain:
+              schema:
+                type: string
+        502:
+          description: Bad Gateway
+          content:
+            application/plain:
+              schema:
+                type: string
+        503:
+          description: Service Unavailable
+          content:
+            application/plain:
+              schema:
+                type: string
