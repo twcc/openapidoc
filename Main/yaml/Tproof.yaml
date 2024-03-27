@@ -1,3 +1,4 @@
+
 openapi: 3.0.0
 servers:
   - description: STG environment
@@ -342,3 +343,4 @@ paths:
             application/plain:
               schema:
                 type: string
+
