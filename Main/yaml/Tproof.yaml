@@ -20,7 +20,7 @@ info:
   description: 
     An API for T-Proof Service.
 paths:
-  /deposit/:
+  /deposit:
     post:
       tags:
         - T-Proof
@@ -118,7 +118,7 @@ paths:
             application/plain:
               schema:
                 type: string
-  /tproof/forensics/:
+  /forensics:
     post:
       tags:
         - T-Proof
@@ -226,7 +226,7 @@ paths:
             application/plain:
               schema:
                 type: string
-  /tproof/verify/:
+  /verify:
     post:
       tags:
         - T-Proof
